@@ -1,0 +1,277 @@
+<?php
+
+namespace Enlightn\Enlightn\Analyzers;
+
+use Illuminate\Contracts\Foundation\Application;
+use Throwable;
+
+abstract class Analyzer
+{
+    const SEVERITY_CRITICAL = 'critical';
+    const SEVERITY_MAJOR = 'major';
+    const SEVERITY_MINOR = 'minor';
+    const SEVERITY_INFO  = 'info';
+
+    /**
+     * The category of the analyzer.
+     *
+     * @var string|null
+     */
+    public $category = null;
+
+    /**
+     * The severity of the analyzer.
+     *
+     * @var string|null
+     */
+    public $severity = null;
+
+    /**
+     * The time to fix in minutes.
+     *
+     * @var int|null
+     */
+    public $timeToFix = null;
+
+    /**
+     * The title describing the analyzer.
+     *
+     * @var string|null
+     */
+    public $title = null;
+
+    /**
+     * The error message describing the analyzer insights.
+     *
+     * @var string|null
+     */
+    public $errorMessage = null;
+
+    /**
+     * The application paths and associated line numbers to flag.
+     *
+     * @var array
+     */
+    public $traces = [];
+
+    /**
+     * The exception thrown during the analysis.
+     *
+     * @var array
+     */
+    protected $exceptionMessage = null;
+
+    /**
+     * The view partial of the analyzer.
+     *
+     * @var string|null
+     */
+    protected $view = null;
+
+    /**
+     * Determine whether the analyzer passed.
+     *
+     * @var bool
+     */
+    protected $passed = true;
+
+    /**
+     * Determine whether the analyzer was skipped.
+     *
+     * @var bool
+     */
+    protected $skipped = false;
+
+    /**
+     * Run the analyzer.
+     *
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @return void
+     */
+    public function run(Application $app)
+    {
+        if (method_exists($this, 'skip') && $this->skip()) {
+            $this->markSkipped();
+
+            return;
+        }
+
+        $method = method_exists($this, 'handle') ? 'handle' : '__invoke';
+
+        $app->call([$this, $method]);
+    }
+
+    /**
+     * Get the error message pertaining to the analysis.
+     *
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return method_exists($this, 'errorMessage') ? $this->errorMessage() : $this->errorMessage;
+    }
+
+    /**
+     * Add an associated path and line number trace.
+     *
+     * @param  string  $path
+     * @param  int  $lineNumber
+     * @return $this
+     */
+    public function addTrace(string $path, $lineNumber = 0)
+    {
+        if ($lineNumber == 0) {
+            return $this->markFailed();
+        }
+
+        if (! isset($this->traces[$path])) {
+            $this->traces[$path] = [];
+        }
+
+        if (! in_array($lineNumber, $this->traces[$path])) {
+            $this->traces[$path][] = $lineNumber;
+        }
+
+        return $this->markFailed();
+    }
+
+    /**
+     * Record an exception that was thrown during the analysis.
+     *
+     * @param \Throwable $e
+     * @return $this
+     */
+    public function recordException(Throwable $e)
+    {
+        $this->exceptionMessage = $e->getMessage();
+
+        return $this->markSkipped();
+    }
+
+    /**
+     * Set an exception message for the analyzer.
+     *
+     * @return $this
+     */
+    public function setExceptionMessage(string $message)
+    {
+        $this->exceptionMessage = $message;
+
+        return $this->markSkipped();
+    }
+
+    /**
+     * Add an associated path and line numbers.
+     *
+     * @param  string  $path
+     * @param  array  $lineNumbers
+     * @return $this
+     */
+    public function addTraces(string $path, $lineNumbers = [])
+    {
+        collect($lineNumbers)->each(function ($lineNumber) use ($path) {
+            $this->addTrace($path, $lineNumber);
+        });
+
+        return $this;
+    }
+
+    /**
+     * Mark the analyzer as failed.
+     *
+     * @return $this
+     */
+    public function markFailed()
+    {
+        $this->passed = false;
+
+        return $this;
+    }
+
+    /**
+     * Mark the analyzer as skipped.
+     *
+     * @return $this
+     */
+    public function markSkipped()
+    {
+        $this->skipped = true;
+
+        return $this;
+    }
+
+    /**
+     * Get the analyzer information.
+     *
+     * @return array
+     */
+    public function getInfo()
+    {
+        return [
+            'title' => $this->title,
+            'category' => $this->category,
+            'severity' => $this->severity,
+            'timeToFix' => $this->timeToFix,
+            'status' => $this->getStatus(),
+            'exception' => $this->exceptionMessage,
+            'error' => ($this->getStatus() == 'failed') ? $this->getErrorMessage() : null,
+            'traces' => $this->traces,
+        ];
+    }
+
+    /**
+     * Get the analyzer status.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        if ($this->runFailed()) {
+            return 'error';
+        } elseif ($this->skipped()) {
+            return 'skipped';
+        } else {
+            return $this->passed() ? 'passed' : 'failed';
+        }
+    }
+
+    /**
+     * Determine whether the analyzer passed.
+     *
+     * @return bool
+     */
+    public function passed()
+    {
+        return $this->passed;
+    }
+
+    /**
+     * Determine whether the analyzer was skipped.
+     *
+     * @return bool
+     */
+    public function skipped()
+    {
+        return $this->skipped;
+    }
+
+    /**
+     * Determine whether the analyzer run failed with an exception.
+     *
+     * @return bool
+     */
+    public function runFailed()
+    {
+        return ! is_null($this->exceptionMessage);
+    }
+
+    /**
+     * Determine whether the analyzer should skip if the environment is local.
+     *
+     * @return bool
+     */
+    public function isLocalAndShouldSkip()
+    {
+        return config('app.env') === 'local' && config('enlightn.skip_env_specific', false);
+    }
+}
