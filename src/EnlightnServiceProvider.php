@@ -17,7 +17,7 @@ class EnlightnServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/enlightn.php' => config_path('enlightn.php'),
-            ], 'enlightn-config');
+            ], 'enlightn');
         }
     }
 

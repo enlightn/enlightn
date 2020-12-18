@@ -76,7 +76,7 @@ class Enlightn
         }
 
         static::$analyzers = Arr::sort(static::$analyzers, function ($analyzer) {
-            return $analyzer->category;
+            return $analyzer->category.get_class($analyzer);
         });
 
         foreach (static::$analyzers as $analyzer) {
