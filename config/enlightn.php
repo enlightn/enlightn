@@ -30,6 +30,7 @@ return [
     */
     'analyzer_paths' => [
         'Enlightn\\Enlightn\\Analyzers' => base_path('vendor/enlightn/enlightn/src/Analyzers'),
+        'Enlightn\\EnlightnPro\\Analyzers' => base_path('vendor/enlightn/enlightnpro/src/Analyzers'),
     ],
 
     /*
@@ -77,7 +78,9 @@ return [
 
     // List your commercial packages (licensed by you) below, so that they are not
     // flagged by the License Analyzer.
-    'commercial_packages' => [],
+    'commercial_packages' => [
+        'enlightn/enlightnpro',
+    ],
 
     'allowed_permissions' => [
         base_path() => '755',
