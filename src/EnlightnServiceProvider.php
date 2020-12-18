@@ -46,7 +46,7 @@ class EnlightnServiceProvider extends ServiceProvider
         $this->app->singleton(PHPStan::class, function ($app) {
             return new PHPStan($app->make('files'), $app->basePath());
         });
-        $this->app->resolving(PHPStan::class, function ($PHPStan) {
+        $this->app->afterResolving(PHPStan::class, function ($PHPStan) {
             $PHPStan->start(Enlightn::$filePaths->toArray());
         });
 

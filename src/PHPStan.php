@@ -33,6 +33,13 @@ class PHPStan
     protected $rootPath;
 
     /**
+     * The PHPStan configuration file path.
+     *
+     * @var string|null
+     */
+    protected $configPath;
+
+    /**
      * Create a new PHPStan manager instance.
      *
      * @param  \Illuminate\Filesystem\Filesystem  $files
@@ -96,7 +103,7 @@ class PHPStan
      */
     public function start($paths, $configPath = null)
     {
-        $configPath = $configPath ?? (__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'phpstan.neon');
+        $configPath = $configPath ?? $this->configPath ?? (__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'phpstan.neon');
 
         $options = ['analyse', '--configuration='.$configPath, '--error-format=json', '--no-progress'];
 
@@ -127,6 +134,19 @@ class PHPStan
         $process->run();
 
         return $process->getOutput().($includeErrorOutput ? $process->getErrorOutput() : '');
+    }
+
+    /**
+     * Set the PHPStan configuration file path.
+     *
+     * @param string $configPath
+     * @return $this
+     */
+    public function setConfigPath(string $configPath)
+    {
+        $this->configPath = $configPath;
+
+        return $this;
     }
 
     /**

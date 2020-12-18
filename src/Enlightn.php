@@ -176,7 +176,7 @@ class Enlightn
      */
     public static function getAnalyzerPaths()
     {
-        return collect(config('enlightn.analyzerPaths', __DIR__.'/Analyzers'))
+        return collect(config('enlightn.analyzer_paths', ['Enlightn\\Enlightn\\Analyzers' => __DIR__.'/Analyzers']))
                 ->filter(function ($dir) {
                     return file_exists($dir);
                 })->toArray();
@@ -199,24 +199,22 @@ class Enlightn
             return [];
         }
 
-        // Paths are either all directories or all files. A mix of
-        // files and directories is currently not supported.
-        $files = collect($paths)->every(function ($value) {
-            return is_dir($value);
-        }) ? (new Finder)->in($paths)->files() : $paths;
+        collect($paths)->each(function ($path, $baseNamespace) use (&$analyzerClasses) {
+            $files = is_dir($path) ? (new Finder)->in($path)->files() : Arr::wrap($path);
 
-        foreach ($files as $fileInfo) {
-            $analyzerClass = __NAMESPACE__.'\\'.str_replace(
-                ['/', '.php'],
-                ['\\', ''],
-                Str::after(
-                    is_string($fileInfo) ? $fileInfo : $fileInfo->getRealPath(),
-                    __DIR__.DIRECTORY_SEPARATOR
-                )
-            );
+            foreach ($files as $fileInfo) {
+                $analyzerClass = $baseNamespace.str_replace(
+                    ['/', '.php'],
+                    ['\\', ''],
+                    Str::after(
+                        is_string($fileInfo) ? $fileInfo : $fileInfo->getRealPath(),
+                        realpath($path)
+                    )
+                );
 
-            $analyzerClasses[] = $analyzerClass;
-        }
+                $analyzerClasses[] = $analyzerClass;
+            }
+        });
 
         if (empty($exclusions = config('enlightn.exclude_analyzers', []))) {
             return $analyzerClasses;

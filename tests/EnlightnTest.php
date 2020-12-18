@@ -65,7 +65,5 @@ class EnlightnTest extends TestCase
         $this->app->config->set('enlightn.analyzers', '*');
 
         $this->assertContains(AppDebugAnalyzer::class, Enlightn::getAnalyzerClasses());
-
-        Enlightn::register();
     }
 }

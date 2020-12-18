@@ -24,12 +24,12 @@ return [
     |
     | The following array lists the "analyzer" paths that will be searched
     | recursively to find analyzer classes. This option will only be used
-    | if the analyzers option above is set to the asterisk wildcard.
+    | if the analyzers option above is set to the asterisk wildcard. The
+    | key is the base namespace to resolve the class name.
     |
     */
     'analyzer_paths' => [
-        base_path('vendor/enlightn/enlightn/src/Analyzers'),
-        base_path('vendor/enlightn/enlightnpro/src/Analyzers'),
+        'Enlightn\\Enlightn\\Analyzers' => base_path('vendor/enlightn/enlightn/src/Analyzers'),
     ],
 
     /*
@@ -100,22 +100,4 @@ return [
         storage_path(),
         app()->bootstrapPath('cache'),
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Telescope Analyzer Configurations
-    |--------------------------------------------------------------------------
-    |
-    | The following configuration options pertain to Telescope analyzers.
-    | These are recommended options but feel free to customize them
-    | based on your application needs.
-    |
-    */
-    'disk_usage_threshold' => 90, // %
-
-    'hydration_limit' => 50,
-
-    'request_memory_benchmark' => 50, // MB
-
-    'slow_response_threshold' => 500, // ms
 ];

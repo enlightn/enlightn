@@ -36,5 +36,9 @@ class TestCase extends OrchestraTestCase
     protected function getEnvironmentSetUp($app)
     {
         $app->config->set('enlightn.base_path', __DIR__.DIRECTORY_SEPARATOR.'Stubs');
+
+        $app->config->set('enlightn.analyzer_paths', [
+            'Enlightn\\Enlightn\\Analyzers' => __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'src/Analyzers',
+        ]);
     }
 }
