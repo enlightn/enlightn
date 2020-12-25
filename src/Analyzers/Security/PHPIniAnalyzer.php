@@ -62,7 +62,7 @@ class PHPIniAnalyzer extends SecurityAnalyzer
         ]);
 
         $this->insecureSettings = collect($secureSettings)->filter(function ($expected, $var) {
-            return ! in_array(ini_get($var), $expected ? ['1', 'On'] : ['0', 'Off']);
+            return ! in_array(strtolower(ini_get($var)), $expected ? ['1', 'on', 'yes', 'true'] : ['0', 'off', '', 'no', 'false']);
         });
 
         if ($this->insecureSettings->count() > 0) {
