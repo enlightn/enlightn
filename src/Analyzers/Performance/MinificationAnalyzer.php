@@ -82,11 +82,9 @@ class MinificationAnalyzer extends PerformanceAnalyzer
      */
     protected function getFilesThatShouldBeMinified()
     {
-        // We assume that all assets are in the public directory. Technically, there could be
-        // assets served from a CDN that are in some build directory (added in .gitignore) like
-        // "resources/build" but I would say that's a bad practice anyway, because it's
-        // difficult to switch from CDN to local with a custom build path like that.
-        return (new Finder)->in(public_path())->name([
+        // We assume that all assets are in the public directory. However, this can be configured
+        // using the "build_path" configuration option.
+        return (new Finder)->in(config('enlightn.build_path', public_path()))->name([
             // This would automatically include files named like *.min.js as well.
             '*.js', '*.css',
         ])->files();

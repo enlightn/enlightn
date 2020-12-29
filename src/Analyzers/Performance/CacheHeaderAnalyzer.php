@@ -30,7 +30,7 @@ class CacheHeaderAnalyzer extends PerformanceAnalyzer
      *
      * @var int|null
      */
-    public $timeToFix = 5;
+    public $timeToFix = 15;
 
     /**
      * The list of uncached assets.
@@ -66,6 +66,7 @@ class CacheHeaderAnalyzer extends PerformanceAnalyzer
      *
      * @param \Illuminate\Filesystem\Filesystem $files
      * @return void
+     * @throws \Exception
      */
     public function handle(Filesystem $files)
     {
@@ -75,6 +76,7 @@ class CacheHeaderAnalyzer extends PerformanceAnalyzer
 
         foreach ($manifest as $key => $value) {
             if (is_string($value) && Str::contains($value, '?id=')
+                && ! $this->headerExistsOnUrl(mix($key), 'Cache-Control')
                 && ! $this->headerExistsOnUrl(asset($key), 'Cache-Control')) {
                 // We only take the cache busted (versioned) files as the others are presumably un-cacheable.
                 $this->unCachedAssets->push($key);

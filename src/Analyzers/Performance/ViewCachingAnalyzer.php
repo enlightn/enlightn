@@ -51,13 +51,6 @@ class ViewCachingAnalyzer extends PerformanceAnalyzer
                 ."enable this in production.";
 
             $this->markFailed();
-        } elseif ($viewCount == $compiledViewCount && config('app.env') == 'local'
-            && $viewCount != 0) {
-            $this->errorMessage = "Your views are cached in a local environment. "
-                ."This is not recommended for development because as you change your view files, "
-                ."the changes will not be reflected unless you clear the cache.";
-
-            $this->markFailed();
         }
     }
 
