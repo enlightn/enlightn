@@ -48,7 +48,7 @@ class AppKeyAnalyzer extends SecurityAnalyzer
     {
         return $this->errorMessage
                 ?? ("Your app key is not set. This can be very dangerous as this key is used "
-                ."to encrypt passwords, cookies, signed URLs, model data, CSRF tokens and session data.");
+                ."to encrypt cookies, signed URLs, model data, job data and session data.");
     }
 
     /**
