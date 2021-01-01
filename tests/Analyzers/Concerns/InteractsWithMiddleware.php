@@ -17,6 +17,14 @@ trait InteractsWithMiddleware
     }
 
     /**
+     * @throws \ReflectionException
+     */
+    protected function clearMiddlewareGroups()
+    {
+        Reflector::set($kernel = $this->app->make(Kernel::class), 'middlewareGroups', []);
+    }
+
+    /**
      * @param string $middlewareGroup
      * @param string $middlewareClass
      * @throws \ReflectionException

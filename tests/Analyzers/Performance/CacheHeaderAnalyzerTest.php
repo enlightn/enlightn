@@ -44,6 +44,8 @@ class CacheHeaderAnalyzerTest extends AnalyzerTestCase
             ['handler' => new MockHandler([
                 new Response(200, []),
                 new Response(200, []),
+                new Response(200, []),
+                new Response(200, []),
             ])]
         ));
 

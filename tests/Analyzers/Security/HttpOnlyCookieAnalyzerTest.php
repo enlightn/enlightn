@@ -4,9 +4,12 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Security;
 
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Analyzers\Security\HttpOnlyCookieAnalyzer;
+use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithMiddleware;
 
 class HttpOnlyCookieAnalyzerTest extends AnalyzerTestCase
 {
+    use InteractsWithMiddleware;
+
     protected function getEnvironmentSetUp($app)
     {
         parent::getEnvironmentSetUp($app);
@@ -17,10 +20,11 @@ class HttpOnlyCookieAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
-    public function detects_no_http_only_in_production()
+    public function detects_no_http_only()
     {
+        $this->registerStatefulGlobalMiddleware();
+
         $this->app->config->set('session.http_only', false);
-        $this->app->config->set('app.env', 'production');
 
         $this->runEnlightn();
 
@@ -30,10 +34,11 @@ class HttpOnlyCookieAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
-    public function passes_with_http_only_in_production()
+    public function passes_with_http_only()
     {
+        $this->registerStatefulGlobalMiddleware();
+
         $this->app->config->set('session.http_only', true);
-        $this->app->config->set('app.env', 'production');
 
         $this->runEnlightn();
 
@@ -43,10 +48,8 @@ class HttpOnlyCookieAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
-    public function skips_in_local_env()
+    public function skips_for_stateless_apps()
     {
-        $this->app->config->set('app.env', 'local');
-
         $this->runEnlightn();
 
         $this->assertSkipped(HttpOnlyCookieAnalyzer::class);

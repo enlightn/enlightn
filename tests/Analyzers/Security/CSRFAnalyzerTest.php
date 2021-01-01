@@ -35,6 +35,7 @@ class CSRFAnalyzerTest extends AnalyzerTestCase
      */
     public function passes_for_global_csrf_middleware()
     {
+        $this->clearMiddlewareGroups();
         $this->registerStatefulGlobalMiddleware();
         $this->registerGlobalCsrfMiddleware();
 
@@ -48,6 +49,7 @@ class CSRFAnalyzerTest extends AnalyzerTestCase
      */
     public function passes_for_web_group_middleware()
     {
+        $this->clearMiddlewareGroups();
         $this->registerStatefulGlobalMiddleware();
         $this->registerGroupMiddleware('web', AppVerifyCsrfToken::class);
 
@@ -61,6 +63,7 @@ class CSRFAnalyzerTest extends AnalyzerTestCase
      */
     public function passes_for_post_routes_with_individual_csrf_protection()
     {
+        $this->clearMiddlewareGroups();
         $this->registerStatefulGlobalMiddleware();
         $this->registerProtectedRoute();
 
@@ -74,6 +77,7 @@ class CSRFAnalyzerTest extends AnalyzerTestCase
      */
     public function detects_post_routes_without_protection()
     {
+        $this->clearMiddlewareGroups();
         $this->registerStatefulGlobalMiddleware();
         $this->registerUnprotectedRoute();
 
@@ -87,6 +91,7 @@ class CSRFAnalyzerTest extends AnalyzerTestCase
      */
     public function detects_some_routes_without_protection()
     {
+        $this->clearMiddlewareGroups();
         $this->registerStatefulGlobalMiddleware();
         $this->registerProtectedRoute();
         $this->registerUnprotectedRoute();

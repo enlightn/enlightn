@@ -23,6 +23,8 @@ class ViewCachingAnalyzerTest extends AnalyzerTestCase
     {
         $this->app->config->set('app.env', 'production');
 
+        $this->artisan('view:clear');
+
         $this->runEnlightn();
 
         $this->assertFailed(ViewCachingAnalyzer::class);
@@ -47,25 +49,11 @@ class ViewCachingAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
-    public function detects_cached_views_in_local()
-    {
-        $this->app->config->set('app.env', 'local');
-
-        $this->artisan('view:cache');
-
-        $this->runEnlightn();
-
-        $this->assertFailed(ViewCachingAnalyzer::class);
-
-        $this->artisan('view:clear');
-    }
-
-    /**
-     * @test
-     */
     public function passes_with_non_cached_views_in_local()
     {
         $this->app->config->set('app.env', 'local');
+
+        $this->artisan('view:clear');
 
         $this->runEnlightn();
 

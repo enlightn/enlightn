@@ -2,12 +2,15 @@
 
 namespace Enlightn\Enlightn\Analyzers\Security;
 
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Enlightn\Enlightn\Analyzers\Concerns\ParsesConfigurationFiles;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Routing\Router;
 
 class HttpOnlyCookieAnalyzer extends SecurityAnalyzer
 {
-    use ParsesConfigurationFiles;
+    use ParsesConfigurationFiles, AnalyzesMiddleware;
 
     /**
      * The title describing the analyzer.
@@ -29,6 +32,19 @@ class HttpOnlyCookieAnalyzer extends SecurityAnalyzer
      * @var int|null
      */
     public $timeToFix = 1;
+
+    /**
+     * Create a new analyzer instance.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Contracts\Http\Kernel  $kernel
+     * @return void
+     */
+    public function __construct(Router $router, Kernel $kernel)
+    {
+        $this->router = $router;
+        $this->kernel = $kernel;
+    }
 
     /**
      * Get the error message describing the analyzer insights.
@@ -59,9 +75,10 @@ class HttpOnlyCookieAnalyzer extends SecurityAnalyzer
      * Determine whether to skip the analyzer.
      *
      * @return bool
+     * @throws \ReflectionException
      */
     public function skip()
     {
-        return $this->isLocalAndShouldSkip();
+        return $this->appIsStateless();
     }
 }
