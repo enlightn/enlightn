@@ -191,6 +191,11 @@ trait AnalyzesMiddleware
      */
     protected function findLoginRoute()
     {
+        // First, we check to see if a guest path is provided. If yes, we return the corresponding URL.
+        if (! is_null($guestPath = config('enlightn.guest_url'))) {
+            return url($guestPath);
+        }
+
         // Here we just return the login named route. By default, Laravel uses
         // the named route "login" for all its auth scaffolding packages.
         try {

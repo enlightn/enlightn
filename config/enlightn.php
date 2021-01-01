@@ -63,6 +63,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Guest URL
+    |--------------------------------------------------------------------------
+    |
+    | Specify any guest url or path (preferably your app's login url) here. This
+    | would be used by Enlightn to inspect your application HTTP headers.
+    | Example: '/login'.
+    |
+    */
+    'guest_url' => null,
+
+    /*
+    |--------------------------------------------------------------------------
     | Analyzer Configurations
     |--------------------------------------------------------------------------
     |

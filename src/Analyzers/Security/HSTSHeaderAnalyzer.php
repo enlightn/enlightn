@@ -79,7 +79,7 @@ class HSTSHeaderAnalyzer extends SecurityAnalyzer
      */
     public function skip()
     {
-        // Skip this analyzer if the app is stateless or does not use HTTPS cookies.
-        return $this->appIsStateless() || ! $this->appUsesCookies() || config('session.secure') !== true;
+        // Skip this analyzer if the app is not an HTTPS only application.
+        return config('session.secure') !== true;
     }
 }

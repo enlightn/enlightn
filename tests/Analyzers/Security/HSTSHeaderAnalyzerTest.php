@@ -24,7 +24,7 @@ class HSTSHeaderAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
-    public function skips_for_stateless_apps()
+    public function skips_for_http_apps()
     {
         $this->runEnlightn();
 
