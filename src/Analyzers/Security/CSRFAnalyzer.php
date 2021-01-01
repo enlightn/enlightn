@@ -101,9 +101,9 @@ class CSRFAnalyzer extends SecurityAnalyzer
      */
     protected function webMiddlewareGroupIsProtected()
     {
-        if (isset($this->kernel->getRouteMiddleware()['web'])) {
-            if (collect($this->kernel->getRouteMiddleware()['web'])->contains(function ($middleware) {
-                return $middleware instanceof VerifyCsrfToken;
+        if (isset($this->kernel->getMiddlewareGroups()['web'])) {
+            if (collect($this->kernel->getMiddlewareGroups()['web'])->contains(function ($middleware) {
+                return is_subclass_of($middleware, VerifyCsrfToken::class);
             })) {
                 // Analysis passed as the web middleware group has the VerifyCsrfToken middleware
                 return true;
