@@ -209,7 +209,8 @@ trait AnalyzesMiddleware
             if (! is_null($route)) {
                 return url($route->uri());
             } else {
-                return null;
+                // If all else fails, default to the root URL.
+                return url('/');
             }
         }
     }
