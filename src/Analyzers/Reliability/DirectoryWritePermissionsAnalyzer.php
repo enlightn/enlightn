@@ -26,7 +26,7 @@ class DirectoryWritePermissionsAnalyzer extends ReliabilityAnalyzer
      *
      * @var int|null
      */
-    public $timeToFix = 60;
+    public $timeToFix = 5;
 
     /**
      * The directories that are not writable.

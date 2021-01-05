@@ -25,7 +25,7 @@ class MaintenanceModeAnalyzer extends ReliabilityAnalyzer
      *
      * @var int|null
      */
-    public $timeToFix = 10;
+    public $timeToFix = 1;
 
     /**
      * Get the error message describing the analyzer insights.
