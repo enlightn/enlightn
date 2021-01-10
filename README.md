@@ -41,7 +41,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 
 ## Documentation
 
-Each of the 120 checks available are well documented. You can find the complete 126 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
+Each of the 120 checks available are well documented. You can find the complete 128 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
 
 ## Installing Enlightn OSS
 
@@ -71,7 +71,7 @@ php artisan enlightn
 
 All checks that fail will include a description of why they failed along with the associated lines of code (if applicable) and a link to the documentation for the specific check.
 
-![Enlightn Checks](https://www.laravel-enlightn.com/docs/images/timeout.png)
+![Enlightn Checks](https://www.laravel-enlightn.com/docs/images/queue-timeout.png)
 
 ## Report Card
 
@@ -87,8 +87,16 @@ The checks reported under the "Error" row indicate the analyzers that failed wit
 
 A good practice would be to run Enlightn every time you are deploying code or pushing or a new release. If your application is stable (not many new releases), then you might want to run Enlightn say once a month or so. Remember that Enlightn not only scans your application code but also monitors your application's health.
 
+## Contribution Guide
+
+Thank you for considering contributing to Enlightn! The contribution guide can be found [here](https://www.laravel-enlightn.com/docs/getting-started/contribution-guide.html).
+
+## Support Policy
+
+Our support policy can be found in the [Enlightn documentation](https://www.laravel-enlightn.com/docs/getting-started/support.html).
+
 ## License
 
-The Enlightn OSS (on this Github repo) is licensed under the [LGPL v3 (or later) license](license.MD).
+The Enlightn OSS (on this Github repo) is licensed under the [LGPL v3 (or later) license](LICENSE.md).
 
 Enlightn Pro is licensed under a [commercial license](https://www.laravel-enlightn.com/license-agreement).
