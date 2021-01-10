@@ -3,6 +3,7 @@
 namespace Enlightn\Enlightn\Analyzers;
 
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Str;
 use Throwable;
 
 abstract class Analyzer
@@ -11,6 +12,13 @@ abstract class Analyzer
     const SEVERITY_MAJOR = 'major';
     const SEVERITY_MINOR = 'minor';
     const SEVERITY_INFO  = 'info';
+
+    /**
+     * The base URL of the Enlightn documentation.
+     *
+     * @var string
+     */
+    const DOCS_URL = 'https://www.laravel-enlightn.com/docs';
 
     /**
      * The category of the analyzer.
@@ -216,6 +224,7 @@ abstract class Analyzer
             'exception' => $this->exceptionMessage,
             'error' => ($this->getStatus() == 'failed') ? $this->getErrorMessage() : null,
             'traces' => $this->traces,
+            'docsUrl' => $this->getDocsUrl(),
         ];
     }
 
@@ -263,6 +272,23 @@ abstract class Analyzer
     public function runFailed()
     {
         return ! is_null($this->exceptionMessage);
+    }
+
+    /**
+     * Get the documentation URL for this analyzer.
+     *
+     * @return bool
+     */
+    public function getDocsUrl()
+    {
+        $page = $this->docsPageName ??
+                Str::kebab(str_replace(
+                    ['CSRF', 'SQL', 'HSTS', 'NPlusOne', 'XSS', 'PHP'],
+                    ['Csrf', 'Sql', 'Hsts', 'Nplusone', 'Xss', 'Php'],
+                    class_basename(get_class($this)))
+                );
+
+        return self::DOCS_URL.'/'.strtolower($this->category).'/'.$page.'.html';
     }
 
     /**

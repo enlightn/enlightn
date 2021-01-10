@@ -56,7 +56,7 @@ class EnlightnCommand extends Command
      * Execute the console command.
      *
      * @return int
-     * @throws \ReflectionException|\Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException|\Illuminate\Contracts\Container\BindingResolutionException|\Throwable
      */
     public function handle()
     {
@@ -117,6 +117,8 @@ class EnlightnCommand extends Command
                         ."</fg=magenta> more file(s).");
                 }
             }
+
+            $this->line("<fg=cyan>Documentation URL: <href={$info['docsUrl']}>{$info['docsUrl']}</></fg=cyan>");
         }
 
         $this->category = $info['category'];
@@ -233,12 +235,12 @@ class EnlightnCommand extends Command
     {
         collect([
             'e' => 'green',
-            'n' => 'yellow',
-            'l' => 'red',
-            'i' => 'cyan',
-            'g' => 'yellow',
-            'h' => 'red',
-            't' => 'cyan',
+            'n' => 'green',
+            'l' => 'green',
+            'i' => 'green',
+            'g' => 'green',
+            'h' => 'green',
+            't' => 'green',
             'ns' => 'green',
         ])->each(function ($color, $tag) {
             $this->output->getFormatter()->setStyle($tag, new OutputFormatterStyle($color, 'black'));

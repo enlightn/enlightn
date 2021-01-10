@@ -6,18 +6,26 @@
         "laravel",
         "package",
         "static analysis",
+        "dynamic analysis",
         "static analyzer",
+        "dynamic analyzer",
         "security",
         "performance",
-        "audit"
+        "audit",
+        "analysis tool"
     ],
+    "homepage": "https://www.laravel-enlightn.com/",
     "license": "LGPL-3.0-or-later",
     "authors": [
         {
             "name": "Paras Malhotra",
-            "email": "paras@insenseanalytics.com"
+            "email": "paras@laravel-enlightn.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/enlightn/enlightn/issues",
+        "docs": "https://www.laravel-enlightn.com/docs/"
+    },
     "require": {
         "php": "^7.2|^8.0",
         "ext-json": "*",
