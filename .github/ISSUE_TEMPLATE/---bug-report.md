@@ -15,7 +15,8 @@ assignees: ''
 
 * PHP version:
 * Laravel version:
-* Package version:
+* Enlightn version:
+* Enlightn Pro version (if applicable):
 
 ### Description
 
