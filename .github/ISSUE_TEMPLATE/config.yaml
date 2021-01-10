@@ -7,5 +7,4 @@ contact_links:
     url: https://github.com/enlightn/enlightn-docs
     about: Our documentation is open-source, you can make a PR with your suggested changes over there.
   - name: Commercial Support
-    url: mailto:support@laravel-enlightn.com
-    about: We offer email support on bug reports for Enlightn Pro customers and also offer consulting on boosting performance and security for your application. Email us at support@laravel-enlightn.com. 
+    about: We offer email support on bug reports for Enlightn Pro customers and also offer consulting on boosting performance and security for your application. Email us at support@laravel-enlightn.com.
