@@ -49,12 +49,13 @@ class Enlightn
     /**
      * Register the Enlightn analyzers if Enlightn is enabled.
      *
+     * @param array $analyzerClasses
      * @return void
      * @throws \ReflectionException
      */
-    public static function register()
+    public static function register($analyzerClasses = [])
     {
-        static::registerAnalyzers();
+        static::registerAnalyzers($analyzerClasses);
         static::$filePaths = static::getFilesToAnalyze();
     }
 
@@ -238,12 +239,15 @@ class Enlightn
     /**
      * Register the configured Enlightn analyzer classes.
      *
+     * @param array $analyzerClasses
      * @return void
      * @throws \ReflectionException
      */
-    protected static function registerAnalyzers()
+    protected static function registerAnalyzers($analyzerClasses = [])
     {
-        foreach (static::getAnalyzerClasses() as $analyzerClass) {
+        $analyzerClasses = empty($analyzerClasses) ? static::getAnalyzerClasses() : $analyzerClasses;
+
+        foreach ($analyzerClasses as $analyzerClass) {
             static::registerAnalyzer($analyzerClass);
         }
     }

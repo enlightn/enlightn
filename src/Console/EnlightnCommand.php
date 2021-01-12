@@ -15,7 +15,7 @@ class EnlightnCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'enlightn';
+    protected $signature = 'enlightn {analyzer?* : The analyzer class that you wish to run}';
 
     /**
      * The console command description.
@@ -39,6 +39,13 @@ class EnlightnCommand extends Command
     protected $countAnalyzers;
 
     /**
+     * The analyzer classes to run. All classes will run if empty.
+     *
+     * @var array
+     */
+    protected $analyzerClasses;
+
+    /**
      * The category of the analyzers currently being run.
      *
      * @var string|null
@@ -60,12 +67,14 @@ class EnlightnCommand extends Command
      */
     public function handle()
     {
+        $this->analyzerClasses = $this->argument('analyzer');
+
         $this->setColors();
         $this->line(require __DIR__.DIRECTORY_SEPARATOR.'logo.php');
         $this->output->newLine();
         $this->line('Please wait while Enlightn scans your code base...');
 
-        Enlightn::register();
+        Enlightn::register($this->analyzerClasses);
 
         $this->totalAnalyzers = Enlightn::totalAnalyzers();
         $this->countAnalyzers = 1;
@@ -74,7 +83,9 @@ class EnlightnCommand extends Command
         Enlightn::using([$this, 'printAnalyzerOutput']);
         Enlightn::run($this->laravel);
 
-        $this->printReportCard();
+        if (empty($this->analyzerClasses)) {
+            $this->printReportCard();
+        }
 
         return 0;
     }
@@ -104,14 +115,16 @@ class EnlightnCommand extends Command
             $this->line("<fg=red>{$error}</fg=red>");
 
             if (! empty($info['traces'])) {
-                collect($info['traces'])->take(5)->each(function ($lineNumbers, $path) {
+                collect($info['traces'])->when(empty($this->analyzerClasses), function($collection) {
+                    return $collection->take(5);
+                })->each(function ($lineNumbers, $path) {
                     $this->line(
                         "<fg=magenta>At ".Str::after($path, base_path()).(empty($lineNumbers) ? "" : ": line(s): ")
                         .collect($lineNumbers)->join(', ', ' and ').".</fg=magenta>"
                     );
                 });
 
-                if (count($info['traces']) > 5) {
+                if (count($info['traces']) > 5 && empty($this->analyzerClasses)) {
                     $this->line("<fg=magenta>And "
                         .(count($info['traces']) - 5)
                         ."</fg=magenta> more file(s).");
