@@ -20,6 +20,10 @@
         {
             "name": "Paras Malhotra",
             "email": "paras@laravel-enlightn.com"
+        },
+        {
+            "name": "Miguel Piedrafita",
+            "email": "soy@miguelpiedrafita.com"
         }
     ],
     "support": {
