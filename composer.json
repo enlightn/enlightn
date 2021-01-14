@@ -1,6 +1,6 @@
 {
     "name": "enlightn/enlightn",
-    "description": "Enlightn - A static analyzer for security and performance audits of Laravel apps.",
+    "description": "Enlightn - Your performance & security consultant, an artisan command away.",
     "type": "library",
     "keywords": [
         "laravel",
