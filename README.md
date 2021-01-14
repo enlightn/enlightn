@@ -1,4 +1,11 @@
 <h1 align="center">Enlightn</h1>
+
+![tests](https://github.com/enlightn/enlightn/workflows/tests/badge.svg?branch=master)
+[![MIT Licensed](https://img.shields.io/badge/license-LGPLv3-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Latest Stable Version](https://poser.pugx.org/enlightn/enlightn/v/stable?format=flat-square)](https://packagist.org/packages/enlightn/enlightn)
+[![Total Downloads](https://img.shields.io/packagist/dt/enlightn/enlightn.svg?style=flat-square)](https://packagist.org/packages/enlightn/enlightn)
+
+
 <h2 align="center">A Laravel Tool To Boost Your App's Performance &amp; Security</h2>
 
 ![Enlightn](https://cdn.laravel-enlightn.com/images/mockups/terminal.png)
