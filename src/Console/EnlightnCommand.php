@@ -87,8 +87,9 @@ class EnlightnCommand extends Command
             $this->printReportCard();
         }
 
-        return collect($this->result)->sum(function ($caregory) {
-            return $caregory['failed'];
+        // Exit with a non-zero exit code if there were failed checks to throw an error on CI environments
+        return collect($this->result)->sum(function ($category) {
+            return $category['failed'];
         }) == 0 ? 0 : 1;
     }
 
