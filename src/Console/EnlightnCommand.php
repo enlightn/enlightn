@@ -87,7 +87,9 @@ class EnlightnCommand extends Command
             $this->printReportCard();
         }
 
-        return 0;
+        return collect($this->result)->sum(function ($caregory) {
+            return $caregory['failed'];
+        }) == 0 ? 0 : 1;
     }
 
     /**
