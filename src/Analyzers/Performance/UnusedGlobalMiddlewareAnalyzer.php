@@ -65,7 +65,7 @@ class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
     public function errorMessage()
     {
         return 'Your application contains global middleware that is not currently being used. It is '
-            .'recommended to remove these middleware from your application to enhance performance '
+            .'recommended to remove these middleware from your Kernel class to enhance performance '
             .'slightly. Your unused middleware include: '.$this->formatUnusedMiddleware();
     }
 

@@ -38,7 +38,7 @@ class MysqlSingleServerAnalyzer extends PerformanceAnalyzer
     public function errorMessage()
     {
         return "When MySQL is running on the same server as your app, it is recommended to use unix "
-                ."sockets to improve performance by upto 50% (Percona benchmark).";
+                ."sockets instead of TCP ports to improve performance by upto 50% (Percona benchmark).";
     }
 
     /**
