@@ -82,6 +82,14 @@ php artisan enlightn Enlightn\\Enlightn\\Analyzers\\Security\\CSRFAnalyzer Enlig
 
 Note that the class names should be fully qualified and escaped with double slashes as above.
 
+## Run At Least Once In Production
+
+If you truly want to get amazing recommendations from Enlightn, it is recommended that you at least run Enlightn once in production.
+
+Several of Enlightn's checks are environment specific. So, some tests that pass in your local environment, can fail in production. For instance, it is recommended to cache your routes in production but doing so in local is not recommended.
+
+In case you do not want to or cannot run Enlightn on production, you can set your `APP_ENV` variable to `production` on your local machine, run your deployment script and then run Enlightn. While this will miss out on server configurations, it will ensure that your deployment script contains the recommended performance enhancements for a production environment. 
+
 ## Failed Checks
 
 All checks that fail will include a description of why they failed along with the associated lines of code (if applicable) and a link to the documentation for the specific check.
