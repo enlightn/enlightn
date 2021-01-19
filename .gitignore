@@ -4,7 +4,7 @@
 .php_cs.cache
 .phpunit.result.cache
 build
-composer.lock
+/composer.lock
 coverage
 docs
 phpunit.xml

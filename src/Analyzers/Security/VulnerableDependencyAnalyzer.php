@@ -3,8 +3,10 @@
 namespace Enlightn\Enlightn\Analyzers\Security;
 
 use Enlightn\Enlightn\Composer;
-use Illuminate\Contracts\Foundation\Application;
-use SensioLabs\Security\SecurityChecker;
+use Enlightn\SecurityChecker\AdvisoryAnalyzer;
+use Enlightn\SecurityChecker\AdvisoryFetcher;
+use Enlightn\SecurityChecker\AdvisoryParser;
+use Enlightn\SecurityChecker\Composer as SecurityCheckerComposer;
 use Throwable;
 
 class VulnerableDependencyAnalyzer extends SecurityAnalyzer
@@ -33,7 +35,7 @@ class VulnerableDependencyAnalyzer extends SecurityAnalyzer
     /**
      * The result of the vulnerability scan.
      *
-     * @var \SensioLabs\Security\Result
+     * @var array
      */
     public $result;
 
@@ -44,7 +46,7 @@ class VulnerableDependencyAnalyzer extends SecurityAnalyzer
      */
     public function errorMessage()
     {
-        return "Your application has a total of {$this->result->count()} known vulnerabilities in the application "
+        return "Your application has a total of ".count($this->result)." known vulnerabilities in the application "
             ."dependencies. This can be very dangerous and you must resolve this by either applying patch updates or "
             ."removing the vulnerable dependencies. The packages which have these vulnerabilities include: "
             .PHP_EOL.$this->listVulnerablePackages();
@@ -55,15 +57,17 @@ class VulnerableDependencyAnalyzer extends SecurityAnalyzer
      *
      * @param \Enlightn\Enlightn\Composer $composer
      * @return void
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function handle(Composer $composer)
     {
-        $this->result = (new SecurityChecker())->check(
-            $composer->getLockFile(),
-            'json'
-        );
+        $parser = new AdvisoryParser((new AdvisoryFetcher)->fetchAdvisories());
 
-        if ($this->result->count() > 0) {
+        $dependencies = (new SecurityCheckerComposer)->getDependencies($composer->getLockFile());
+
+        $this->result = (new AdvisoryAnalyzer($parser->getAdvisories()))->analyzeDependencies($dependencies);
+
+        if (count($this->result) > 0) {
             $this->markFailed();
         }
     }
@@ -76,14 +80,14 @@ class VulnerableDependencyAnalyzer extends SecurityAnalyzer
     public function listVulnerablePackages()
     {
         try {
-            return collect(json_decode($this->result->__toString(), true))
+            return collect($this->result)
                 ->map(function ($vulnerability, $package) {
                     return $package.' ('.$vulnerability['version'].'): '.
                         collect(data_get($vulnerability, 'advisories.*.title'))
                         ->join(', ', ' and ');
                 })->values()->implode(PHP_EOL);
         } catch (Throwable $e) {
-            return $this->result->__toString();
+            return json_encode($this->result);
         }
     }
 }
