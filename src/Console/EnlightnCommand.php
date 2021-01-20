@@ -202,7 +202,13 @@ class EnlightnCommand extends Command
         $totalAnalyzersInCategory = (float) collect($this->result[$category])->sum(function ($count) {
             return $count;
         });
-        $percentage = round((float) $this->result[$category][$status] * 100 / $totalAnalyzersInCategory, 0);
+
+        if ($totalAnalyzersInCategory == 0) {
+            // Avoid division by zero.
+            $percentage = 0;
+        } else {
+            $percentage = round((float) $this->result[$category][$status] * 100 / $totalAnalyzersInCategory, 0);
+        }
 
         return $this->result[$category][$status]
             .str_pad(" ({$percentage}%)", 6, " ", STR_PAD_LEFT);
