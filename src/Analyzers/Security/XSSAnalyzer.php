@@ -92,6 +92,6 @@ class XSSAnalyzer extends SecurityAnalyzer
     public function skip()
     {
         // Skip this analyzer if the app is stateless (e.g. API only apps).
-        return $this->appIsStateless();
+        return $this->isLocalAndShouldSkip() || $this->appIsStateless();
     }
 }

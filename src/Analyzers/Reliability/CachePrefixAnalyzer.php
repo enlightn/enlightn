@@ -38,7 +38,8 @@ class CachePrefixAnalyzer extends ReliabilityAnalyzer
     public function errorMessage()
     {
         return "Your cache prefix is too generic and may result in collisions with other apps "
-            ."that share the same cache servers.";
+            ."that share the same cache servers. In general, this should be fixed if you set "
+            ."a non-generic app name in your .env file.";
     }
 
     /**
