@@ -34,6 +34,20 @@ class XSSAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
+    public function skips_for_local()
+    {
+        $this->app->config->set('app.env', 'local');
+
+        $this->registerStatefulGlobalMiddleware();
+
+        $this->runEnlightn();
+
+        $this->assertSkipped(XSSAnalyzer::class);
+    }
+
+    /**
+     * @test
+     */
     public function detects_missing_csp_header()
     {
         $this->registerStatefulGlobalMiddleware();
