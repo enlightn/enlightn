@@ -3,6 +3,7 @@
 namespace Enlightn\Enlightn\Analyzers\Security;
 
 use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesHeaders;
+use Enlightn\Enlightn\Analyzers\Concerns\DetectsHttps;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
@@ -10,7 +11,7 @@ use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 
 class HSTSHeaderAnalyzer extends SecurityAnalyzer
 {
-    use AnalyzesMiddleware, AnalyzesHeaders;
+    use AnalyzesMiddleware, AnalyzesHeaders, DetectsHttps;
 
     /**
      * The title describing the analyzer.
@@ -75,11 +76,10 @@ class HSTSHeaderAnalyzer extends SecurityAnalyzer
      * Determine whether to skip the analyzer.
      *
      * @return bool
-     * @throws \ReflectionException
      */
     public function skip()
     {
         // Skip this analyzer if the app is not an HTTPS only application.
-        return config('session.secure') !== true;
+        return ! $this->appIsHttpsOnly();
     }
 }

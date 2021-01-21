@@ -34,7 +34,31 @@ class HSTSHeaderAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
-    public function detects_missing_hsts_header()
+    public function detects_missing_hsts_header_for_https_url()
+    {
+        $this->registerStatefulGlobalMiddleware();
+
+        $this->app->config->set('app.url', 'https://localhost');
+
+        $this->app->make(HSTSHeaderAnalyzer::class)->setClient(new Client(
+            ['handler' => new MockHandler([
+                new Response(200, []),
+            ])]
+        ));
+
+        Route::get('/login', function () {
+            //
+        })->name('login');
+
+        $this->runEnlightn();
+
+        $this->assertFailed(HSTSHeaderAnalyzer::class);
+    }
+
+    /**
+     * @test
+     */
+    public function detects_missing_hsts_header_for_secure_cookie_attributes()
     {
         $this->registerStatefulGlobalMiddleware();
 
@@ -63,6 +87,7 @@ class HSTSHeaderAnalyzerTest extends AnalyzerTestCase
         $this->registerStatefulGlobalMiddleware();
 
         $this->app->config->set('session.secure', true);
+        $this->app->config->set('app.url', 'https://localhost');
 
         $this->app->make(HSTSHeaderAnalyzer::class)->setClient(new Client(
             ['handler' => new MockHandler([
