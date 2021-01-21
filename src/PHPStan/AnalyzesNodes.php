@@ -79,6 +79,21 @@ trait AnalyzesNodes
     }
 
     /**
+     * Determine whether the Expr was called on a class instance.
+     *
+     * @param \PhpParser\Node\Expr $expr
+     * @param \PHPStan\Analyser\Scope $scope
+     * @param string $className
+     * @return bool
+     */
+    protected function isMaybeCalledOn(Expr $expr, Scope $scope, string $className)
+    {
+        $calledOnType = $scope->getType($expr);
+
+        return (new ObjectType($className))->isSuperTypeOf($calledOnType)->maybe();
+    }
+
+    /**
      * Determine if a node has the search string.
      *
      * @param \PhpParser\Node $node
