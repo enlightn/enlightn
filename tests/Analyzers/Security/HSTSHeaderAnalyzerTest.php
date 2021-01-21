@@ -4,7 +4,6 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Security;
 
 use Enlightn\Enlightn\Analyzers\Security\HSTSHeaderAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
-use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithMiddleware;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
@@ -12,8 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 class HSTSHeaderAnalyzerTest extends AnalyzerTestCase
 {
-    use InteractsWithMiddleware;
-
     protected function getEnvironmentSetUp($app)
     {
         parent::getEnvironmentSetUp($app);
@@ -36,8 +33,6 @@ class HSTSHeaderAnalyzerTest extends AnalyzerTestCase
      */
     public function detects_missing_hsts_header_for_https_url()
     {
-        $this->registerStatefulGlobalMiddleware();
-
         $this->app->config->set('app.url', 'https://localhost');
 
         $this->app->make(HSTSHeaderAnalyzer::class)->setClient(new Client(
@@ -60,8 +55,6 @@ class HSTSHeaderAnalyzerTest extends AnalyzerTestCase
      */
     public function detects_missing_hsts_header_for_secure_cookie_attributes()
     {
-        $this->registerStatefulGlobalMiddleware();
-
         $this->app->config->set('session.secure', true);
 
         $this->app->make(HSTSHeaderAnalyzer::class)->setClient(new Client(
@@ -84,8 +77,6 @@ class HSTSHeaderAnalyzerTest extends AnalyzerTestCase
      */
     public function passes_for_hsts_headers()
     {
-        $this->registerStatefulGlobalMiddleware();
-
         $this->app->config->set('session.secure', true);
         $this->app->config->set('app.url', 'https://localhost');
 
