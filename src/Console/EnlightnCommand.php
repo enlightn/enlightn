@@ -89,7 +89,7 @@ class EnlightnCommand extends Command
 
         // Exit with a non-zero exit code if there were failed checks to throw an error on CI environments
         return collect($this->result)->sum(function ($category) {
-            return $category['failed'];
+            return $category['reported'];
         }) == 0 ? 0 : 1;
     }
 
@@ -156,6 +156,7 @@ class EnlightnCommand extends Command
                 'failed' => 0,
                 'skipped' => 0,
                 'error' => 0,
+                'reported' => 0,
             ];
         }
 
@@ -224,6 +225,10 @@ class EnlightnCommand extends Command
     {
         $this->result[$info['category']][$info['status']]++;
         $this->result['Total'][$info['status']]++;
+        if ($info['status'] === 'failed' && ($info['reportable'] ?? true)) {
+            $this->result[$info['category']]['reported']++;
+            $this->result['Total']['reported']++;
+        }
     }
 
     /**
