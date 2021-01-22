@@ -1,6 +1,15 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.3...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.4...master)
+
+## [v1.4 (2021-01-22)](https://github.com/enlightn/enlightn/compare/v1.3...v1.4)
+
+### Added
+- Add ability to exclude analyzers from reporting for CI/CD ([#12](https://github.com/enlightn/enlightn/pull/12))
+
+### Fixed
+- Add function check for opcache_get_configuration so it gracefully fails ([#10](https://github.com/enlightn/enlightn/pull/10))
+- Fix logo for white terminals ([#11](https://github.com/enlightn/enlightn/pull/11))
 
 ## [v1.3 (2021-01-22)](https://github.com/enlightn/enlightn/compare/v1.2...v1.3)
 
