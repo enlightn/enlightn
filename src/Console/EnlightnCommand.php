@@ -265,7 +265,7 @@ class EnlightnCommand extends Command
             't' => 'green',
             'ns' => 'green',
         ])->each(function ($color, $tag) {
-            $this->output->getFormatter()->setStyle($tag, new OutputFormatterStyle($color, 'black'));
+            $this->output->getFormatter()->setStyle($tag, new OutputFormatterStyle($color));
         });
 
     }
