@@ -225,6 +225,7 @@ abstract class Analyzer
             'error' => ($this->getStatus() == 'failed') ? $this->getErrorMessage() : null,
             'traces' => $this->traces,
             'docsUrl' => $this->getDocsUrl(),
+            'reportable' => ! in_array(static::class, config('enlightn.dont_report', [])),
         ];
     }
 

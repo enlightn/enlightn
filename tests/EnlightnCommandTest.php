@@ -56,4 +56,30 @@ class EnlightnCommandTest extends TestCase
 
         $this->artisan('enlightn')->assertExitCode(1);
     }
+
+    /**
+     * @test
+     */
+    public function command_exits_with_success_status_code_if_not_reportable()
+    {
+        $this->app->config->set('enlightn.analyzers', AppDebugAnalyzer::class);
+        $this->app->config->set('app.env', 'production');
+        $this->app->config->set('app.debug', true);
+        $this->app->config->set('enlightn.dont_report', [AppDebugAnalyzer::class]);
+
+        $this->artisan('enlightn')->assertExitCode(0);
+    }
+
+    /**
+     * @test
+     */
+    public function command_exits_with_failure_status_code_if_any_one_reportable_fails()
+    {
+        $this->app->config->set('enlightn.analyzers', [AppDebugAnalyzer::class, CachePrefixAnalyzer::class]);
+        $this->app->config->set('app.env', 'production');
+        $this->app->config->set('app.debug', true);
+        $this->app->config->set('enlightn.dont_report', [AppDebugAnalyzer::class]);
+
+        $this->artisan('enlightn')->assertExitCode(1);
+    }
 }

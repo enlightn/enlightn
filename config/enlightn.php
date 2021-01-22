@@ -75,6 +75,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Exclusions From Reporting
+    |--------------------------------------------------------------------------
+    |
+    | Specify the analyzer classes that you wish to exclude from reporting. This
+    | means that if any of these analyzers fail, they will not be counted
+    | towards the exit status of the Enlightn command. This is useful
+    | if you wish to run the command in your CI/CD pipeline.
+    | Example: [\Enlightn\Enlightn\Analyzers\Security\XSSAnalyzer::class].
+    |
+    */
+    'dont_report' => [],
+
+    /*
+    |--------------------------------------------------------------------------
     | Analyzer Configurations
     |--------------------------------------------------------------------------
     |
