@@ -43,7 +43,8 @@ class OpcacheAnalyzer extends PerformanceAnalyzer
      */
     public function handle()
     {
-        if (opcache_get_configuration()['directives']['opcache.enable'] ?? false) {
+        if (function_exists('opcache_get_configuration')
+            && opcache_get_configuration()['directives']['opcache.enable'] ?? false) {
             return;
         }
 
