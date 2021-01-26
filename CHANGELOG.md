@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.4...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.5...master)
+
+## [v1.5 (2021-01-26)](https://github.com/enlightn/enlightn/compare/v1.4...v1.5)
+
+### Added
+- Add CC0 and Unlicense to list of whitelisted licenses ([#15](https://github.com/enlightn/enlightn/pull/15))
+- Add option to show all files in the Enlightn command ([#16](https://github.com/enlightn/enlightn/pull/16))
 
 ## [v1.4 (2021-01-22)](https://github.com/enlightn/enlightn/compare/v1.3...v1.4)
 
