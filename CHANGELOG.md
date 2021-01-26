@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.5...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.6...master)
+
+## [v1.6 (2021-01-26)](https://github.com/enlightn/enlightn/compare/v1.5...v1.6)
+
+### Fixed
+- Fix crash when there is a syntax error in one of the app files ([#17](https://github.com/enlightn/enlightn/pull/17))
 
 ## [v1.5 (2021-01-26)](https://github.com/enlightn/enlightn/compare/v1.4...v1.5)
 
