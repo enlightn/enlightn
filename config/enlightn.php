@@ -103,6 +103,10 @@ return [
         'CC0-1.0', 'Unlicense',
     ],
 
+    // Set to true to restrict the max number of files displayed in the enlightn
+    // command for each check. Set to false to display all files.
+    'compact_lines' => true,
+
     // List your commercial packages (licensed by you) below, so that they are not
     // flagged by the License Analyzer.
     'commercial_packages' => [
