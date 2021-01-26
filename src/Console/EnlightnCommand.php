@@ -60,6 +60,13 @@ class EnlightnCommand extends Command
     protected $result = [];
 
     /**
+     * Indicates whether to limit the number of lines or files displayed in each check.
+     *
+     * @var bool
+     */
+    protected $compactLines;
+
+    /**
      * Execute the console command.
      *
      * @return int
@@ -79,6 +86,7 @@ class EnlightnCommand extends Command
         $this->totalAnalyzers = Enlightn::totalAnalyzers();
         $this->countAnalyzers = 1;
         $this->initializeResult();
+        $this->compactLines = config('enlightn.compact_lines', true);
 
         Enlightn::using([$this, 'printAnalyzerOutput']);
         Enlightn::run($this->laravel);
@@ -118,7 +126,7 @@ class EnlightnCommand extends Command
             $this->line("<fg=red>{$error}</fg=red>");
 
             if (! empty($info['traces'])) {
-                collect($info['traces'])->when(empty($this->analyzerClasses), function($collection) {
+                collect($info['traces'])->when(empty($this->analyzerClasses) && $this->compactLines, function($collection) {
                     return $collection->take(5);
                 })->each(function ($lineNumbers, $path) {
                     $this->line(
@@ -127,7 +135,7 @@ class EnlightnCommand extends Command
                     );
                 });
 
-                if (count($info['traces']) > 5 && empty($this->analyzerClasses)) {
+                if (count($info['traces']) > 5 && empty($this->analyzerClasses) && $this->compactLines) {
                     $this->line("<fg=magenta>And "
                         .(count($info['traces']) - 5)
                         ."</fg=magenta> more file(s).");
