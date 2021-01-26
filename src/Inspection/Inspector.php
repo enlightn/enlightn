@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Filesystem\Filesystem;
 use PhpParser\ParserFactory;
 use Symfony\Component\Finder\Finder;
+use Throwable;
 
 class Inspector
 {
@@ -28,7 +29,6 @@ class Inspector
     /**
      * @param  array  $filePaths
      * @return $this
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function start(array $filePaths)
     {
@@ -36,7 +36,11 @@ class Inspector
 
         collect($filePaths)->each(function ($path) use ($parser) {
             if (! isset($this->nodes[$path])) {
-                $this->nodes[$path] = $parser->parse($this->files->get($path));
+                try {
+                    $this->nodes[$path] = $parser->parse($this->files->get($path));
+                } catch (Throwable $e) {
+                    // eat this
+                }
             }
         });
 
