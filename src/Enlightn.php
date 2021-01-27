@@ -284,12 +284,25 @@ class Enlightn
         if (is_subclass_of($class, Analyzer::class) &&
                 ! (new ReflectionClass($class))->isAbstract() &&
                 ! static::hasAnalyzer($class)) {
-            $category = get_class_vars($class)['category'];
-            if (!is_null($category) && !self::hasCategory($category)) {
-                static::$categories[] = $category;
-            }
-
             static::$analyzerClasses[] = $class;
+
+            static::registerCategory($class);
+        }
+    }
+
+    /**
+     * Register an Enlightn analyzer category.
+     *
+     * @param string $class
+     * @return void
+     */
+    protected static function registerCategory($class)
+    {
+        $category = get_class_vars($class)['category'];
+
+        if (! is_null($category) && ! self::hasCategory($category)) {
+            static::$categories[] = $category;
+            static::$categories = Arr::sort(static::$categories);
         }
     }
 }

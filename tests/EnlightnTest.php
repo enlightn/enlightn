@@ -8,7 +8,6 @@ use Enlightn\Enlightn\Analyzers\Security\CSRFAnalyzer;
 use Enlightn\Enlightn\Enlightn;
 use Enlightn\Enlightn\Analyzers\Analyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
-use Enlightn\Enlightn\Tests\Stubs\CustomAnalyzer;
 use Enlightn\Enlightn\Tests\Stubs\CustomCategoryStub;
 use Mockery as m;
 
