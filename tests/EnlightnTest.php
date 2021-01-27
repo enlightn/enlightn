@@ -2,9 +2,13 @@
 
 namespace Enlightn\Enlightn\Tests;
 
+use Enlightn\Enlightn\Analyzers\Performance\SessionDriverAnalyzer;
+use Enlightn\Enlightn\Analyzers\Reliability\DeadCodeAnalyzer;
+use Enlightn\Enlightn\Analyzers\Security\CSRFAnalyzer;
 use Enlightn\Enlightn\Enlightn;
 use Enlightn\Enlightn\Analyzers\Analyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
+use Enlightn\Enlightn\Tests\Stubs\CustomCategoryStub;
 use Mockery as m;
 
 class EnlightnTest extends TestCase
@@ -25,6 +29,26 @@ class EnlightnTest extends TestCase
 
         $this->assertContains(AppDebugAnalyzer::class, Enlightn::$analyzerClasses);
         $this->assertNotContains(Analyzer::class, Enlightn::$analyzerClasses);
+    }
+
+    /**
+     * @test
+     */
+    public function registers_analyzer_categories()
+    {
+        $this->app->config->set(
+            'enlightn.analyzers',
+            [
+                CSRFAnalyzer::class,
+                SessionDriverAnalyzer::class,
+                DeadCodeAnalyzer::class,
+                CustomCategoryStub::class,
+            ]
+        );
+
+        Enlightn::register();
+
+        $this->assertEquals(['Security', 'Performance', 'Reliability', 'Custom'], Enlightn::$categories);
     }
 
     /**

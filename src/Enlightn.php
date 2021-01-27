@@ -26,6 +26,13 @@ class Enlightn
     public static $analyzers = [];
 
     /**
+     * The registered analyzer categories
+     *
+     * @var array
+     */
+    public static $categories = [];
+
+    /**
      * The callback to be executed after an analyzer is run.
      *
      * @var callable|null
@@ -127,6 +134,8 @@ class Enlightn
     {
         static::$analyzers = [];
 
+        static::$categories = [];
+
         static::$analyzerClasses = [];
 
         static::$afterCallback = null;
@@ -141,6 +150,17 @@ class Enlightn
     public static function hasAnalyzer(string $class)
     {
         return in_array($class, static::$analyzerClasses);
+    }
+
+    /**
+     * Determine if a given category has been registered.
+     *
+     * @param string $category
+     * @return bool
+     */
+    public static function hasCategory(string $category)
+    {
+        return in_array($category, static::$categories);
     }
 
     /**
@@ -265,6 +285,24 @@ class Enlightn
                 ! (new ReflectionClass($class))->isAbstract() &&
                 ! static::hasAnalyzer($class)) {
             static::$analyzerClasses[] = $class;
+
+            static::registerCategory($class);
+        }
+    }
+
+    /**
+     * Register an Enlightn analyzer category.
+     *
+     * @param string $class
+     * @return void
+     */
+    protected static function registerCategory($class)
+    {
+        $category = get_class_vars($class)['category'];
+
+        if (! is_null($category) && ! self::hasCategory($category)) {
+            static::$categories[] = $category;
+            static::$categories = Arr::sort(static::$categories);
         }
     }
 }
