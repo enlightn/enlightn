@@ -7,33 +7,6 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: enlightn
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        ports:
-          - 3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: enlightn
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-      redis:
-        image: redis
-        ports:
-          - 6379:6379
-        options: --entrypoint redis-server
     strategy:
       fail-fast: false
       matrix:
@@ -50,7 +23,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, redis, zip, json
+          extensions: dom, curl, libxml, mbstring, zip, json
           coverage: none
 
       - name: Install dependencies
@@ -58,7 +31,4 @@ jobs:
           composer require "illuminate/contracts=${{ matrix.laravel }}" --no-update
           composer update --prefer-dist --no-interaction --no-progress
       - name: Execute tests
-        run: vendor/bin/phpunit --verbose --configuration phpunit.xml.dist
-        env:
-          DB_MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
-          DB_PGSQL_PORT: ${{ job.services.postgres.ports[5432] }}
+        run: vendor/bin/paratest --verbose --configuration=phpunit.xml.dist
