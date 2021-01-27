@@ -150,7 +150,7 @@ class EnlightnCommand extends Command
     {
         $this->result = [];
 
-        foreach (['Performance', 'Security', 'Reliability', 'Total'] as $category) {
+        foreach (array_merge(Enlightn::$categories, ['Total']) as $category) {
             $this->result[$category] = [
                 'passed' => 0,
                 'failed' => 0,
@@ -176,15 +176,13 @@ class EnlightnCommand extends Command
         $rightAlign = (new TableStyle())->setPadType(STR_PAD_LEFT);
 
         $this->table(
-            ['Status', 'Performance', 'Security', 'Reliability', 'Total'],
+            array_merge(['Status'], Enlightn::$categories, ['Total']),
             collect(['passed', 'failed', 'skipped', 'error'])->map(function ($status) {
-                return [
-                    $status == 'skipped' ? 'Not Applicable' : ucfirst($status),
-                    $this->formatResult($status, 'Performance'),
-                    $this->formatResult($status, 'Security'),
-                    $this->formatResult($status, 'Reliability'),
-                    $this->formatResult($status, 'Total'),
-                ];
+                return array_merge([$status === 'skipped' ? 'Not Applicable' : ucfirst($status)],
+                    collect(array_merge(Enlightn::$categories, ['Total']))->map(function ($category) use ($status) {
+                        return $this->formatResult($status, $category);
+                    })->toArray()
+                );
             })->values()->toArray(),
             'default',
             ['default', $rightAlign, $rightAlign, $rightAlign, $rightAlign]
