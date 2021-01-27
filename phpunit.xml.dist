@@ -10,32 +10,9 @@
          stopOnFailure="false"
          verbose="true"
 >
-    <php>
-        <env name="DB_HOST" value="127.0.0.1"/>
-        <env name="DB_DATABASE" value="enlightn"/>
-        <env name="DB_MYSQL_PORT" value="3306"/>
-        <env name="DB_MYSQL_USERNAME" value="root"/>
-        <env name="DB_MYSQL_PASSWORD" value=""/>
-        <env name="DB_PGSQL_PORT" value="5432"/>
-        <env name="DB_PGSQL_USERNAME" value="postgres"/>
-        <env name="DB_PGSQL_PASSWORD" value="postgres"/>
-    </php>
     <testsuites>
         <testsuite name="Enlightn Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <coverage>
-        <include>
-            <directory suffix=".php">./src</directory>
-        </include>
-        <report>
-            <html outputDirectory="build/coverage"/>
-            <text outputFile="build/coverage.txt"/>
-            <clover outputFile="build/logs/clover.xml"/>
-        </report>
-    </coverage>
-    <logging>
-        <junit outputFile="build/report.junit.xml"/>
-    </logging>
 </phpunit>
