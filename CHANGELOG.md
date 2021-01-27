@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.6...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.7...master)
+
+## [v1.7 (2021-01-27)](https://github.com/enlightn/enlightn/compare/v1.6...v1.7)
+
+### Added
+- Add analyzer to detect syntax errors ([#19](https://github.com/enlightn/enlightn/pull/19))
+- Support custom categories ([#18](https://github.com/enlightn/enlightn/pull/18))
 
 ## [v1.6 (2021-01-26)](https://github.com/enlightn/enlightn/compare/v1.5...v1.6)
 
