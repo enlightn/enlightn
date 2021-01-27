@@ -2,17 +2,18 @@
 
 namespace Enlightn\Enlightn\Inspection;
 
-use Illuminate\Support\Arr;
 use Illuminate\Filesystem\Filesystem;
+use PhpParser\Error;
+use PhpParser\ErrorHandler\Collecting;
 use PhpParser\ParserFactory;
-use Symfony\Component\Finder\Finder;
-use Throwable;
 
 class Inspector
 {
     protected $files;
 
     public $nodes = [];
+
+    public $errors = [];
 
     public $passed = true;
 
@@ -36,10 +37,15 @@ class Inspector
 
         collect($filePaths)->each(function ($path) use ($parser) {
             if (! isset($this->nodes[$path])) {
-                try {
-                    $this->nodes[$path] = $parser->parse($this->files->get($path));
-                } catch (Throwable $e) {
-                    // eat this
+                $this->nodes[$path] = $parser->parse($this->files->get($path), $handler = new Collecting);
+
+                if ($handler->hasErrors()) {
+                    // Partial ASTs are ignored.
+                    unset($this->nodes[$path]);
+
+                    $this->errors[$path] = collect($handler->getErrors())->map(function (Error $error) {
+                        return $error->getStartLine();
+                    })->toArray();
                 }
             }
         });
@@ -88,6 +94,8 @@ class Inspector
     public function flush()
     {
         $this->nodes = [];
+
+        $this->errors = [];
 
         return $this;
     }
