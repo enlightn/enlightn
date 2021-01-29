@@ -206,7 +206,9 @@ class EnlightnCommand extends Command
      * @return string
      */
     protected function formatResult($status, $category) {
-        $totalAnalyzersInCategory = (float) collect($this->result[$category])->sum(function ($count) {
+        $totalAnalyzersInCategory = (float) collect($this->result[$category])->filter(function($result, $status) {
+            return in_array($status, ['passed', 'failed', 'skipped', 'error']);
+        })->sum(function ($count) {
             return $count;
         });
 
@@ -218,7 +220,7 @@ class EnlightnCommand extends Command
         }
 
         return $this->result[$category][$status]
-            .str_pad(" ({$percentage}%)", 6, " ", STR_PAD_LEFT);
+            .str_pad(" ({$percentage}%)", 7, " ", STR_PAD_LEFT);
     }
 
     /**
