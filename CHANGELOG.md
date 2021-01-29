@@ -2,7 +2,7 @@
 
 ## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.7.1...master)
 
-## [v1.7.1 (2021-01-29)](https://github.com/enlightn/enlightn/compare/v1.7.1...v1.7)
+## [v1.7.1 (2021-01-29)](https://github.com/enlightn/enlightn/compare/v1.7...v1.7.1)
 
 ### Fixed
 - Fix percentage calculations ([#22](https://github.com/enlightn/enlightn/pull/22))
