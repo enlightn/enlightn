@@ -4,6 +4,7 @@ namespace Enlightn\Enlightn\Tests;
 
 use Enlightn\Enlightn\Analyzers\Reliability\CachePrefixAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
+use Symfony\Component\Console\Helper\TableStyle;
 
 class EnlightnCommandTest extends TestCase
 {
@@ -55,6 +56,34 @@ class EnlightnCommandTest extends TestCase
         $this->app->config->set('cache.prefix', 'enlightn_cache');
 
         $this->artisan('enlightn')->assertExitCode(1);
+    }
+
+    /**
+     * @test
+     */
+    public function computes_percentage_properly()
+    {
+        $this->app->config->set('enlightn.analyzers', [AppDebugAnalyzer::class, CachePrefixAnalyzer::class]);
+        $this->app->config->set('app.env', 'production');
+        $this->app->config->set('app.debug', true);
+        $this->app->config->set('cache.prefix', 'enlightn_cache');
+
+        $rightAlign = (new TableStyle())->setPadType(STR_PAD_LEFT);
+
+        $this->artisan('enlightn')
+            ->assertExitCode(1)
+            ->expectsOutput("Report Card")
+            ->expectsTable(
+                ['Status', 'Reliability', 'Security', 'Total'],
+                [
+                    ['Passed', '1 (100%)', '0   (0%)', '1  (50%)'],
+                    ['Failed', '0   (0%)', '1 (100%)', '1  (50%)'],
+                    ['Not Applicable', '0   (0%)', '0   (0%)', '0   (0%)'],
+                    ['Error', '0   (0%)', '0   (0%)', '0   (0%)'],
+                ],
+                'default',
+                ['default', $rightAlign, $rightAlign, $rightAlign]
+            );
     }
 
     /**

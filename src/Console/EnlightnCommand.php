@@ -220,7 +220,7 @@ class EnlightnCommand extends Command
         }
 
         return $this->result[$category][$status]
-            .str_pad(" ({$percentage}%)", 6, " ", STR_PAD_LEFT);
+            .str_pad(" ({$percentage}%)", 7, " ", STR_PAD_LEFT);
     }
 
     /**
