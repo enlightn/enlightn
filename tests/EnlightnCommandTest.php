@@ -4,6 +4,7 @@ namespace Enlightn\Enlightn\Tests;
 
 use Enlightn\Enlightn\Analyzers\Reliability\CachePrefixAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
+use Illuminate\Testing\PendingCommand;
 use Symfony\Component\Console\Helper\TableStyle;
 
 class EnlightnCommandTest extends TestCase
@@ -63,6 +64,10 @@ class EnlightnCommandTest extends TestCase
      */
     public function computes_percentage_properly()
     {
+        if (! method_exists(PendingCommand::class, 'expectsTable')) {
+            $this->markTestSkipped('Laravel 6.x does not provide table expectation assertions.');
+        }
+
         $this->app->config->set('enlightn.analyzers', [AppDebugAnalyzer::class, CachePrefixAnalyzer::class]);
         $this->app->config->set('app.env', 'production');
         $this->app->config->set('app.debug', true);
