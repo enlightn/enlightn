@@ -108,7 +108,7 @@ The checks reported under the "Error" row indicate the analyzers that failed wit
 
 A good practice would be to run Enlightn every time you are deploying code or pushing or a new release. If your application is stable (not many new releases), then you might want to run Enlightn say once a month or so. Remember that Enlightn not only scans your application code but also monitors your application's health.
 
-## OS Support
+## OS Compatibility
 
 Only MacOS and Linux systems are supported for Enlightn. Windows is currently not supported.
 
