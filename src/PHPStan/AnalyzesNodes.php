@@ -11,10 +11,41 @@ use PhpParser\Node;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\StringType;
 
 trait AnalyzesNodes
 {
+    /**
+     * Determine whether the Expr was called on a Request instance.
+     *
+     * @param \PhpParser\Node\Expr $expr
+     * @param \PHPStan\Analyser\Scope $scope
+     * @return bool
+     */
+    protected function isRequestArrayData(Expr $expr, Scope $scope)
+    {
+        $logic = (new RequestArrayDataType(new StringType, new StringType))
+            ->isSuperTypeOf($scope->getType($expr));
+
+        return $logic->yes() || $logic->maybe();
+    }
+
+    /**
+     * Determine whether the Expr was called on a Request instance.
+     *
+     * @param \PhpParser\Node\Expr $expr
+     * @param \PHPStan\Analyser\Scope $scope
+     * @return bool
+     */
+    protected function isRequestData(Expr $expr, Scope $scope)
+    {
+        $logic = (new RequestDataType)->isSuperTypeOf($scope->getType($expr));
+
+        return $logic->yes() || $logic->maybe();
+    }
+
     /**
      * Determine whether the Expr was called on a Request instance.
      *
@@ -57,10 +88,12 @@ trait AnalyzesNodes
      */
     protected function hasRequestCall(Node $node, Scope $scope)
     {
-        return $node instanceof MethodCall
-            && $this->isCalledOnRequest($node->var, $scope)
-            && $node->name instanceof Node\Identifier
-            && in_array($node->name->toString(), ['input', 'get', 'post', 'query', 'all']);
+        if ($node instanceof Expr) {
+            return $this->isRequestData($node, $scope)
+                || $this->isRequestArrayData($node, $scope);
+        }
+
+        return false;
     }
 
     /**
@@ -147,5 +180,15 @@ trait AnalyzesNodes
         }
 
         return false;
+    }
+
+    protected function blacklistedRequestDataMethods()
+    {
+        return ['input', 'get', 'post', 'query', 'old', 'cookie', 'header'];
+    }
+
+    protected function allBlacklistedRequestMethods()
+    {
+        return array_merge($this->blacklistedRequestDataMethods(), ['all', 'except']);
     }
 }

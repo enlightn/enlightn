@@ -56,9 +56,6 @@ class MassAssignmentModelInstanceRule implements Rule
      */
     protected function retrievesRequestInput(Node\Arg $arg, Scope $scope)
     {
-        return $arg->value instanceof MethodCall
-            && $this->isCalledOnRequest($arg->value->var, $scope)
-            && $arg->value->name instanceof Node\Identifier
-            && $arg->value->name->toString() === 'all';
+        return $arg->value instanceof Node\Expr && $this->isRequestArrayData($arg->value, $scope);
     }
 }

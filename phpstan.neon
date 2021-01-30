@@ -16,6 +16,8 @@ parameters:
     checkThisOnly: false
     checkUnionTypes: true
     checkExplicitMixed: true
+    stubFiles:
+        - stubs/Request.stub
 
 rules:
 	- Enlightn\Enlightn\PHPStan\FillableForeignKeyModelRule
@@ -102,3 +104,11 @@ services:
             functionReflector: @betterReflectionFunctionReflector
         tags:
             - phpstan.rules.rule
+    -
+        class: Enlightn\Enlightn\PHPStan\RequestDataTypeNodeResolverExtension
+        tags:
+            - phpstan.phpDoc.typeNodeResolverExtension
+    -
+        class: Enlightn\Enlightn\PHPStan\RequestArrayDataTypeNodeResolverExtension
+        tags:
+            - phpstan.phpDoc.typeNodeResolverExtension
