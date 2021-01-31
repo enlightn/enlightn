@@ -18,7 +18,7 @@ class RequestArrayDataTypeNodeResolverExtension implements TypeNodeResolverExten
     public function resolve(TypeNode $typeNode, NameScope $nameScope): ?Type
     {
         if ($typeNode instanceof IdentifierTypeNode && $typeNode->name === 'request-array') {
-            return new RequestArrayDataType(new UnionType([new StringType, new IntegerType]), new StringType);
+            return new RequestArrayDataType(new UnionType([new StringType, new IntegerType]), new RequestDataType);
         }
 
         return null;

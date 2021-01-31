@@ -11,9 +11,10 @@ use PhpParser\Node;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
-use PHPStan\Type\MixedType;
+use PHPStan\Type\IntegerType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
+use PHPStan\Type\UnionType;
 
 trait AnalyzesNodes
 {
@@ -26,8 +27,8 @@ trait AnalyzesNodes
      */
     protected function isRequestArrayData(Expr $expr, Scope $scope)
     {
-        $logic = (new RequestArrayDataType(new StringType, new StringType))
-            ->isSuperTypeOf($scope->getType($expr));
+        $logic = (new RequestArrayDataType(new UnionType([new StringType, new IntegerType]), new RequestDataType))
+            ->canBeSuperTypeOf($scope->getType($expr));
 
         return $logic->yes() || $logic->maybe();
     }
@@ -41,7 +42,7 @@ trait AnalyzesNodes
      */
     protected function isRequestData(Expr $expr, Scope $scope)
     {
-        $logic = (new RequestDataType)->isSuperTypeOf($scope->getType($expr));
+        $logic = (new RequestDataType)->canBeSuperTypeOf($scope->getType($expr));
 
         return $logic->yes() || $logic->maybe();
     }
