@@ -11,7 +11,7 @@ class Request
      *
      * @param  string  $key
      * @param  mixed  $default
-     * @phpstan-return request-data|request-array|null
+     * @phpstan-return request-data|array<int,request-data>|null
      */
     public function get(string $key, $default = null)
     {
@@ -22,7 +22,7 @@ class Request
      *
      * @param  string|null  $key
      * @param  mixed  $default
-     * @phpstan-return request-data|request-array|null
+     * @phpstan-return request-data|array<int,request-data>|null
      */
     public function input($key = null, $default = null)
     {
@@ -33,7 +33,7 @@ class Request
      *
      * @param  string|null  $key
      * @param  string|array<int|string,mixed>|null  $default
-     * @phpstan-return request-data|request-array|null
+     * @phpstan-return request-data|array<int,request-data>|null
      */
     public function query($key = null, $default = null)
     {
@@ -44,7 +44,7 @@ class Request
      *
      * @param  string|null  $key
      * @param  string|array<int|string,mixed>|null  $default
-     * @phpstan-return request-data|request-array|null
+     * @phpstan-return request-data|array<int,request-data>|null
      */
     public function post($key = null, $default = null)
     {
@@ -55,7 +55,7 @@ class Request
      *
      * @param  string|null  $key
      * @param  string|array<int|string,mixed>|null  $default
-     * @phpstan-return request-data|request-array
+     * @phpstan-return request-data|array<int,request-data>
      */
     public function old($key = null, $default = null)
     {
@@ -66,7 +66,7 @@ class Request
      *
      * @param  string|null  $key
      * @param  string|array<int,string>|null  $default
-     * @phpstan-return request-data|request-array|null
+     * @phpstan-return request-data|array<int,request-data>|null
      */
     public function cookie($key = null, $default = null)
     {
@@ -77,7 +77,7 @@ class Request
      *
      * @param  string|null  $key
      * @param  string|array<int,string>|null  $default
-     * @phpstan-return request-data|request-array|null
+     * @phpstan-return request-data|array<int,request-data>|null
      */
     public function header($key = null, $default = null)
     {
@@ -100,6 +100,16 @@ class Request
      * @phpstan-return request-array
      */
     public function except($keys)
+    {
+    }
+
+    /**
+     * Get a subset containing the provided keys with values from the input data.
+     *
+     * @param  array|mixed  $keys
+     * @phpstan-return array<string,request-data>
+     */
+    public function only($keys)
     {
     }
 }
