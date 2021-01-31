@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.7.1...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.8.0...master)
+
+## [v1.8.0 (2021-02-01)](https://github.com/enlightn/enlightn/compare/v1.7.1...v1.8.0)
+
+### Added
+- Faster tests by adding paratest and remove un-needed services ([#26](https://github.com/enlightn/enlightn/pull/26))
 
 ## [v1.7.1 (2021-01-29)](https://github.com/enlightn/enlightn/compare/v1.7...v1.7.1)
 
