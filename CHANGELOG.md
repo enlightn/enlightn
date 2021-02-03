@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.8.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.9.0...master)
+
+## [v1.9.0 (2021-02-03)](https://github.com/enlightn/enlightn/compare/v1.8.0...v1.9.0)
+
+### Added
+- Add support for CI mode ([#29](https://github.com/enlightn/enlightn/pull/29))
 
 ## [v1.8.0 (2021-02-01)](https://github.com/enlightn/enlightn/compare/v1.7.1...v1.8.0)
 
