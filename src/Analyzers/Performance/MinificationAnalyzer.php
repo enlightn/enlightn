@@ -37,6 +37,13 @@ class MinificationAnalyzer extends PerformanceAnalyzer
     protected $unMinifiedAssets;
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = false;
+
+    /**
      * Get the error message describing the analyzer insights.
      *
      * @return string

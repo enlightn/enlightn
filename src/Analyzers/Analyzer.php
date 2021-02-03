@@ -63,18 +63,18 @@ abstract class Analyzer
     public $traces = [];
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = true;
+
+    /**
      * The exception thrown during the analysis.
      *
      * @var array
      */
     protected $exceptionMessage = null;
-
-    /**
-     * The view partial of the analyzer.
-     *
-     * @var string|null
-     */
-    protected $view = null;
 
     /**
      * Determine whether the analyzer passed.

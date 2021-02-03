@@ -29,6 +29,13 @@ class DatabaseStatusAnalyzer extends ReliabilityAnalyzer
     public $timeToFix = 5;
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = false;
+
+    /**
      * The connections that are not accessible.
      *
      * @var string

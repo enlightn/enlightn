@@ -40,6 +40,13 @@ class Enlightn
     public static $afterCallback = null;
 
     /**
+     * The callback that filters the analyzers that should be run.
+     *
+     * @var callable|null
+     */
+    public static $filterCallback = null;
+
+    /**
      * The paths of the files to run the analysis on.
      *
      * @var \Illuminate\Support\Collection
@@ -126,6 +133,44 @@ class Enlightn
     }
 
     /**
+     * Determine whether the analyzer should run based on the filter callback.
+     *
+     * @param string $class
+     * @return bool
+     */
+    public static function filter(string $class)
+    {
+        return is_null(static::$filterCallback) ? true : call_user_func(static::$filterCallback, $class);
+    }
+
+    /**
+     * Register a filter callback on the analyzer.
+     *
+     * @param  callable  $callback
+     * @return void
+     */
+    public static function filterUsing($callback)
+    {
+        static::$filterCallback = $callback;
+    }
+
+    /**
+     * Set the filter callback to filter analyzers that should be run in CI mode.
+     *
+     * @return void
+     */
+    public static function filterAnalyzersForCI()
+    {
+        static::filterUsing(function ($class) {
+            if (! empty($ciAnalyzers = config('enlightn.ci_mode_analyzers'))) {
+                return in_array($class, $ciAnalyzers);
+            }
+
+            return $class::$runInCI && ! in_array($class, config('enlightn.ci_mode_exclude_analyzers'));
+        });
+    }
+
+    /**
      * Flush all the registered Enlightn analyzers and analyzer classes.
      *
      * @return void
@@ -139,6 +184,8 @@ class Enlightn
         static::$analyzerClasses = [];
 
         static::$afterCallback = null;
+
+        static::$filterCallback = null;
     }
 
     /**
@@ -283,7 +330,8 @@ class Enlightn
     {
         if (is_subclass_of($class, Analyzer::class) &&
                 ! (new ReflectionClass($class))->isAbstract() &&
-                ! static::hasAnalyzer($class)) {
+                ! static::hasAnalyzer($class) &&
+                static::filter($class)) {
             static::$analyzerClasses[] = $class;
 
             static::registerCategory($class);

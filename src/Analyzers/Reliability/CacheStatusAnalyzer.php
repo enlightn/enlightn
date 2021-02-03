@@ -30,6 +30,13 @@ class CacheStatusAnalyzer extends ReliabilityAnalyzer
     public $timeToFix = 5;
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = false;
+
+    /**
      * The current disk usage (in percentage).
      *
      * @var float

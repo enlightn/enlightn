@@ -2,6 +2,7 @@
 
 namespace Enlightn\Enlightn\Tests;
 
+use Enlightn\Enlightn\Analyzers\Performance\CacheHeaderAnalyzer;
 use Enlightn\Enlightn\Analyzers\Performance\SessionDriverAnalyzer;
 use Enlightn\Enlightn\Analyzers\Reliability\DeadCodeAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\CSRFAnalyzer;
@@ -62,6 +63,52 @@ class EnlightnTest extends TestCase
         Enlightn::register();
 
         $this->assertNotContains(AppDebugAnalyzer::class, Enlightn::$analyzerClasses);
+    }
+
+    /**
+     * @test
+     */
+    public function filters_analyzer_classes_for_ci()
+    {
+        $this->app->config->set('enlightn.analyzers', '*');
+
+        Enlightn::filterAnalyzersForCI();
+        Enlightn::register();
+
+        $this->assertNotContains(CacheHeaderAnalyzer::class, Enlightn::$analyzerClasses);
+        $this->assertContains(DeadCodeAnalyzer::class, Enlightn::$analyzerClasses);
+    }
+
+    /**
+     * @test
+     */
+    public function excludes_analyzer_classes_for_ci()
+    {
+        $this->app->config->set('enlightn.analyzers', '*');
+        $this->app->config->set('enlightn.ci_mode_exclude_analyzers', [DeadCodeAnalyzer::class]);
+
+        Enlightn::filterAnalyzersForCI();
+        Enlightn::register();
+
+        $this->assertNotContains(DeadCodeAnalyzer::class, Enlightn::$analyzerClasses);
+        $this->assertNotContains(CacheHeaderAnalyzer::class, Enlightn::$analyzerClasses);
+        $this->assertContains(AppDebugAnalyzer::class, Enlightn::$analyzerClasses);
+    }
+
+    /**
+     * @test
+     */
+    public function allows_overriding_analyzer_classes_for_ci()
+    {
+        $this->app->config->set('enlightn.analyzers', '*');
+        $this->app->config->set('enlightn.ci_mode_analyzers', [CacheHeaderAnalyzer::class, DeadCodeAnalyzer::class]);
+
+        Enlightn::filterAnalyzersForCI();
+        Enlightn::register();
+
+        $this->assertContains(CacheHeaderAnalyzer::class, Enlightn::$analyzerClasses);
+        $this->assertContains(DeadCodeAnalyzer::class, Enlightn::$analyzerClasses);
+        $this->assertCount(2, Enlightn::$analyzerClasses);
     }
 
     /**

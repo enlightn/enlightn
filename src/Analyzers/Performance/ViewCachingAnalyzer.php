@@ -29,6 +29,13 @@ class ViewCachingAnalyzer extends PerformanceAnalyzer
     public $timeToFix = 5;
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = false;
+
+    /**
      * Execute the analyzer.
      *
      * @param \Illuminate\Filesystem\Filesystem $files

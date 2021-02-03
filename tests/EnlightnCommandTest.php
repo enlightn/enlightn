@@ -2,8 +2,10 @@
 
 namespace Enlightn\Enlightn\Tests;
 
+use Enlightn\Enlightn\Analyzers\Performance\CacheHeaderAnalyzer;
 use Enlightn\Enlightn\Analyzers\Reliability\CachePrefixAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
+use Enlightn\Enlightn\Analyzers\Security\AppKeyAnalyzer;
 use Illuminate\Testing\PendingCommand;
 use Symfony\Component\Console\Helper\TableStyle;
 
@@ -115,5 +117,22 @@ class EnlightnCommandTest extends TestCase
         $this->app->config->set('enlightn.dont_report', [AppDebugAnalyzer::class]);
 
         $this->artisan('enlightn')->assertExitCode(1);
+    }
+
+    /**
+     * @test
+     */
+    public function command_runs_in_ci_mode()
+    {
+        $this->app->config->set('enlightn.analyzers', [
+            AppDebugAnalyzer::class, AppKeyAnalyzer::class, CachePrefixAnalyzer::class
+        ]);
+        $this->app->config->set('app.env', 'production');
+        $this->app->config->set('app.debug', true);
+        $this->app->config->set('cache.prefix', 'enlightn_cache');
+        $this->app->config->set('enlightn.dont_report', [AppDebugAnalyzer::class]);
+
+        // App debug fails but is not supposed to be reported, app key shouldn't run in CI and cache prefix succeeds.
+        $this->artisan('enlightn --ci')->assertExitCode(0);
     }
 }

@@ -26,6 +26,13 @@ class PHPIniAnalyzer extends SecurityAnalyzer
     public $timeToFix = 5;
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = false;
+
+    /**
      * A collection of insecure PHP ini settings.
      *
      * @var \Illuminate\Support\Collection
