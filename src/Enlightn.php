@@ -162,6 +162,10 @@ class Enlightn
     public static function filterAnalyzersForCI()
     {
         static::filterUsing(function ($class) {
+            if (! empty($ciAnalyzers = config('enlightn.ci_mode_analyzers'))) {
+                return in_array($class, $ciAnalyzers);
+            }
+
             return $class::$runInCI && ! in_array($class, config('enlightn.ci_mode_exclude_analyzers'));
         });
     }

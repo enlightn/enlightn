@@ -98,6 +98,22 @@ class EnlightnTest extends TestCase
     /**
      * @test
      */
+    public function allows_overriding_analyzer_classes_for_ci()
+    {
+        $this->app->config->set('enlightn.analyzers', '*');
+        $this->app->config->set('enlightn.ci_mode_analyzers', [CacheHeaderAnalyzer::class, DeadCodeAnalyzer::class]);
+
+        Enlightn::filterAnalyzersForCI();
+        Enlightn::register();
+
+        $this->assertContains(CacheHeaderAnalyzer::class, Enlightn::$analyzerClasses);
+        $this->assertContains(DeadCodeAnalyzer::class, Enlightn::$analyzerClasses);
+        $this->assertCount(2, Enlightn::$analyzerClasses);
+    }
+
+    /**
+     * @test
+     */
     public function runs_analyzer_classes()
     {
         Enlightn::register();
