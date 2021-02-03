@@ -15,7 +15,9 @@ class EnlightnCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'enlightn {analyzer?* : The analyzer class that you wish to run}';
+    protected $signature = 'enlightn
+                            {analyzer?* : The analyzer class that you wish to run}
+                            {--ci : Run Enlightn in CI Mode}';
 
     /**
      * The console command description.
@@ -80,6 +82,10 @@ class EnlightnCommand extends Command
         $this->line(require __DIR__.DIRECTORY_SEPARATOR.'logo.php');
         $this->output->newLine();
         $this->line('Please wait while Enlightn scans your code base...');
+
+        if ($this->option('ci')) {
+            Enlightn::filterAnalyzersForCI();
+        }
 
         Enlightn::register($this->analyzerClasses);
 

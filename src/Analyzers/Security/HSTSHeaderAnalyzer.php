@@ -35,6 +35,13 @@ class HSTSHeaderAnalyzer extends SecurityAnalyzer
     public $timeToFix = 5;
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = false;
+
+    /**
      * Create a new analyzer instance.
      *
      * @param  \Illuminate\Routing\Router  $router
