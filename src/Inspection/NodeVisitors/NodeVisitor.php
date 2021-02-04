@@ -2,6 +2,7 @@
 
 namespace Enlightn\Enlightn\Inspection\NodeVisitors;
 
+use Enlightn\Enlightn\Inspection\InspectionLine;
 use PhpParser\NodeVisitorAbstract;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ConstFetch;
@@ -72,13 +73,15 @@ abstract class NodeVisitor extends NodeVisitorAbstract implements VisitorContrac
     /**
      * Record the line numbers based on the node.
      *
+     * @param $node
+     * @param string|null $details
      * @return $this
      */
-    protected function recordLineNumbers($node)
+    protected function recordLineNumbers($node, $details = null)
     {
         $this->markFound();
 
-        $this->lineNumbers[] = $node->getStartLine();
+        $this->lineNumbers[] = new InspectionLine($node->getStartLine(), $details);
 
         return $this;
     }

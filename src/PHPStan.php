@@ -2,6 +2,7 @@
 
 namespace Enlightn\Enlightn;
 
+use Enlightn\Enlightn\Analyzers\Trace;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ProcessUtils;
@@ -64,13 +65,13 @@ class PHPStan
             return [];
         }
 
-        return collect($this->result['files'])->map(function ($fileAnalysis) use ($search) {
+        return collect($this->result['files'])->map(function ($fileAnalysis, $path) use ($search) {
             return collect($fileAnalysis['messages'])->filter(function ($message) use ($search) {
                 return Str::contains($message['message'], $search);
-            })->map(function ($message) {
-                return $message['line'];
+            })->map(function ($message) use ($path) {
+                return new Trace($path, $message['line'], $message['message']);
             })->flatten()->toArray();
-        })->filter()->toArray();
+        })->filter()->flatten()->toArray();
     }
 
     /**
@@ -85,13 +86,13 @@ class PHPStan
             return [];
         }
 
-        return collect($this->result['files'])->map(function ($fileAnalysis) use ($pattern) {
+        return collect($this->result['files'])->map(function ($fileAnalysis, $path) use ($pattern) {
             return collect($fileAnalysis['messages'])->filter(function ($message) use ($pattern) {
                 return Str::is($pattern, $message['message']);
-            })->map(function ($message) {
-                return $message['line'];
+            })->map(function ($message) use ($path) {
+                return new Trace($path, $message['line'], $message['message']);
             })->flatten()->toArray();
-        })->filter()->toArray();
+        })->filter()->flatten()->toArray();
     }
 
     /**

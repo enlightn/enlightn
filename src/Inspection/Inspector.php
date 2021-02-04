@@ -2,6 +2,7 @@
 
 namespace Enlightn\Enlightn\Inspection;
 
+use Enlightn\Enlightn\Analyzers\Trace;
 use Illuminate\Filesystem\Filesystem;
 use PhpParser\Error;
 use PhpParser\ErrorHandler\Collecting;
@@ -20,7 +21,7 @@ class Inspector
     /**
      * @var array
      */
-    protected $errorLineNumbers = [];
+    protected $traces = [];
 
     public function __construct()
     {
@@ -59,18 +60,20 @@ class Inspector
      */
     public function inspect(QueryBuilder $builder)
     {
-        $this->errorLineNumbers = [];
+        $this->traces = [];
         $this->passed = true;
 
         foreach ($this->nodes as $path => $nodes) {
-            if (! empty($lineNumbers = $builder->getErrors($nodes))) {
-                $this->errorLineNumbers[$path] = $lineNumbers;
+            if (! empty($errors = $builder->getErrors($nodes))) {
+                collect($errors)->each(function (InspectionLine $line) use ($path) {
+                   $this->traces[] = new Trace($path, $line->lineNumber, $line->details);
+                });
             }
 
             $this->passed = $this->passed && $builder->passed();
         }
 
-        return $this->errorLineNumbers;
+        return $this->traces;
     }
 
     /**
@@ -88,7 +91,7 @@ class Inspector
      */
     public function getLastErrors()
     {
-        return $this->errorLineNumbers;
+        return $this->traces;
     }
 
     public function flush()
