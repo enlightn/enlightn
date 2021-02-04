@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.9.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.10.0...master)
+
+## [v1.10.0 (2021-02-04)](https://github.com/enlightn/enlightn/compare/v1.9.0...v1.10.0)
+
+### Added
+- Add details to analyzer fail messages ([#32](https://github.com/enlightn/enlightn/pull/32))
 
 ## [v1.9.0 (2021-02-03)](https://github.com/enlightn/enlightn/compare/v1.8.0...v1.9.0)
 
