@@ -43,7 +43,7 @@ class MassAssignmentModelStaticRule implements Rule
             return [];
         }
 
-        if (! in_array($node->name->toString(), [
+        if (! in_array($methodName = $node->name->toString(), [
             'create', 'forceCreate', 'firstOrCreate', 'updateOrCreate', 'insert', 'upsert',
             'update', 'insertOrIgnore', 'make', 'firstOrNew',
         ])) {
@@ -51,9 +51,13 @@ class MassAssignmentModelStaticRule implements Rule
         }
 
         if (isset($node->args[0]) && $this->retrievesRequestInput($node->args[0], $scope)) {
-            return ["All request data should not be saved to the database. This may result in a mass assignment "
-                ."vulnerability which overwrites database fields that were never intended to be modified. "
-                ."Use the Request object's only or validated methods instead."];
+            return [
+                sprintf(
+                    "Static call to %s method on a Model class with request data may result in a "
+                    ."mass assignment vulnerability.",
+                    $methodName
+                )
+            ];
         }
 
         return [];

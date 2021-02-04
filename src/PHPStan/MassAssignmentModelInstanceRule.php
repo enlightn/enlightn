@@ -28,7 +28,7 @@ class MassAssignmentModelInstanceRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         if (! $node->name instanceof Node\Identifier
-            || ! in_array($node->name->toString(), ['forceFill', 'fill', 'update'])) {
+            || ! in_array($methodName = $node->name->toString(), ['forceFill', 'fill', 'update'])) {
             // We are only looking for fill(...) or forceFill(...) method calls
             return [];
         }
@@ -39,9 +39,13 @@ class MassAssignmentModelInstanceRule implements Rule
         }
 
         if (isset($node->args[0]) && $this->retrievesRequestInput($node->args[0], $scope)) {
-            return ["All request data should not be saved to a model. This may result in a mass assignment "
-                ."vulnerability which overwrites database fields that were never intended to be modified. "
-                ."Use the Request object's only or validated methods instead."];
+            return [
+                sprintf(
+                    "Call to %s method on a Model instance with request data may result in a "
+                    ."mass assignment vulnerability.",
+                    $methodName
+                )
+            ];
         }
 
         return [];
