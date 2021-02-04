@@ -18,7 +18,7 @@ class GlobalVariableVisitor extends NodeVisitor
     {
         if ($node instanceof Node\Expr\Variable
             && $node->name === $this->variableName) {
-            $this->recordLineNumbers($node);
+            $this->recordLineNumbers($node, "Global variable {$this->variableName} detected.");
         }
 
         return null;

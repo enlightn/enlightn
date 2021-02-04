@@ -29,7 +29,7 @@ class InvalidOffsetAnalyzerTest extends AnalyzerTestCase
         $this->assertFailedAt(InvalidOffsetAnalyzer::class, $this->getClassStubPath(InvalidOffsetStub::class), 13);
         $this->assertFailedAt(InvalidOffsetAnalyzer::class, $this->getClassStubPath(InvalidOffsetStub::class), 17);
         $this->assertFailedAt(InvalidOffsetAnalyzer::class, $this->getClassStubPath(InvalidOffsetStub::class), 25);
-        $this->assertHasErrors(InvalidOffsetAnalyzer::class, 4);
+        $this->assertHasErrors(InvalidOffsetAnalyzer::class, 5);
     }
 
     /**

@@ -14,7 +14,7 @@ class EvalExpressionVisitor extends NodeVisitor
     public function enterNode(Node $node)
     {
         if ($node instanceof Node\Expr\Eval_) {
-            $this->recordLineNumbers($node);
+            $this->recordLineNumbers($node, "Eval statement detected.");
         }
 
         return null;

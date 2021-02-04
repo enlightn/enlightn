@@ -2,6 +2,7 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers;
 
+use Enlightn\Enlightn\Analyzers\Trace;
 use Enlightn\Enlightn\Enlightn;
 use Enlightn\Enlightn\PHPStan;
 use Enlightn\Enlightn\Tests\TestCase;
@@ -62,28 +63,24 @@ class AnalyzerTestCase extends TestCase
     protected function assertHasErrors($analyzerClass, $numErrors)
     {
         $analyzer = $this->app->make($analyzerClass);
-        $this->assertEquals($numErrors, collect($analyzer->traces)->map(function ($lineNumbers) {
-            return count($lineNumbers);
-        })->values()->sum());
+        $this->assertCount($numErrors, $analyzer->traces);
     }
 
     protected function assertFailedAt($analyzerClass, $path, $lineNumber)
     {
         $analyzer = $this->app->make($analyzerClass);
         $this->assertFailed($analyzerClass);
-        $this->assertTrue(
-            (isset($analyzer->traces[realpath($path)])
-                    && in_array($lineNumber, $analyzer->traces[realpath($path)])) ||
-                (isset($analyzer->traces[$path])
-                && in_array($lineNumber, $analyzer->traces[$path]))
-        );
+        $this->assertTrue(collect($analyzer->traces)->contains(function ($trace) use ($path, $lineNumber) {
+            return $trace->lineNumber == $lineNumber && ($trace->path == $path || $trace->path == realpath($path));
+        }));
     }
 
     protected function assertNotFailedAt($analyzerClass, $path, $lineNumber)
     {
         $analyzer = $this->app->make($analyzerClass);
-        $this->assertTrue(! isset($analyzer->traces[realpath($path)])
-            || ! in_array($lineNumber, $analyzer->traces[realpath($path)]));
+        $this->assertFalse(collect($analyzer->traces)->contains(function ($trace) use ($path, $lineNumber) {
+            return $trace->lineNumber == $lineNumber && ($trace->path == $path || $trace->path == realpath($path));
+        }));
     }
 
     protected function assertSkipped($analyzerClass)

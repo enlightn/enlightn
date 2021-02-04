@@ -49,6 +49,6 @@ class FillableForeignKeyAnalyzer extends SecurityAnalyzer
      */
     public function handle(PHPStan $phpStan)
     {
-        $this->parsePHPStanAnalysis($phpStan, 'foreign key declared as fillable');
+        $this->parsePHPStanAnalysis($phpStan, 'declared as fillable');
     }
 }

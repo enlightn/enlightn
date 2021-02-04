@@ -31,7 +31,7 @@ class ClassInstantiationVisitor extends NodeVisitor
                 $this->compareArguments($node->args, $this->parameters)) {
                 // Here, we register the new Alias(...) or the new ClassName(...) call.
                 // This also works without the use import, such as new \Fully\Qualified\ClassName().
-                $this->recordLineNumbers($node);
+                $this->recordLineNumbers($node, "Instance of {$this->class} class instantiated.");
             }
         }
 

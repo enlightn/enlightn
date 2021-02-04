@@ -34,7 +34,7 @@ class FillableForeignKeyModelRule implements Rule
             return [];
         }
 
-        if (! is_subclass_of($scope->getClassReflection()->getName(), Model::class)) {
+        if (! is_subclass_of($modelClass = $scope->getClassReflection()->getName(), Model::class)) {
             // We are only looking for Model classes.
             return [];
         }
@@ -49,8 +49,13 @@ class FillableForeignKeyModelRule implements Rule
             }
 
             if ($item->value instanceof Node\Scalar\String_
-                && Str::contains($item->value->value, '_id')) {
-                return ['Potential foreign key declared as fillable and available for mass assignment.'];
+                && Str::contains($key = $item->value->value, '_id')) {
+                return [
+                    sprintf(
+                        'Potential foreign key %s declared as fillable and available for mass assignment.',
+                        $key
+                    )
+                ];
             }
         }
 

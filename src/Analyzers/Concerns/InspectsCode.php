@@ -30,8 +30,8 @@ trait InspectsCode
     protected function inspectCode(Inspector $inspector, QueryBuilder $builder)
     {
         if (! $this->passesCodeInspection($inspector, $builder)) {
-            collect($inspector->getLastErrors())->each(function ($lineNumbers, $path) {
-                $this->addTraces($path, $lineNumbers);
+            collect($inspector->getLastErrors())->each(function ($trace) {
+                $this->pushTrace($trace);
             });
 
             // Although adding traces would also mark it as failed, but there may be no traces

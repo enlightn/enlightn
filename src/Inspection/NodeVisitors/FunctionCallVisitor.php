@@ -23,7 +23,7 @@ class FunctionCallVisitor extends NodeVisitor
             && $node->name->toString() === $this->functionName) {
             if (empty($this->parameters) ||
                 $this->compareArguments($node->args, $this->parameters)) {
-                $this->recordLineNumbers($node);
+                $this->recordLineNumbers($node, "Function {$this->functionName} called.");
             }
         }
 

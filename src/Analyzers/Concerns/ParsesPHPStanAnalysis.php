@@ -2,6 +2,7 @@
 
 namespace Enlightn\Enlightn\Analyzers\Concerns;
 
+use Enlightn\Enlightn\Analyzers\Trace;
 use Enlightn\Enlightn\PHPStan;
 
 trait ParsesPHPStanAnalysis
@@ -14,8 +15,8 @@ trait ParsesPHPStanAnalysis
      */
     protected function parsePHPStanAnalysis(PHPStan $phpStan, $search)
     {
-        collect($phpStan->parseAnalysis($search))->each(function ($lineNumbers, $path) {
-            $this->addTraces($path, $lineNumbers);
+        collect($phpStan->parseAnalysis($search))->each(function (Trace $trace) {
+            $this->addTrace($trace->path, $trace->lineNumber, $trace->details);
         });
     }
 
@@ -27,8 +28,8 @@ trait ParsesPHPStanAnalysis
      */
     protected function matchPHPStanAnalysis(PHPStan $phpStan, $pattern)
     {
-        collect($phpStan->match($pattern))->each(function ($lineNumbers, $path) {
-            $this->addTraces($path, $lineNumbers);
+        collect($phpStan->match($pattern))->each(function (Trace $trace) {
+            $this->addTrace($trace->path, $trace->lineNumber, $trace->details);
         });
     }
 }

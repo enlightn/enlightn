@@ -27,7 +27,7 @@ class MassAssignmentBuilderInstanceRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         if (! $node->name instanceof Node\Identifier
-            || ! in_array($node->name->toString(), [
+            || ! in_array($methodName = $node->name->toString(), [
                 'update', 'insert', 'upsert', 'insertOrIgnore', 'insertUsing', 'insertGetId', 'updateOrInsert',
             ])) {
             // Method name must match blacklisted names.
@@ -40,9 +40,13 @@ class MassAssignmentBuilderInstanceRule implements Rule
         }
 
         if (isset($node->args[0]) && $this->retrievesRequestInput($node->args[0], $scope)) {
-            return ["All request data should not be saved to the database. This may result in a mass assignment "
-                ."vulnerability which overwrites database fields that were never intended to be modified. "
-                ."Use the Request object's only or validated methods instead."];
+            return [
+                sprintf(
+                    "Call to %s method on an Eloquent/query builder instance with request data may result in a "
+                    ."mass assignment vulnerability.",
+                    $methodName
+                )
+            ];
         }
 
         return [];

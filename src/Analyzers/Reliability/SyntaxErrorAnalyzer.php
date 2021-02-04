@@ -49,7 +49,9 @@ class SyntaxErrorAnalyzer extends ReliabilityAnalyzer
             $this->markFailed();
 
             foreach ($inspector->errors as $path => $lineNumbers) {
-                $this->addTraces($path, $lineNumbers);
+                foreach ($lineNumbers as $lineNumber) {
+                    $this->addTrace($path, $lineNumber);
+                }
             }
         }
     }
