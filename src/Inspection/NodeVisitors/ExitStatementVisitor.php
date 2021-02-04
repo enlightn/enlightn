@@ -14,7 +14,7 @@ class ExitStatementVisitor extends NodeVisitor
     public function enterNode(Node $node)
     {
         if ($node instanceof Node\Expr\Exit_) {
-            $this->recordLineNumbers($node);
+            $this->recordLineNumbers($node, "Exit statement detected.");
         }
 
         return null;

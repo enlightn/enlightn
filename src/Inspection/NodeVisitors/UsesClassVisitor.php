@@ -21,7 +21,7 @@ class UsesClassVisitor extends NodeVisitor
             && ($node->name->toString() === $this->class
                 || is_subclass_of($node->name->toString(), $this->class))) {
             // Here we register a use ClassName or use ChildClass statement.
-            $this->recordLineNumbers($node);
+            $this->recordLineNumbers($node, "Import of class {$this->class} detected.");
         }
 
         return null;

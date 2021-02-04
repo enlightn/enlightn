@@ -35,7 +35,7 @@ class StaticMethodCallVisitor extends NodeVisitor
             && $node->name->name === $this->methodName) {
             if (empty($this->parameters) ||
                 $this->compareArguments($node->args, $this->parameters)) {
-                $this->recordLineNumbers($node);
+                $this->recordLineNumbers($node, "Static method {$this->methodName} detected on class {$this->class}.");
 
                 return null;
             }

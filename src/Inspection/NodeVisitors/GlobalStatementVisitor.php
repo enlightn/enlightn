@@ -14,7 +14,7 @@ class GlobalStatementVisitor extends NodeVisitor
     public function enterNode(Node $node)
     {
         if ($node instanceof Node\Stmt\Global_) {
-            $this->recordLineNumbers($node);
+            $this->recordLineNumbers($node, "Global statement detected.");
         }
 
         return null;
