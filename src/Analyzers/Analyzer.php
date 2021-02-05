@@ -152,6 +152,10 @@ abstract class Analyzer
      */
     public function pushTrace(Trace $trace)
     {
+        if ($this->isIgnoredError($trace->path, $trace->details)) {
+            return $this;
+        }
+
         if (! in_array($trace, $this->traces)) {
             $this->traces[] = $trace;
         }

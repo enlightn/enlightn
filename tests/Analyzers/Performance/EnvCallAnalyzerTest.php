@@ -31,6 +31,24 @@ class EnvCallAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
+    public function ignores_errors()
+    {
+        $this->setBasePathFrom(EnvStub::class);
+        $this->app->config->set('enlightn.ignore_errors', [EnvCallAnalyzer::class => [
+            [
+                'path' => $this->getClassStubPath(EnvStub::class),
+                'details' => 'Function env called.',
+            ]
+        ]]);
+
+        $this->runEnlightn();
+
+        $this->assertPassed(EnvCallAnalyzer::class);
+    }
+
+    /**
+     * @test
+     */
     public function passes_with_no_env_call()
     {
         $this->setBasePathFrom(DummyStub::class);
