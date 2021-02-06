@@ -133,6 +133,10 @@ abstract class Analyzer
             return $this->markFailed();
         }
 
+        if ($this->isIgnoredError($path, $details)) {
+            return $this;
+        }
+
         if (! in_array($trace = new Trace($path, $lineNumber, $details), $this->traces)) {
             $this->traces[] = $trace;
         }
@@ -148,6 +152,10 @@ abstract class Analyzer
      */
     public function pushTrace(Trace $trace)
     {
+        if ($this->isIgnoredError($trace->path, $trace->details)) {
+            return $this;
+        }
+
         if (! in_array($trace, $this->traces)) {
             $this->traces[] = $trace;
         }
@@ -222,6 +230,7 @@ abstract class Analyzer
             'traces' => $this->traces,
             'docsUrl' => $this->getDocsUrl(),
             'reportable' => ! in_array(static::class, config('enlightn.dont_report', [])),
+            'class' => static::class,
         ];
     }
 
@@ -296,5 +305,27 @@ abstract class Analyzer
     public function isLocalAndShouldSkip()
     {
         return config('app.env') === 'local' && config('enlightn.skip_env_specific', false);
+    }
+
+    /**
+     * Determine whether the error should be ignored.
+     *
+     * @param string $path
+     * @param string|null $details
+     * @return bool
+     */
+    public function isIgnoredError(string $path, $details)
+    {
+        $ignoredErrors = config('enlightn.ignore_errors', []);
+
+        if (! isset($ignoredErrors[static::class])) {
+            return false;
+        }
+
+        return collect($ignoredErrors[static::class])
+            ->contains(function ($info) use ($path, $details) {
+                return ($info['path'] == $path || base_path(trim($info['path'], '/')) == $path) &&
+                    Str::is($info['details'], $details);
+            });
     }
 }

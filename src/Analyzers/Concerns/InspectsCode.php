@@ -36,7 +36,9 @@ trait InspectsCode
 
             // Although adding traces would also mark it as failed, but there may be no traces
             // at all, yet should still be failed.
-            $this->markFailed();
+            if (empty($inspector->getLastErrors())) {
+                $this->markFailed();
+            }
         }
     }
 }

@@ -39,6 +39,30 @@ class InvalidMethodCallAnalyzerTest extends AnalyzerTestCase
     /**
      * @test
      */
+    public function ignores_errors()
+    {
+        $this->setBasePathFrom(InvalidMethodCallStub::class);
+        $this->app->config->set('enlightn.ignore_errors', [InvalidMethodCallAnalyzer::class => [
+            [
+                'path' => $this->getClassStubPath(InvalidMethodCallStub::class),
+                'details' => 'Call to an undefined method Enlightn\Enlightn\Tests\Stubs\InvalidMethodCallStub::protectedMethodFromChild().',
+            ],
+            [
+                'path' => $this->getClassStubPath(InvalidMethodCallStub::class),
+                'details' => '*undefined method Enlightn\Enlightn\Tests\Stubs\InvalidMethodCallStub::lorem*',
+            ]
+        ]]);
+
+        $this->runEnlightn();
+
+        $this->assertNotFailedAt(InvalidMethodCallAnalyzer::class, $this->getClassStubPath(InvalidMethodCallStub::class), 9);
+        $this->assertNotFailedAt(InvalidMethodCallAnalyzer::class, $this->getClassStubPath(InvalidMethodCallStub::class), 10);
+        $this->assertHasErrors(InvalidMethodCallAnalyzer::class, 6);
+    }
+
+    /**
+     * @test
+     */
     public function passes_with_no_invalid_method_calls()
     {
         $this->setBasePathFrom(DummyStub::class);

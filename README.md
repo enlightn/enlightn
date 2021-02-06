@@ -108,6 +108,24 @@ Enlightn pre-configures which analyzers can be run in CI mode for you. So, the a
 
 For more information on CI integration, refer the [Enlightn documentation](https://www.laravel-enlightn.com/docs/getting-started/usage.html#usage-in-ci-environments).
 
+## Establishing a Baseline
+
+Sometimes, especially in CI environments, you may want to declare the currently reported list of errors as the "baseline". This means that the current errors will not be reported in subsequent runs and only new errors will be flagged.
+
+To generate the baseline automatically, you may run the `enlightn:baseline` Artisan command:
+
+```bash
+php artisan enlightn:baseline
+```
+
+If you wish to run this command in CI mode, you can use the `--ci` option:
+
+```bash
+php artisan enlightn:baseline --ci
+```
+
+For more information on establishing a baseline, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/usage.html#establishing-a-baseline).
+
 ## Failed Checks
 
 All checks that fail will include a description of why they failed along with the associated lines of code (if applicable) and a link to the documentation for the specific check.

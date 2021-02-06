@@ -92,6 +92,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Ignoring Errors
+    |--------------------------------------------------------------------------
+    |
+    | Use this config option to ignore specific errors. The key of this array
+    | would be the analyzer class and the value would be an associative
+    | array with path and details. Run php artisan enlightn:baseline
+    | to auto-generate this. Patterns are supported in details.
+    |
+    */
+    'ignore_errors' => [],
+
+    /*
+    |--------------------------------------------------------------------------
     | Analyzer Configurations
     |--------------------------------------------------------------------------
     |
