@@ -109,6 +109,16 @@ class Enlightn
     }
 
     /**
+     * Determine if Enlightn Pro is installed.
+     *
+     * @return bool
+     */
+    public static function isPro()
+    {
+        return class_exists(\Enlightn\EnlightnPro\EnlightnProServiceProvider::class);
+    }
+
+    /**
      * Call the after callback on the analyzer.
      *
      * @param \Enlightn\Enlightn\Analyzers\Analyzer $analyzer

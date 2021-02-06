@@ -60,8 +60,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit --colors=always",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test": "vendor/bin/paratest --colors"
     },
     "config": {
         "sort-packages": true

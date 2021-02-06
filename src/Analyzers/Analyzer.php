@@ -230,6 +230,7 @@ abstract class Analyzer
             'traces' => $this->traces,
             'docsUrl' => $this->getDocsUrl(),
             'reportable' => ! in_array(static::class, config('enlightn.dont_report', [])),
+            'class' => static::class,
         ];
     }
 

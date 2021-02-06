@@ -30,6 +30,7 @@ class EnlightnServiceProvider extends ServiceProvider
     {
         $this->commands([
             Console\EnlightnCommand::class,
+            Console\BaselineCommand::class,
         ]);
 
         $this->mergeConfigFrom(__DIR__.'/../config/enlightn.php', 'enlightn');
