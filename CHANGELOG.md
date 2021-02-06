@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.10.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.11.0...master)
+
+## [v1.11.0 (2021-02-07)](https://github.com/enlightn/enlightn/compare/v1.10.0...v1.11.0)
+
+### Added
+- Add ability to ignore errors and establish a baseline ([#36](https://github.com/enlightn/enlightn/pull/36))
 
 ## [v1.10.0 (2021-02-04)](https://github.com/enlightn/enlightn/compare/v1.9.0...v1.10.0)
 
