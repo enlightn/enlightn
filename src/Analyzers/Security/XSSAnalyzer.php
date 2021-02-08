@@ -3,15 +3,16 @@
 namespace Enlightn\Enlightn\Analyzers\Security;
 
 use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesHeaders;
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Illuminate\Support\Str;
 
 class XSSAnalyzer extends SecurityAnalyzer
 {
-    use AnalyzesMiddleware, AnalyzesHeaders;
+    use AnalyzesMiddleware;
+    use AnalyzesHeaders;
 
     /**
      * The title describing the analyzer.

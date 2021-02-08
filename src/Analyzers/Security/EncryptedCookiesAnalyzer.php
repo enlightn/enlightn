@@ -2,10 +2,10 @@
 
 namespace Enlightn\Enlightn\Analyzers\Security;
 
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Routing\Router;
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 
 class EncryptedCookiesAnalyzer extends SecurityAnalyzer
 {

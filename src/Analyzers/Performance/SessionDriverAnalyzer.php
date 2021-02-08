@@ -2,15 +2,16 @@
 
 namespace Enlightn\Enlightn\Analyzers\Performance;
 
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Enlightn\Enlightn\Analyzers\Concerns\ParsesConfigurationFiles;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 
 class SessionDriverAnalyzer extends PerformanceAnalyzer
 {
-    use ParsesConfigurationFiles, AnalyzesMiddleware;
+    use ParsesConfigurationFiles;
+    use AnalyzesMiddleware;
 
     /**
      * The title describing the analyzer.

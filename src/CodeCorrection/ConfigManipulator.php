@@ -4,12 +4,10 @@ namespace Enlightn\Enlightn\CodeCorrection;
 
 use Illuminate\Filesystem\Filesystem;
 use PhpParser\Lexer\Emulative;
-use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Return_;
-use PhpParser\NodeFinder;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\CloningVisitor;
 use PhpParser\Parser\Php7;
@@ -80,7 +78,6 @@ class ConfigManipulator
                 && isset($newAst[0])
                 && $newAst[0] instanceof Return_
                 && $newAst[0]->expr instanceof Array_) {
-
                 $newAst[0]->expr->items[] = new ArrayItem(
                     $this->getConfiguration($configValue),
                     new String_($key)

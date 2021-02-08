@@ -76,7 +76,7 @@ class QueueTimeoutAnalyzer extends ReliabilityAnalyzer
         $connections = collect($config->get('queue.connections', []))
             ->filter(function ($conf, $queue) {
                 // skip sqs and sync drivers as they don't have retry after values
-                return !in_array($conf['driver'], ['sqs', 'sync']);
+                return ! in_array($conf['driver'], ['sqs', 'sync']);
             })->map(function ($conf, $queue) {
                 return $this->getTimeoutAndRetryAfter($conf);
             })->filter(function ($conf) {

@@ -26,4 +26,3 @@ function doFoo()
 {
     return true;
 }
-

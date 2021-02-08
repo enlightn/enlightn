@@ -3,10 +3,10 @@
 namespace Enlightn\Enlightn\Tests;
 
 use Enlightn\Enlightn\Enlightn;
-use Enlightn\Enlightn\Inspection\Inspector;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Enlightn\Enlightn\EnlightnServiceProvider;
+use Enlightn\Enlightn\Inspection\Inspector;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
