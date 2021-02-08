@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Security;
 
-use Enlightn\Enlightn\Analyzers\Security\LicenseAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Analyzers\Security\LicenseAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithComposer;
 
 class LicenseAnalyzerTest extends AnalyzerTestCase

@@ -20,7 +20,6 @@ class RequestArrayDataType extends ArrayType
         if ($type instanceof CompoundType) {
             return $type->isSubTypeOf($this);
         }
-
         return TrinaryLogic::createNo();
     }
 
@@ -32,7 +31,6 @@ class RequestArrayDataType extends ArrayType
         if ($type instanceof UnionType) {
             return $type->isSubTypeOf($this);
         }
-
         return TrinaryLogic::createNo();
     }
 

@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Security;
 
-use Enlightn\Enlightn\Analyzers\Security\HttpOnlyCookieAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Analyzers\Security\HttpOnlyCookieAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithMiddleware;
 
 class HttpOnlyCookieAnalyzerTest extends AnalyzerTestCase

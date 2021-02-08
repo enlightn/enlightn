@@ -24,10 +24,12 @@ class InvalidOffsetStub
     {
         $arrayAccess[] = 'foo';
     }
+
 }
 
 class ObjectWithOffsetAccess implements \ArrayAccess
 {
+
     /**
      * @param string $offset
      * @return bool
@@ -62,4 +64,6 @@ class ObjectWithOffsetAccess implements \ArrayAccess
     public function offsetUnset($offset)
     {
     }
+
 }
+

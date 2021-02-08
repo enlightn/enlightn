@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn;
 
-use Enlightn\Enlightn\Inspection\Inspector;
 use Illuminate\Support\ServiceProvider;
+use Enlightn\Enlightn\Inspection\Inspector;
 
 class EnlightnServiceProvider extends ServiceProvider
 {

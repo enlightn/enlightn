@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Security;
 
-use Enlightn\Enlightn\Analyzers\Security\AppKeyAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Analyzers\Security\AppKeyAnalyzer;
 use Illuminate\Support\Str;
 
 class AppKeyAnalyzerTest extends AnalyzerTestCase

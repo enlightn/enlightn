@@ -116,7 +116,6 @@ class NPM
 
         if ($this->commandExists('yarn')) {
             $this->isYarn = false;
-
             return ['yarn'];
         }
 
