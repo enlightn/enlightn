@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Performance;
 
-use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Analyzers\Performance\DebugLogAnalyzer;
+use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 
 class DebugLogAnalyzerTest extends AnalyzerTestCase
 {

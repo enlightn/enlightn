@@ -32,6 +32,7 @@ trait ConstructsConfigurationAST
                     $items[] = new Node\Expr\ArrayItem($this->getConfiguration($arrayValue), null);
                 }
             }
+
             return new Node\Expr\Array_($items);
         }
     }

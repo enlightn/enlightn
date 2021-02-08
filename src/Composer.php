@@ -26,7 +26,6 @@ class Composer extends BaseComposer
         );
     }
 
-
     /**
      * Get the licenses of all packages used by the application.
      *

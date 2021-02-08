@@ -4,8 +4,8 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Security;
 
 use Enlightn\Enlightn\Analyzers\Security\FillableForeignKeyAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
-use Enlightn\Enlightn\Tests\Stubs\FillableForeignKeyStub;
 use Enlightn\Enlightn\Tests\Stubs\DummyStub;
+use Enlightn\Enlightn\Tests\Stubs\FillableForeignKeyStub;
 
 class FillableForeignKeyAnalyzerTest extends AnalyzerTestCase
 {

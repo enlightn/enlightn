@@ -2,10 +2,10 @@
 
 namespace Enlightn\Enlightn\Analyzers\Security;
 
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Router;
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Illuminate\Support\Str;
 
 class CSRFAnalyzer extends SecurityAnalyzer

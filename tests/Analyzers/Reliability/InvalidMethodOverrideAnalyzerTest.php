@@ -26,7 +26,7 @@ class InvalidMethodOverrideAnalyzerTest extends AnalyzerTestCase
     {
         $this->app->config->set(
             'enlightn.base_path',
-            $path =__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.
+            $path = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.
                 'Stubs/InvalidMethodOverrideStub.php'
         );
 

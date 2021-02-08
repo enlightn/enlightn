@@ -2,12 +2,12 @@
 
 namespace Enlightn\Enlightn\Analyzers\Concerns;
 
+use Closure;
 use Exception;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Str;
 use ReflectionClass;
-use Closure;
 
 trait AnalyzesMiddleware
 {

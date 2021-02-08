@@ -29,6 +29,7 @@ class RequestDataType extends StringType
         if ($type instanceof CompoundType) {
             return $type->isSubTypeOf($this);
         }
+
         return TrinaryLogic::createNo();
     }
 
@@ -40,6 +41,7 @@ class RequestDataType extends StringType
         if ($type instanceof UnionType) {
             return $type->isSubTypeOf($this);
         }
+
         return TrinaryLogic::createNo();
     }
 }

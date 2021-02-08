@@ -4,8 +4,8 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 
 use Enlightn\Enlightn\Analyzers\Reliability\InvalidMethodCallAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
-use Enlightn\Enlightn\Tests\Stubs\InvalidMethodCallStub;
 use Enlightn\Enlightn\Tests\Stubs\DummyStub;
+use Enlightn\Enlightn\Tests\Stubs\InvalidMethodCallStub;
 
 class InvalidMethodCallAnalyzerTest extends AnalyzerTestCase
 {
@@ -50,7 +50,7 @@ class InvalidMethodCallAnalyzerTest extends AnalyzerTestCase
             [
                 'path' => $this->getClassStubPath(InvalidMethodCallStub::class),
                 'details' => '*undefined method Enlightn\Enlightn\Tests\Stubs\InvalidMethodCallStub::lorem*',
-            ]
+            ],
         ]]);
 
         $this->runEnlightn();

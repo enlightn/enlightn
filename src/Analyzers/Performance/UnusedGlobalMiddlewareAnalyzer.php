@@ -4,13 +4,13 @@ namespace Enlightn\Enlightn\Analyzers\Performance;
 
 use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Enlightn\Enlightn\Inspection\Reflector;
+use Fideloper\Proxy\TrustProxies;
+use Fruitcake\Cors\HandleCors;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Middleware\TrustHosts;
 use Illuminate\Routing\Router;
-use Fideloper\Proxy\TrustProxies;
-use Fruitcake\Cors\HandleCors;
 
 class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
 {
@@ -94,7 +94,7 @@ class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
                     $this->unusedMiddleware->push(TrustHosts::class);
                 }
             }
-        } else if ($this->appUsesGlobalMiddleware(TrustHosts::class)) {
+        } elseif ($this->appUsesGlobalMiddleware(TrustHosts::class)) {
             // Trusted hosts without trusted proxies is useless.
             $this->unusedMiddleware->push(TrustHosts::class);
         }
@@ -114,7 +114,7 @@ class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
     protected function formatUnusedMiddleware()
     {
         return $this->unusedMiddleware->map(function ($middlewareClass) {
-           return '['.class_basename($middlewareClass).']';
+            return '['.class_basename($middlewareClass).']';
         })->join(', ', ' and ');
     }
 }
