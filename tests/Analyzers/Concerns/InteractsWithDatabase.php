@@ -8,18 +8,18 @@ trait InteractsWithDatabase
     protected function setupDatabase($app)
     {
         $app->config->set('database.connections.testmysql', [
-            'driver'   => 'mysql',
-            'host'     => env('DB_HOST'),
+            'driver' => 'mysql',
+            'host' => env('DB_HOST'),
             'database' => env('DB_DATABASE'),
-            'port'     => env('DB_MYSQL_PORT'),
+            'port' => env('DB_MYSQL_PORT'),
             'username' => env('DB_MYSQL_USERNAME'),
             'password' => env('DB_MYSQL_PASSWORD'),
         ]);
         $app->config->set('database.connections.testpgsql', [
-            'driver'   => 'pgsql',
-            'host'     => env('DB_HOST'),
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST'),
             'database' => env('DB_DATABASE'),
-            'port'     => env('DB_PGSQL_PORT'),
+            'port' => env('DB_PGSQL_PORT'),
             'username' => env('DB_PGSQL_USERNAME'),
             'password' => env('DB_PGSQL_PASSWORD'),
         ]);

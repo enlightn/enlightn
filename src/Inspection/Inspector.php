@@ -66,7 +66,7 @@ class Inspector
         foreach ($this->nodes as $path => $nodes) {
             if (! empty($errors = $builder->getErrors($nodes))) {
                 collect($errors)->each(function (InspectionLine $line) use ($path) {
-                   $this->traces[] = new Trace($path, $line->lineNumber, $line->details);
+                    $this->traces[] = new Trace($path, $line->lineNumber, $line->details);
                 });
             }
 

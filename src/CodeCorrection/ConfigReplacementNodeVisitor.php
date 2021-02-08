@@ -25,11 +25,11 @@ class ConfigReplacementNodeVisitor extends NodeVisitorAbstract
         $this->configValue = $configValue;
     }
 
-    public function leaveNode(Node $node) {
+    public function leaveNode(Node $node)
+    {
         if ($node instanceof Node\Expr\ArrayItem
             && $node->key instanceof Node\Scalar\String_
             && $node->key->value === $this->configKey) {
-
             $node->value = $this->getConfiguration($this->configValue);
         }
     }

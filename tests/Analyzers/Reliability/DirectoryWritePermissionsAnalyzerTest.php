@@ -19,7 +19,7 @@ class DirectoryWritePermissionsAnalyzerTest extends AnalyzerTestCase
 
         $this->files = m::mock(Filesystem::class);
 
-        $app->singleton(Filesystem::class, function() {
+        $app->singleton(Filesystem::class, function () {
             return $this->files;
         });
     }

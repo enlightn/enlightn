@@ -2,21 +2,22 @@
 
 namespace Enlightn\Enlightn\Analyzers\Security;
 
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Enlightn\Enlightn\Analyzers\Concerns\InspectsCode;
 use Enlightn\Enlightn\Inspection\Inspector;
 use Enlightn\Enlightn\Inspection\QueryBuilder;
+use Illuminate\Cache\RateLimiter;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Router;
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\RateLimiter as RateLimiterFacade;
-use Illuminate\Cache\RateLimiter;
 use Illuminate\Support\Str;
 
 class LoginThrottlingAnalyzer extends SecurityAnalyzer
 {
-    use AnalyzesMiddleware, InspectsCode;
+    use AnalyzesMiddleware;
+    use InspectsCode;
 
     /**
      * The title describing the analyzer.

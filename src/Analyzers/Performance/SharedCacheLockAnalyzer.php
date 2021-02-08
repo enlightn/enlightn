@@ -56,7 +56,6 @@ class SharedCacheLockAnalyzer extends PerformanceAnalyzer
      */
     public function handle(Inspector $inspector)
     {
-
         if (! is_null($lockConnection = config('cache.stores.'.config('cache.default').'.lock_connection'))
             && $lockConnection !== config('cache.stores.'.config('cache.default').'.connection')) {
             // Laravel 8.20+ ships with an option to have a separate lock connection.

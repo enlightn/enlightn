@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Performance;
 
-use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Analyzers\Performance\MysqlSingleServerAnalyzer;
+use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 
 class MysqlSingleServerAnalyzerTest extends AnalyzerTestCase
 {

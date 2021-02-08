@@ -14,5 +14,4 @@ class InvalidFunctionCallStub
 
 function bar($foo, $bar)
 {
-
 }

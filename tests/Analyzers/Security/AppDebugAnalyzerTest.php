@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Security;
 
-use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
+use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 
 class AppDebugAnalyzerTest extends AnalyzerTestCase
 {

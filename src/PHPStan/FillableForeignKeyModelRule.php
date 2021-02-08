@@ -4,10 +4,10 @@ namespace Enlightn\Enlightn\PHPStan;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use PhpParser\Node\Stmt\PropertyProperty;
-use PHPStan\Rules\Rule;
 use PhpParser\Node;
+use PhpParser\Node\Stmt\PropertyProperty;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 
 class FillableForeignKeyModelRule implements Rule
 {
@@ -54,7 +54,7 @@ class FillableForeignKeyModelRule implements Rule
                     sprintf(
                         'Potential foreign key %s declared as fillable and available for mass assignment.',
                         $key
-                    )
+                    ),
                 ];
             }
         }

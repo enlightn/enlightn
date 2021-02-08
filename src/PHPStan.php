@@ -5,9 +5,7 @@ namespace Enlightn\Enlightn;
 use Enlightn\Enlightn\Analyzers\Trace;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
-use Illuminate\Support\ProcessUtils;
 use Illuminate\Support\Str;
-use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
 class PHPStan

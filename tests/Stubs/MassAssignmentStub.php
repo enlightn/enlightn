@@ -68,7 +68,7 @@ class MassAssignmentStub
     {
         $x = $request->all();
         Product::where('somestuff', 1)->update(Arr::only($x, ['name', 'description']));
-        Product::where('somestuff', 1)->update(array_filter($x, function($key) {
+        Product::where('somestuff', 1)->update(array_filter($x, function ($key) {
             return in_array($key, ['name', 'description']);
         }));
     }

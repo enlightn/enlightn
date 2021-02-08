@@ -6,5 +6,4 @@ use Illuminate\Cache\RateLimiter;
 
 class DummyLimiter extends RateLimiter
 {
-
 }

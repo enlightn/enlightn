@@ -10,6 +10,7 @@ use SplFileObject;
 class Filesystem extends BaseFilesystem
 {
     // Port of Illuminate Filesystem lines method for Laravel 6-7
+
     /**
      * Get the contents of a file one line at a time.
      *

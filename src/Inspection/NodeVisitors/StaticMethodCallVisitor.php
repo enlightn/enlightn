@@ -3,8 +3,8 @@
 namespace Enlightn\Enlightn\Inspection\NodeVisitors;
 
 use Enlightn\Enlightn\Inspection\Concerns\GathersClassAliases;
-use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node;
+use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 

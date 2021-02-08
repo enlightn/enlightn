@@ -2,10 +2,10 @@
 
 namespace Enlightn\Enlightn\PHPStan;
 
-use PhpParser\Node\Expr\MethodCall;
-use PHPStan\Rules\Rule;
 use PhpParser\Node;
+use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 
 class MassAssignmentBuilderInstanceRule implements Rule
 {
@@ -45,7 +45,7 @@ class MassAssignmentBuilderInstanceRule implements Rule
                     "Call to %s method on an Eloquent/query builder instance with request data may result in a "
                     ."mass assignment vulnerability.",
                     $methodName
-                )
+                ),
             ];
         }
 

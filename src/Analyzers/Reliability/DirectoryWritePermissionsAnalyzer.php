@@ -60,7 +60,7 @@ class DirectoryWritePermissionsAnalyzer extends ReliabilityAnalyzer
         ]);
 
         $this->failedDirs = collect($directoriesToCheck)->reject(function ($directory) use ($files) {
-           return $files->isWritable($directory);
+            return $files->isWritable($directory);
         })->map(function ($path) {
             return Str::contains($path, base_path())
                 ? ('['.Str::after($path, base_path()).']') : '['.$path.']';

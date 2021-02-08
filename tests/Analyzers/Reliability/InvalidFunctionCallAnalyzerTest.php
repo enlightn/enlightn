@@ -4,8 +4,8 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 
 use Enlightn\Enlightn\Analyzers\Reliability\InvalidFunctionCallAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
-use Enlightn\Enlightn\Tests\Stubs\InvalidFunctionCallStub;
 use Enlightn\Enlightn\Tests\Stubs\DummyStub;
+use Enlightn\Enlightn\Tests\Stubs\InvalidFunctionCallStub;
 
 class InvalidFunctionCallAnalyzerTest extends AnalyzerTestCase
 {
