@@ -2,11 +2,7 @@
 
 namespace Enlightn\Enlightn\Analyzers\Security;
 
-use Enlightn\Enlightn\Composer;
 use Enlightn\Enlightn\NPM;
-use Illuminate\Contracts\Foundation\Application;
-use SensioLabs\Security\SecurityChecker;
-use Throwable;
 
 class FrontendVulnerableDependencyAnalyzer extends SecurityAnalyzer
 {

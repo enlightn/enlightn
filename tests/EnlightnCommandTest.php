@@ -2,7 +2,6 @@
 
 namespace Enlightn\Enlightn\Tests;
 
-use Enlightn\Enlightn\Analyzers\Performance\CacheHeaderAnalyzer;
 use Enlightn\Enlightn\Analyzers\Reliability\CachePrefixAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppKeyAnalyzer;
@@ -125,7 +124,7 @@ class EnlightnCommandTest extends TestCase
     public function command_runs_in_ci_mode()
     {
         $this->app->config->set('enlightn.analyzers', [
-            AppDebugAnalyzer::class, AppKeyAnalyzer::class, CachePrefixAnalyzer::class
+            AppDebugAnalyzer::class, AppKeyAnalyzer::class, CachePrefixAnalyzer::class,
         ]);
         $this->app->config->set('app.env', 'production');
         $this->app->config->set('app.debug', true);

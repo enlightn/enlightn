@@ -13,9 +13,11 @@ class UndefinedVariableStub
         switch (foo()) {
             case 1:
                 $definedInCases = foo();
+
                 break;
             case 2:
                 $definedInCases = 5;
+
                 break;
         }
 

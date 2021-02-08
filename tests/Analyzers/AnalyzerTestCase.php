@@ -2,7 +2,6 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers;
 
-use Enlightn\Enlightn\Analyzers\Trace;
 use Enlightn\Enlightn\Enlightn;
 use Enlightn\Enlightn\PHPStan;
 use Enlightn\Enlightn\Tests\TestCase;

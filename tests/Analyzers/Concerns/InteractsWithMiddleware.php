@@ -35,7 +35,7 @@ trait InteractsWithMiddleware
         // mirror mirror on the wall, why is PHP the greatest of all?
         $middlewareGroups = Reflector::get($kernel = $this->app->make(Kernel::class), 'middlewareGroups');
 
-        if (!isset($middlewareGroups[$middlewareGroup])) {
+        if (! isset($middlewareGroups[$middlewareGroup])) {
             $middlewareGroups[$middlewareGroup] = [$middlewareClass];
         } else {
             $middlewareGroups[$middlewareGroup][] = $middlewareClass;

@@ -60,7 +60,7 @@ class DatabaseStatusAnalyzer extends ReliabilityAnalyzer
     public function handle()
     {
         $databaseConnectionsToCheck = config('enlightn.database_connections', [
-           config('database.default')
+           config('database.default'),
         ]);
 
         $this->failedConnections = collect($databaseConnectionsToCheck)->filter()->reject(function ($connection) {

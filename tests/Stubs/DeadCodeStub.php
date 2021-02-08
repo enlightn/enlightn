@@ -18,18 +18,15 @@ class DeadCodeStub
 }
 
 function (array $a) {
-
     if (count($a) === 0) {
         // genius, do a for loop for an empty array!
         foreach ($a as $val) {
-
         }
     }
 };
 
 class IAmADeadCodeMaster
 {
-
     private const FOO_CONST = 1;
 
     private const UNUSED_CONST = 2;
@@ -41,12 +38,9 @@ class IAmADeadCodeMaster
 
     private static function unusedPrivateStaticMethod()
     {
-
     }
 
     private function unusedPrivateMethod()
     {
-
     }
-
 }
