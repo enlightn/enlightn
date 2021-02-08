@@ -30,11 +30,11 @@ jobs:
           ref: ${{ github.event.inputs.git-ref }}
 
       - name: Setup PHP
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: ${{ matrix.php }}
-            extensions: dom, curl, libxml, mbstring, zip, json
-            coverage: none
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, json
+          coverage: none
 
       - name: Install dependencies
         run: |
