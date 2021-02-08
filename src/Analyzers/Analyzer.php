@@ -290,10 +290,10 @@ abstract class Analyzer
         $page = $this->docsPageName ??
                 Str::kebab(
                     str_replace(
-                    ['CSRF', 'SQL', 'HSTS', 'NPlusOne', 'XSS', 'PHP'],
-                    ['Csrf', 'Sql', 'Hsts', 'Nplusone', 'Xss', 'Php'],
-                    class_basename(get_class($this))
-                )
+                        ['CSRF', 'SQL', 'HSTS', 'NPlusOne', 'XSS', 'PHP'],
+                        ['Csrf', 'Sql', 'Hsts', 'Nplusone', 'Xss', 'Php'],
+                        class_basename(get_class($this))
+                    )
                 );
 
         return self::DOCS_URL.'/'.strtolower($this->category).'/'.$page.'.html';
