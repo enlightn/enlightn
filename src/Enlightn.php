@@ -5,8 +5,8 @@ namespace Enlightn\Enlightn;
 use Enlightn\Enlightn\Analyzers\Analyzer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Symfony\Component\Finder\Finder;
 use ReflectionClass;
+use Symfony\Component\Finder\Finder;
 use Throwable;
 
 class Enlightn

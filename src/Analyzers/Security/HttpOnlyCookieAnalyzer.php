@@ -10,7 +10,8 @@ use Illuminate\Routing\Router;
 
 class HttpOnlyCookieAnalyzer extends SecurityAnalyzer
 {
-    use ParsesConfigurationFiles, AnalyzesMiddleware;
+    use ParsesConfigurationFiles;
+    use AnalyzesMiddleware;
 
     /**
      * The title describing the analyzer.

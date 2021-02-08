@@ -3,10 +3,10 @@
 namespace Enlightn\Enlightn\PHPStan;
 
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Expr\MethodCall;
-use PHPStan\Rules\Rule;
 use PhpParser\Node;
+use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
+use PHPStan\Rules\Rule;
 
 class MassAssignmentModelInstanceRule implements Rule
 {
@@ -44,7 +44,7 @@ class MassAssignmentModelInstanceRule implements Rule
                     "Call to %s method on a Model instance with request data may result in a "
                     ."mass assignment vulnerability.",
                     $methodName
-                )
+                ),
             ];
         }
 

@@ -3,8 +3,6 @@
 namespace Enlightn\Enlightn\Tests\Analyzers\Performance;
 
 use Enlightn\Enlightn\Analyzers\Performance\CollectionCallAnalyzer;
-use Enlightn\Enlightn\Enlightn;
-use Enlightn\Enlightn\PHPStan;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Tests\Stubs\CollectionStub;
 use Enlightn\Enlightn\Tests\Stubs\DummyStub;

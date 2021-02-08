@@ -3,15 +3,17 @@
 namespace Enlightn\Enlightn\Analyzers\Security;
 
 use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesHeaders;
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Enlightn\Enlightn\Analyzers\Concerns\DetectsHttps;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 
 class HSTSHeaderAnalyzer extends SecurityAnalyzer
 {
-    use AnalyzesMiddleware, AnalyzesHeaders, DetectsHttps;
+    use AnalyzesMiddleware;
+    use AnalyzesHeaders;
+    use DetectsHttps;
 
     /**
      * The title describing the analyzer.

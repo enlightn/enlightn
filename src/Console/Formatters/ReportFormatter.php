@@ -103,10 +103,10 @@ class ReportFormatter implements Formatter
     {
         if ($command->option('details')) {
             collect($traces)->each(function (Trace $trace) use ($command) {
-               $command->line(
-                   "<fg=magenta>At ".Str::after($trace->path, base_path()).", line ".$trace->lineNumber
+                $command->line(
+                    "<fg=magenta>At ".Str::after($trace->path, base_path()).", line ".$trace->lineNumber
                    .(is_null($trace->details) ? "." : (": ".$trace->details))."</fg=magenta>"
-               );
+                );
             });
 
             return;
@@ -114,7 +114,7 @@ class ReportFormatter implements Formatter
 
         collect($traces)->groupBy(function ($trace) {
             return $trace->path;
-        })->when($allAnalyzers && $this->compactLines, function($collection) {
+        })->when($allAnalyzers && $this->compactLines, function ($collection) {
             return $collection->take(5);
         })->each(function ($traces, $path) use ($command) {
             $lineNumbers = collect($traces)->map(function (Trace $trace) {
@@ -155,7 +155,8 @@ class ReportFormatter implements Formatter
         $command->table(
             array_merge(['Status'], Enlightn::$categories, ['Total']),
             collect(['passed', 'failed', 'skipped', 'error'])->map(function ($status) use ($command) {
-                return array_merge([$status === 'skipped' ? 'Not Applicable' : ucfirst($status)],
+                return array_merge(
+                    [$status === 'skipped' ? 'Not Applicable' : ucfirst($status)],
                     collect(array_merge(Enlightn::$categories, ['Total']))->map(function ($category) use ($status, $command) {
                         return $this->formatResult($status, $category, $command->result);
                     })->toArray()
@@ -174,8 +175,9 @@ class ReportFormatter implements Formatter
      * @param array $result
      * @return string
      */
-    protected function formatResult(string $status, string $category, array $result) {
-        $totalAnalyzersInCategory = (float) collect($result[$category])->filter(function($_, $status) {
+    protected function formatResult(string $status, string $category, array $result)
+    {
+        $totalAnalyzersInCategory = (float) collect($result[$category])->filter(function ($_, $status) {
             return in_array($status, ['passed', 'failed', 'skipped', 'error']);
         })->sum(function ($count) {
             return $count;

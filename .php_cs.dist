@@ -1,6 +1,11 @@
 <?php
 
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('Stubs')
+    ->in([__DIR__.'/src', __DIR__.'/tests', __DIR__.'/config']);
+
 return PhpCsFixer\Config::create()
+    ->setFinder($finder)
     ->setRules([
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
@@ -26,6 +31,4 @@ return PhpCsFixer\Config::create()
             'keep_multiple_spaces_after_comma' => true,
         ],
         'single_trait_insert_per_statement' => true,
-    ])
-    ->setIndent("\t")
-    ->setLineEnding("\n");
+    ]);

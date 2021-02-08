@@ -3,9 +3,9 @@
 namespace Enlightn\Enlightn\Inspection\NodeVisitors;
 
 use Enlightn\Enlightn\Inspection\InspectionLine;
-use PhpParser\NodeVisitorAbstract;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ConstFetch;
+use PhpParser\NodeVisitorAbstract;
 use UnexpectedValueException;
 
 abstract class NodeVisitor extends NodeVisitorAbstract implements VisitorContract

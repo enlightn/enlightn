@@ -11,7 +11,7 @@ abstract class Analyzer
     const SEVERITY_CRITICAL = 'critical';
     const SEVERITY_MAJOR = 'major';
     const SEVERITY_MINOR = 'minor';
-    const SEVERITY_INFO  = 'info';
+    const SEVERITY_INFO = 'info';
 
     /**
      * The base URL of the Enlightn documentation.
@@ -288,10 +288,12 @@ abstract class Analyzer
     public function getDocsUrl()
     {
         $page = $this->docsPageName ??
-                Str::kebab(str_replace(
-                    ['CSRF', 'SQL', 'HSTS', 'NPlusOne', 'XSS', 'PHP'],
-                    ['Csrf', 'Sql', 'Hsts', 'Nplusone', 'Xss', 'Php'],
-                    class_basename(get_class($this)))
+                Str::kebab(
+                    str_replace(
+                        ['CSRF', 'SQL', 'HSTS', 'NPlusOne', 'XSS', 'PHP'],
+                        ['Csrf', 'Sql', 'Hsts', 'Nplusone', 'Xss', 'Php'],
+                        class_basename(get_class($this))
+                    )
                 );
 
         return self::DOCS_URL.'/'.strtolower($this->category).'/'.$page.'.html';

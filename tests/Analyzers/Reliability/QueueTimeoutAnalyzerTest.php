@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 
-use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Analyzers\Reliability\QueueTimeoutAnalyzer;
+use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 
 class QueueTimeoutAnalyzerTest extends AnalyzerTestCase
 {

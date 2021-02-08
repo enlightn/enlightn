@@ -1,6 +1,11 @@
-name: tests
+name: Run Manual Tests
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)
+        required: false
 
 jobs:
   tests:
@@ -16,6 +21,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        if: github.event.inputs.git-ref == ''
+
+      - name: Checkout code (Custom Ref)
+        uses: actions/checkout@v2
+        if: github.event.inputs.git-ref != ''
+        with:
+          ref: ${{ github.event.inputs.git-ref }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
