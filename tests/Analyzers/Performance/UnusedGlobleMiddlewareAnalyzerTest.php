@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Performance;
 
-use Enlightn\Enlightn\Analyzers\Performance\UnusedGlobalMiddlewareAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Analyzers\Performance\UnusedGlobalMiddlewareAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithMiddleware;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Middleware\TrustHosts;

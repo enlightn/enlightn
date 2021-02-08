@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 
-use Enlightn\Enlightn\Analyzers\Reliability\SyntaxErrorAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Analyzers\Reliability\SyntaxErrorAnalyzer;
 use Enlightn\Enlightn\Tests\Stubs\DummyStub;
 
 class SyntaxErrorAnalyzerTest extends AnalyzerTestCase

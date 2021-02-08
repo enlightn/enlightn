@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 
-use Enlightn\Enlightn\Analyzers\Reliability\CachePrefixAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Analyzers\Reliability\CachePrefixAnalyzer;
 
 class CachePrefixAnalyzerTest extends AnalyzerTestCase
 {

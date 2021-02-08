@@ -4,8 +4,8 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Performance;
 
 use Enlightn\Enlightn\Analyzers\Performance\EnvCallAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
-use Enlightn\Enlightn\Tests\Stubs\DummyStub;
 use Enlightn\Enlightn\Tests\Stubs\EnvStub;
+use Enlightn\Enlightn\Tests\Stubs\DummyStub;
 
 class EnvCallAnalyzerTest extends AnalyzerTestCase
 {
@@ -38,7 +38,7 @@ class EnvCallAnalyzerTest extends AnalyzerTestCase
             [
                 'path' => $this->getClassStubPath(EnvStub::class),
                 'details' => 'Function env called.',
-            ],
+            ]
         ]]);
 
         $this->runEnlightn();

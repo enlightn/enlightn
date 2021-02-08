@@ -2,13 +2,13 @@
 
 namespace Enlightn\Enlightn\Tests;
 
-use Enlightn\Enlightn\Analyzers\Analyzer;
 use Enlightn\Enlightn\Analyzers\Performance\CacheHeaderAnalyzer;
 use Enlightn\Enlightn\Analyzers\Performance\SessionDriverAnalyzer;
 use Enlightn\Enlightn\Analyzers\Reliability\DeadCodeAnalyzer;
-use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\CSRFAnalyzer;
 use Enlightn\Enlightn\Enlightn;
+use Enlightn\Enlightn\Analyzers\Analyzer;
+use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
 use Enlightn\Enlightn\Tests\Stubs\CustomCategoryStub;
 use Mockery as m;
 

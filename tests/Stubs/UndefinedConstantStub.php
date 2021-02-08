@@ -9,3 +9,4 @@ class UndefinedConstantStub
         Foo::DOLOR;
     }
 }
+
