@@ -4,7 +4,7 @@ namespace Enlightn\Enlightn\Tests\Stubs;
 
 class UnsetStub
 {
-    public function unsetInaccessible()
+    public function unsetInaccessible ()
     {
         unset($notSetVariable);
         unset($notSetVariable['a']);

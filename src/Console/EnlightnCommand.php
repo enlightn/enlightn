@@ -101,11 +101,7 @@ class EnlightnCommand extends Command
     public function printAnalyzerOutput(array $info)
     {
         $this->formatter->parseAnalyzerResult(
-            $this,
-            $info,
-            $this->countAnalyzers,
-            $this->totalAnalyzers,
-            empty($this->analyzerClasses)
+            $this, $info, $this->countAnalyzers, $this->totalAnalyzers, empty($this->analyzerClasses)
         );
 
         $this->updateResult($info);

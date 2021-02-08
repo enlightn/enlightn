@@ -4,8 +4,8 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Security;
 
 use Enlightn\Enlightn\Analyzers\Security\MassAssignmentAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
-use Enlightn\Enlightn\Tests\Stubs\DummyStub;
 use Enlightn\Enlightn\Tests\Stubs\MassAssignmentStub;
+use Enlightn\Enlightn\Tests\Stubs\DummyStub;
 
 class MassAssignmentAnalyzerTest extends AnalyzerTestCase
 {

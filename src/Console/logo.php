@@ -10,3 +10,4 @@ return <<<LOGO
 <e></e><n></n><l></l><i></i>                <g>/____/</g><h></h><t></t><ns></ns>
 
 LOGO;
+

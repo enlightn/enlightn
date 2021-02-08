@@ -31,6 +31,7 @@ class ChildInvalidMethodCallStub extends InvalidMethodCallStub
         $this->test(); // missing parameter
 
         foreach ($this->returnsVoid() as $void) { // returns void
+
         }
     }
 

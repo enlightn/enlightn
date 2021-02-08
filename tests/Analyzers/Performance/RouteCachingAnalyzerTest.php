@@ -2,8 +2,8 @@
 
 namespace Enlightn\Enlightn\Tests\Analyzers\Performance;
 
-use Enlightn\Enlightn\Analyzers\Performance\RouteCachingAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Analyzers\Performance\RouteCachingAnalyzer;
 
 class RouteCachingAnalyzerTest extends AnalyzerTestCase
 {

@@ -3,10 +3,11 @@
 namespace Enlightn\Enlightn\PHPStan;
 
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node;
+use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\StaticCall;
-use PHPStan\Analyser\Scope;
 use PHPStan\Rules\Rule;
+use PhpParser\Node;
+use PHPStan\Analyser\Scope;
 
 class MassAssignmentModelStaticRule implements Rule
 {
@@ -55,7 +56,7 @@ class MassAssignmentModelStaticRule implements Rule
                     "Static call to %s method on a Model class with request data may result in a "
                     ."mass assignment vulnerability.",
                     $methodName
-                ),
+                )
             ];
         }
 

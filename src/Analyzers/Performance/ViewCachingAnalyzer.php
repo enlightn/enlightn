@@ -65,6 +65,7 @@ class ViewCachingAnalyzer extends PerformanceAnalyzer
         }
     }
 
+
     /**
      * Get the Blade files in the given path.
      *
