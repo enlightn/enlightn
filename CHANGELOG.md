@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.12.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.13.0...master)
+
+## [v1.13.0 (2021-02-10)](https://github.com/enlightn/enlightn/compare/v1.12.0...v1.13.0)
+
+### Changed
+- Relax class property check for mixed objects ([#39](https://github.com/enlightn/enlightn/pull/39))
 
 ## [v1.12.0 (2021-02-10)](https://github.com/enlightn/enlightn/compare/v1.11.0...v1.12.0)
 
