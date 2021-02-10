@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.11.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.12.0...master)
+
+## [v1.12.0 (2021-02-10)](https://github.com/enlightn/enlightn/compare/v1.11.0...v1.12.0)
+
+### Added
+- Allow Larastan version 0.7 ([#38](https://github.com/enlightn/enlightn/pull/38))
 
 ## [v1.11.0 (2021-02-07)](https://github.com/enlightn/enlightn/compare/v1.10.0...v1.11.0)
 
