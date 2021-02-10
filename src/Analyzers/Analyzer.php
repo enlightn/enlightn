@@ -179,6 +179,7 @@ abstract class Analyzer
     /**
      * Set an exception message for the analyzer.
      *
+     * @param string $message
      * @return $this
      */
     public function setExceptionMessage(string $message)
