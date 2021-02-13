@@ -3,6 +3,8 @@
 namespace Enlightn\Enlightn;
 
 use Enlightn\Enlightn\Inspection\Inspector;
+use Enlightn\Enlightn\Reporting\API;
+use Enlightn\Enlightn\Reporting\Client;
 use Illuminate\Support\ServiceProvider;
 
 class EnlightnServiceProvider extends ServiceProvider
@@ -53,6 +55,15 @@ class EnlightnServiceProvider extends ServiceProvider
 
         $this->app->singleton(NPM::class, function ($app) {
             return new NPM($app->make('files'), $app->basePath());
+        });
+
+        $this->app->singleton(API::class, function ($app) {
+            $client = new Client(
+                $app->config->get('enlightn.credentials.username'),
+                $app->config->get('enlightn.credentials.api_token')
+            );
+
+            return new API($client);
         });
     }
 }

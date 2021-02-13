@@ -119,6 +119,25 @@ return [
         'CC0-1.0', 'Unlicense',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Credentials
+    |--------------------------------------------------------------------------
+    |
+    | The following credentials are used to share your Enlightn report with
+    | the website. This allows you to share your report with colleagues
+    | and view changes in reports over time.
+    |
+    */
+    'credentials' => [
+        'username' => env('ENLIGHTN_USERNAME'),
+        'api_token' => env('ENLIGHTN_API_TOKEN '),
+    ],
+
+    // Set this value to your Github repo for integrating with the Enlightn Github Bot
+    // Format: "myorg/myrepo" like "laravel/framework".
+    'github_repo' => env('ENLIGHTN_GITHUB_REPO'),
+
     // Set to true to restrict the max number of files displayed in the enlightn
     // command for each check. Set to false to display all files.
     'compact_lines' => true,

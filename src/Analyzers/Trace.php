@@ -2,6 +2,7 @@
 
 namespace Enlightn\Enlightn\Analyzers;
 
+use Illuminate\Support\Str;
 use JsonSerializable;
 use RuntimeException;
 
@@ -82,6 +83,14 @@ class Trace implements JsonSerializable
     /**
      * @return string|null
      */
+    public function relativePath()
+    {
+        return trim(Str::contains($this->path, base_path()) ? Str::after($this->path, base_path()) : $this->path, '/');
+    }
+
+    /**
+     * @return string|null
+     */
     public function absolutePath()
     {
         if (! file_exists($this->path)) {
@@ -108,10 +117,10 @@ class Trace implements JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'path' => $this->path,
+            'path' => $this->relativePath(),
             'lineNumber' => $this->lineNumber,
             'details' => $this->details,
-            'codeSnippet' => $this->codeSnippet,
+            'codeSnippet' => $this->codeSnippet(),
         ];
     }
 

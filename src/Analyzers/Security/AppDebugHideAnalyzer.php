@@ -37,7 +37,7 @@ class AppDebugHideAnalyzer extends SecurityAnalyzer
      */
     public function errorMessage()
     {
-        return "You haven't set any variables to hide in debug mode while your application seems to be in a non-local"
+        return "You haven't set any variables to hide in debug mode while your application seems to be in a non-local "
                 ."environment and set to debug mode. This can be very dangerous as users will be able to view detailed "
                 ."error messages along with sensitive environment variables.";
     }

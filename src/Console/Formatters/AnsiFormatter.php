@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Helper\TableStyle;
 
-class ReportFormatter implements Formatter
+class AnsiFormatter implements Formatter
 {
     /**
      * The category of the analyzers currently being run.
@@ -104,7 +104,7 @@ class ReportFormatter implements Formatter
         if ($command->option('details')) {
             collect($traces)->each(function (Trace $trace) use ($command) {
                 $command->line(
-                    "<fg=magenta>At ".Str::after($trace->path, base_path()).", line ".$trace->lineNumber
+                    "<fg=magenta>At ".$trace->relativePath().", line ".$trace->lineNumber
                    .(is_null($trace->details) ? "." : (": ".$trace->details))."</fg=magenta>"
                 );
             });
@@ -112,8 +112,8 @@ class ReportFormatter implements Formatter
             return;
         }
 
-        collect($traces)->groupBy(function ($trace) {
-            return $trace->path;
+        collect($traces)->groupBy(function (Trace $trace) {
+            return $trace->relativePath();
         })->when($allAnalyzers && $this->compactLines, function ($collection) {
             return $collection->take(5);
         })->each(function ($traces, $path) use ($command) {
@@ -122,13 +122,13 @@ class ReportFormatter implements Formatter
             })->toArray();
 
             $command->line(
-                "<fg=magenta>At ".Str::after($path, base_path()).(empty($lineNumbers) ? "" : ": line(s): ")
+                "<fg=magenta>At ".$path.(empty($lineNumbers) ? "" : ": line(s): ")
                 .collect($lineNumbers)->join(', ', ' and ').".</fg=magenta>"
             );
         });
 
-        $count = collect($traces)->groupBy(function ($trace) {
-            return $trace->path;
+        $count = collect($traces)->groupBy(function (Trace $trace) {
+            return $trace->relativePath();
         })->count();
 
         if ($count > 5 && $allAnalyzers && $this->compactLines) {
