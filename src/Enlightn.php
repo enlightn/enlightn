@@ -47,6 +47,13 @@ class Enlightn
     public static $filterCallback = null;
 
     /**
+     * The callback to be executed before running all analyzers.
+     *
+     * @var callable|null
+     */
+    public static $beforeRunningCallback = null;
+
+    /**
      * The paths of the files to run the analysis on.
      *
      * @var \Illuminate\Support\Collection
@@ -93,6 +100,8 @@ class Enlightn
         static::$analyzers = Arr::sort(static::$analyzers, function ($analyzer) {
             return $analyzer->category.get_class($analyzer);
         });
+
+        static::callBeforeRunningCallback();
 
         foreach (static::$analyzers as $analyzer) {
             try {
@@ -178,6 +187,29 @@ class Enlightn
 
             return $class::$runInCI && ! in_array($class, config('enlightn.ci_mode_exclude_analyzers'));
         });
+    }
+
+    /**
+     * Call the before running callback.
+     *
+     * @return void
+     */
+    public static function callBeforeRunningCallback()
+    {
+        if (! is_null(static::$beforeRunningCallback)) {
+            call_user_func(static::$beforeRunningCallback);
+        }
+    }
+
+    /**
+     * Register a before running callback.
+     *
+     * @param  callable  $callback
+     * @return void
+     */
+    public static function beforeRunning($callback)
+    {
+        static::$beforeRunningCallback = $callback;
     }
 
     /**

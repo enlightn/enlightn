@@ -137,4 +137,29 @@ class EnlightnTest extends TestCase
 
         $this->assertContains(AppDebugAnalyzer::class, Enlightn::getAnalyzerClasses());
     }
+
+    /**
+     * @test
+     */
+    public function runs_before_running_callback()
+    {
+        Enlightn::register();
+
+        $ran = false;
+
+        Enlightn::beforeRunning(function () use (&$ran) {
+            $ran = true;
+        });
+
+        $appDebugAnalyzer = m::mock(AppDebugAnalyzer::class);
+        $appDebugAnalyzer->shouldReceive('run')->once();
+
+        $this->app->singleton(AppDebugAnalyzer::class, function () use ($appDebugAnalyzer) {
+            return $appDebugAnalyzer;
+        });
+
+        Enlightn::run($this->app);
+
+        $this->assertTrue($ran);
+    }
 }
