@@ -228,6 +228,8 @@ class Enlightn
         static::$afterCallback = null;
 
         static::$filterCallback = null;
+
+        static::$beforeRunningCallback = null;
     }
 
     /**
