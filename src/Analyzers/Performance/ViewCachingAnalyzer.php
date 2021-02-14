@@ -56,7 +56,7 @@ class ViewCachingAnalyzer extends PerformanceAnalyzer
         $path = config('view.compiled');
         $compiledViewCount = count($files->glob("{$path}/*"));
 
-        if ($viewCount != $compiledViewCount) {
+        if ($viewCount > $compiledViewCount) {
             $this->errorMessage = "Your views are not cached in a non-local environment. "
                 ."View caching enables a performance improvement and it is recommended to "
                 ."enable this in production.";
