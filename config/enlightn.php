@@ -131,7 +131,7 @@ return [
     */
     'credentials' => [
         'username' => env('ENLIGHTN_USERNAME'),
-        'api_token' => env('ENLIGHTN_API_TOKEN '),
+        'api_token' => env('ENLIGHTN_API_TOKEN'),
     ],
 
     // Set this value to your Github repo for integrating with the Enlightn Github Bot
