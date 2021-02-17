@@ -20,6 +20,7 @@ class EnlightnCommand extends Command
                             {--details : Show details of each failed check}
                             {--ci : Run Enlightn in CI Mode}
                             {--report : Compile a report to view on the Enlightn website web UI}
+                            {--review : Enable this for a review of the diff by the Enlightn Github Bot}
                             {--issue= : The linked issue number for the Enlightn Github Bot}';
 
     /**
@@ -102,11 +103,17 @@ class EnlightnCommand extends Command
         if ($this->option('report')) {
             $reportBuilder = new JsonReportBuilder();
 
+            $metadata = [];
+
             if ($github_issue = $this->option('issue')) {
                 $metadata = compact('github_issue');
             }
 
-            $api->sendReport($reportBuilder->buildReport($this->analyzerInfos, $this->result, $metadata ?? []));
+            if ($this->option('review')) {
+                $metadata['needs_review'] = true;
+            }
+
+            $api->sendReport($reportBuilder->buildReport($this->analyzerInfos, $this->result, $metadata));
         }
 
         // Exit with a non-zero exit code if there were failed checks to throw an error on CI environments
