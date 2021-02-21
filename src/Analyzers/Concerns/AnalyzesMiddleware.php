@@ -105,7 +105,6 @@ trait AnalyzesMiddleware
      * @param  \Illuminate\Routing\Route $route
      * @param  string  $middlewareClass
      * @return bool
-     * @throws \ReflectionException
      */
     protected function routeUsesMiddleware($route, string $middlewareClass)
     {
