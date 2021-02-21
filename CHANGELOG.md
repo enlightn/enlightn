@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.15.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.15.1...master)
+
+## [v1.15.1 (2021-02-21)](https://github.com/enlightn/enlightn/compare/v1.15.0...v1.15.1)
+
+### Fixed
+- Fix trusted proxies bug ([#49](https://github.com/enlightn/enlightn/pull/49))
 
 ## [v1.15.0 (2021-02-16)](https://github.com/enlightn/enlightn/compare/v1.14.0...v1.15.0)
 
