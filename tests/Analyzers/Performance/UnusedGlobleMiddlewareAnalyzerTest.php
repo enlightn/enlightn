@@ -67,7 +67,8 @@ class UnusedGlobleMiddlewareAnalyzerTest extends AnalyzerTestCase
     }
 }
 
-class DummyTrustProxies extends TrustProxies {
+class DummyTrustProxies extends TrustProxies
+{
     /**
      * The trusted proxies for the application.
      *
@@ -76,4 +77,6 @@ class DummyTrustProxies extends TrustProxies {
     protected $proxies = '*';
 }
 
-class UnusedTrustProxies extends TrustProxies {}
+class UnusedTrustProxies extends TrustProxies
+{
+}
