@@ -75,7 +75,6 @@ class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
      * @param \Illuminate\Contracts\Foundation\Application $app
      * @param \Illuminate\Contracts\Config\Repository $config
      * @return void
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
      */
     public function handle(Application $app, ConfigRepository $config)
@@ -83,7 +82,11 @@ class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
         $this->unusedMiddleware = collect();
 
         if (class_exists(TrustProxies::class) && $this->appUsesGlobalMiddleware(TrustProxies::class)) {
-            $middleware = $app->make(TrustProxies::class);
+            $middlewareClass = collect($this->getGlobalMiddleware())->filter(function ($middleware) {
+                return $middleware === TrustProxies::class || is_subclass_of($middleware, TrustProxies::class);
+            })->first();
+
+            $middleware = $app->make($middlewareClass);
             $proxies = Reflector::get($middleware, 'proxies');
 
             if (empty($proxies) && is_null($config->get('trustedproxy.proxies'))) {
