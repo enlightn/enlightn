@@ -134,7 +134,7 @@ Enlightn offers a Github bot that can prepare a report highlighting failed check
 
 ![Enlightn Github Bot Review Comments](https://cdn.laravel-enlightn.com/images/github_bot.png)
 
-To integrate with the Enlightn Github bot, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/github-bot.html#installation-steps).
+To integrate with the Enlightn Github bot, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/github-bot.html).
 
 ## Failed Checks
 
