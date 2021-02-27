@@ -6,7 +6,6 @@ use Enlightn\Enlightn\Analyzers\Trace;
 use Enlightn\Enlightn\Enlightn;
 use Illuminate\Console\Command;
 use Illuminate\Console\OutputStyle;
-use Illuminate\Support\Str;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Helper\TableStyle;
 

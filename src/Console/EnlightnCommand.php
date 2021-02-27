@@ -19,9 +19,9 @@ class EnlightnCommand extends Command
                             {analyzer?* : The analyzer class that you wish to run}
                             {--details : Show details of each failed check}
                             {--ci : Run Enlightn in CI Mode}
-                            {--report : Compile a report to view on the Enlightn website web UI}
+                            {--report : Compile a report to trigger a comment by the Enlightn Github Bot}
                             {--review : Enable this for a review of the diff by the Enlightn Github Bot}
-                            {--issue= : The linked issue number for the Enlightn Github Bot}';
+                            {--issue= : The issue number of the pull request for the Enlightn Github Bot}';
 
     /**
      * The console command description.
