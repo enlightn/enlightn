@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.15.1...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.16.0...master)
+
+## [v1.16.0 (2021-02-28)](https://github.com/enlightn/enlightn/compare/v1.15.1...v1.16.0)
+
+### Added
+- Say hello to the Enlightn Github bot ([#53](https://github.com/enlightn/enlightn/pull/53))
 
 ## [v1.15.1 (2021-02-21)](https://github.com/enlightn/enlightn/compare/v1.15.0...v1.15.1)
 
