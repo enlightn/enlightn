@@ -76,7 +76,7 @@ class MinificationAnalyzer extends PerformanceAnalyzer
             return $files->lines($path)->count() > 10;
         })->map(function ($path) {
             return Str::contains($path, base_path())
-                ? ('['.Str::after($path, base_path()).']') : '['.$path.']';
+                ? ('['.trim(Str::after($path, base_path()), '/').']') : '['.$path.']';
         })->join(', ', ' and ');
 
         if (! empty($this->unMinifiedAssets)) {

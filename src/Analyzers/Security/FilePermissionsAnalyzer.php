@@ -76,7 +76,7 @@ class FilePermissionsAnalyzer extends SecurityAnalyzer
             return file_exists($path) && ($allowedPermission < decoct(fileperms($path) & 0777));
         })->keys()->map(function ($path) {
             return Str::contains($path, base_path())
-                ? ('['.Str::after($path, base_path()).']') : '['.$path.']';
+                ? ('['.trim(Str::after($path, base_path()), '/').']') : '['.$path.']';
         })->join(', ', ' and ');
 
         if (! empty($this->unsafeFilesOrDirs)) {

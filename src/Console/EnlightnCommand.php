@@ -2,8 +2,10 @@
 
 namespace Enlightn\Enlightn\Console;
 
-use Enlightn\Enlightn\Console\Formatters\ReportFormatter;
+use Enlightn\Enlightn\Console\Formatters\AnsiFormatter;
 use Enlightn\Enlightn\Enlightn;
+use Enlightn\Enlightn\Reporting\API;
+use Enlightn\Enlightn\Reporting\JsonReportBuilder;
 use Illuminate\Console\Command;
 
 class EnlightnCommand extends Command
@@ -16,7 +18,10 @@ class EnlightnCommand extends Command
     protected $signature = 'enlightn
                             {analyzer?* : The analyzer class that you wish to run}
                             {--details : Show details of each failed check}
-                            {--ci : Run Enlightn in CI Mode}';
+                            {--ci : Run Enlightn in CI Mode}
+                            {--report : Compile a report to trigger a comment by the Enlightn Github Bot}
+                            {--review : Enable this for a review of the diff by the Enlightn Github Bot}
+                            {--issue= : The issue number of the pull request for the Enlightn Github Bot}';
 
     /**
      * The console command description.
@@ -59,16 +64,24 @@ class EnlightnCommand extends Command
     protected $formatter;
 
     /**
+     * @var array
+     */
+    protected $analyzerInfos = [];
+
+    /**
      * Execute the console command.
      *
+     * @param \Enlightn\Enlightn\Reporting\API $api
      * @return int
-     * @throws \ReflectionException|\Illuminate\Contracts\Container\BindingResolutionException|\Throwable
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \ReflectionException
+     * @throws \Throwable
      */
-    public function handle()
+    public function handle(API $api)
     {
         $this->analyzerClasses = $this->argument('analyzer');
 
-        $this->formatter = new ReportFormatter;
+        $this->formatter = new AnsiFormatter;
 
         $this->formatter->beforeAnalysis($this);
 
@@ -87,6 +100,22 @@ class EnlightnCommand extends Command
 
         $this->formatter->afterAnalysis($this, empty($this->analyzerClasses));
 
+        if ($this->option('report')) {
+            $reportBuilder = new JsonReportBuilder();
+
+            $metadata = [];
+
+            if ($github_issue = $this->option('issue')) {
+                $metadata = compact('github_issue');
+            }
+
+            if ($this->option('review')) {
+                $metadata['needs_review'] = true;
+            }
+
+            $api->sendReport($reportBuilder->buildReport($this->analyzerInfos, $this->result, $metadata));
+        }
+
         // Exit with a non-zero exit code if there were failed checks to throw an error on CI environments
         return collect($this->result)->sum(function ($category) {
             return $category['reported'];
@@ -100,6 +129,8 @@ class EnlightnCommand extends Command
      */
     public function printAnalyzerOutput(array $info)
     {
+        $this->analyzerInfos[] = $info;
+
         $this->formatter->parseAnalyzerResult(
             $this,
             $info,

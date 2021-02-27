@@ -126,6 +126,16 @@ php artisan enlightn:baseline --ci
 
 For more information on establishing a baseline, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/usage.html#establishing-a-baseline).
 
+## Github Bot Integration
+
+Enlightn offers a Github bot that can prepare a report highlighting failed checks and also add review comments for pull requests on the lines of code that introduce new issues.
+
+![Enlightn Github Bot Report](https://cdn.laravel-enlightn.com/images/github_report.png)
+
+![Enlightn Github Bot Review Comments](https://cdn.laravel-enlightn.com/images/github_bot.png)
+
+To integrate with the Enlightn Github bot, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/github-bot.html#installation-steps).
+
 ## Failed Checks
 
 All checks that fail will include a description of why they failed along with the associated lines of code (if applicable) and a link to the documentation for the specific check.
