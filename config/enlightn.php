@@ -125,8 +125,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | The following credentials are used to share your Enlightn report with
-    | the website. This allows you to share your report with colleagues
-    | and view changes in reports over time.
+    | the Enlightn Github Bot. This allows the bot to compile the report
+    | and add review comments on your pull requests.
     |
     */
     'credentials' => [
