@@ -138,13 +138,13 @@ To integrate with the Enlightn Github bot, refer [the docs](https://www.laravel-
 
 All checks that fail will include a description of why they failed along with the associated lines of code (if applicable) and a link to the documentation for the specific check.
 
-![Enlightn Checks](https://www.laravel-enlightn.com/docs/images/queue-timeout.png)
+<img src="https://www.laravel-enlightn.com/docs/images/queue-timeout.png" width="70%" alt="Enlightn Failed Check" />
 
 ## Report Card
 
 Finally, after all the checks have run, the `enlightn` Artisan command will output a report card, which contains information on how many and what percentage of checks passed, failed or were skipped.
 
-![Enlightn Report Card](https://www.laravel-enlightn.com/docs/images/report_card.png)
+<img src="https://www.laravel-enlightn.com/docs/images/report_card.png" width="70%" alt="Enlightn Report Card" />
 
 The checks indicated as "Not Applicable" were not applicable to your specific application and were skipped. For instance, the CSRF analyzer is not applicable for stateless applications.
 
@@ -158,7 +158,7 @@ Besides the automated CI checks, you might also want to run Enlightn on a regula
 
 ## Featured On
 
-[<img src="https://laravelnews.imgix.net/laravel-news__logo.png" height="100" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_CheatSheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://www.nist.gov/sites/default/files/styles/960_x_960_limit/public/images/2017/09/20/645px-nist_logo-svg_1.png" height="80" />](https://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html)
+[<img src="https://laravelnews.imgix.net/laravel-news__logo.png" height="100" alt="Laravel News" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" alt="OWASP" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_CheatSheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://www.nist.gov/sites/default/files/styles/960_x_960_limit/public/images/2017/09/20/645px-nist_logo-svg_1.png" height="80" alt="NIST" />](https://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html)
 
 ## OS Compatibility
 
