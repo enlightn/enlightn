@@ -156,6 +156,10 @@ A good practice would be to run Enlightn every time you are deploying code or pu
 
 Besides the automated CI checks, you might also want to run Enlightn on a regular frequency such as every week. This will allow you to monitor the dynamic analysis checks, which are typically excluded from CI tests.
 
+## Featured On
+
+[<img src="https://laravelnews.imgix.net/laravel-news__logo.png" height="100" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_CheatSheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://www.nist.gov/sites/default/files/styles/960_x_960_limit/public/images/2017/09/20/645px-nist_logo-svg_1.png" height="80" />](https://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html)
+
 ## OS Compatibility
 
 Only MacOS and Linux systems are supported for Enlightn. Windows is currently not supported.
