@@ -130,8 +130,6 @@ For more information on establishing a baseline, refer [the docs](https://www.la
 
 Enlightn offers a Github bot that can prepare a report highlighting failed checks and also add review comments for pull requests on the lines of code that introduce new issues.
 
-![Enlightn Github Bot Report](https://cdn.laravel-enlightn.com/images/github_report.png)
-
 ![Enlightn Github Bot Review Comments](https://cdn.laravel-enlightn.com/images/github_bot.png)
 
 To integrate with the Enlightn Github bot, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/github-bot.html).
