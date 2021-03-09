@@ -14,9 +14,9 @@
 
 Think of Enlightn as your performance and security consultant. Enlightn will "review" your code and server configurations, and give you actionable recommendations on improving performance, security and reliability!
 
-The Enlightn OSS (open source software) version has 61 automated checks that scan your application code, web server configurations and routes to identify performance bottlenecks, possible security vulnerabilities and code reliability issues.
+The Enlightn OSS (open source software) version has 62 automated checks that scan your application code, web server configurations and routes to identify performance bottlenecks, possible security vulnerabilities and code reliability issues.
 
-Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 61 automated checks (total of **122 checks**).
+Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 62 automated checks (total of **124 checks**).
 
 ### Performance Checks (34 Automated Checks including 17 Enlightn Pro Checks)
 
@@ -48,7 +48,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 
 ## Documentation
 
-Each of the 122 checks available are well documented. You can find the complete 130 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
+Each of the 124 checks available are well documented. You can find the complete 132 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
 
 ## Installing Enlightn OSS
 
