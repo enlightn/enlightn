@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.16.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.17.0...master)
+
+## [v1.17.0 (2021-03-09)](https://github.com/enlightn/enlightn/compare/v1.16.0...v1.17.0)
+
+### Added
+- Add analyzer to detect publicly accessible env file ([#55](https://github.com/enlightn/enlightn/pull/55))
 
 ## [v1.16.0 (2021-02-28)](https://github.com/enlightn/enlightn/compare/v1.15.1...v1.16.0)
 
