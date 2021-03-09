@@ -30,6 +30,13 @@ class EnvAccessAnalyzer extends SecurityAnalyzer
     public $timeToFix = 5;
 
     /**
+     * Determine whether the analyzer should be run in CI mode.
+     *
+     * @var bool
+     */
+    public static $runInCI = false;
+
+    /**
      * The Guzzle client instance.
      *
      * @var \GuzzleHttp\Client
