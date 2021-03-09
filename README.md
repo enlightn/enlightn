@@ -18,7 +18,7 @@ The Enlightn OSS (open source software) version has 62 automated checks that sca
 
 Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 62 automated checks (total of **124 checks**).
 
-### Performance Checks (34 Automated Checks including 17 Enlightn Pro Checks)
+### Performance Checks (35 Automated Checks including 18 Enlightn Pro Checks)
 
 - 🚀 Performance Quick Wins (In-Built In Laravel): Route caching, config caching, etc.
 - ⏳ Performance Bottleneck Identification: Middleware bloat, identification of slow, duplicate and N+1 queries, etc.
@@ -27,7 +27,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 - 🛸 Choosing The Right Driver: Choosing the right session, queue and cache drivers for your app.
 - 🏆 Good Practices: Separate Redis databases for locks, dont install dev dependencies in production, etc.
 
-### Security Checks (46 Automated Checks including 27 Enlightn Pro Checks)
+### Security Checks (47 Automated Checks including 27 Enlightn Pro Checks)
 
 - :lock: Basic Security: Turn off app debug in production, app key, CSRF protection, login throttling, etc.
 - :cookie: Cookie Security and Session Management: Cookie encryption, secure cookie attributes, session timeouts, etc.
