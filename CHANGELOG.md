@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.17.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.18.0...master)
+
+## [v1.18.0 (2021-03-11)](https://github.com/enlightn/enlightn/compare/v1.17.0...v1.18.0)
+
+### Changed
+- Ignore HTTP errors for checking headers ([#56](https://github.com/enlightn/enlightn/pull/56))
 
 ## [v1.17.0 (2021-03-09)](https://github.com/enlightn/enlightn/compare/v1.16.0...v1.17.0)
 
