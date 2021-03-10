@@ -16,7 +16,7 @@ Think of Enlightn as your performance and security consultant. Enlightn will "re
 
 The Enlightn OSS (open source software) version has 62 automated checks that scan your application code, web server configurations and routes to identify performance bottlenecks, possible security vulnerabilities and code reliability issues.
 
-Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 62 automated checks (total of **124 checks**).
+Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 63 automated checks (total of **125 checks**).
 
 ### Performance Checks (35 Automated Checks including 18 Enlightn Pro Checks)
 
@@ -27,7 +27,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 - 🛸 Choosing The Right Driver: Choosing the right session, queue and cache drivers for your app.
 - 🏆 Good Practices: Separate Redis databases for locks, dont install dev dependencies in production, etc.
 
-### Security Checks (47 Automated Checks including 27 Enlightn Pro Checks)
+### Security Checks (48 Automated Checks including 28 Enlightn Pro Checks)
 
 - :lock: Basic Security: Turn off app debug in production, app key, CSRF protection, login throttling, etc.
 - :cookie: Cookie Security and Session Management: Cookie encryption, secure cookie attributes, session timeouts, etc.
@@ -48,7 +48,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 
 ## Documentation
 
-Each of the 124 checks available are well documented. You can find the complete 132 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
+Each of the 125 checks available are well documented. You can find the complete 134 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
 
 ## Installing Enlightn OSS
 
