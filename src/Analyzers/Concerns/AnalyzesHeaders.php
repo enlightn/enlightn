@@ -40,7 +40,7 @@ trait AnalyzesHeaders
         }
 
         try {
-            $response = $this->client->get($url, $options);
+            $response = $this->client->get($url, array_merge(['http_errors' => false], $options));
 
             return collect($headers)->contains(function ($header) use ($response) {
                 return $response->hasHeader($header);
@@ -55,9 +55,10 @@ trait AnalyzesHeaders
      *
      * @param  string|null  $url
      * @param  string  $header
+     * @param  array  $options
      * @return array
      */
-    protected function getHeadersOnUrl($url, string $header)
+    protected function getHeadersOnUrl($url, string $header, $options = [])
     {
         if (is_null($url)) {
             // If we can't find the route, we cannot perform this check.
@@ -65,7 +66,7 @@ trait AnalyzesHeaders
         }
 
         try {
-            $response = $this->client->get($url);
+            $response = $this->client->get($url, array_merge(['http_errors' => false], $options));
 
             return $response->getHeader($header);
         } catch (GuzzleException $e) {
