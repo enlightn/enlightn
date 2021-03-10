@@ -160,6 +160,10 @@ Besides the automated CI checks, you might also want to run Enlightn on a regula
 
 [<img src="https://laravelnews.imgix.net/laravel-news__logo.png" height="100" alt="Laravel News" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" alt="OWASP" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_CheatSheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://www.nist.gov/sites/default/files/styles/960_x_960_limit/public/images/2017/09/20/645px-nist_logo-svg_1.png" height="80" alt="NIST" />](https://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html)
 
+## Flagship OSS Projects Using Enlightn
+
+[<img src="https://laravel.io/images/laravelio.png" height="60" alt="Laravel.io" />](https://github.com/laravelio/laravel.io) &nbsp;&nbsp;&nbsp; [<img src="https://akaunting.com/public/images/logo.png" height="80" alt="Akaunting" />](https://github.com/akaunting/akaunting)
+
 ## OS Compatibility
 
 Only MacOS and Linux systems are supported for Enlightn. Windows is currently not supported.
