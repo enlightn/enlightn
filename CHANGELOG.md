@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.18.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.19.0...master)
+
+## [v1.19.0 (2021-03-16)](https://github.com/enlightn/enlightn/compare/v1.18.0...v1.19.0)
+
+### Added
+- Add ability to display exception stack trace of analyzers ([#57](https://github.com/enlightn/enlightn/pull/57))
 
 ## [v1.18.0 (2021-03-11)](https://github.com/enlightn/enlightn/compare/v1.17.0...v1.18.0)
 
