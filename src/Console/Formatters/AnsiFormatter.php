@@ -69,6 +69,10 @@ class AnsiFormatter implements Formatter
             $error = $result['error'] ?? $result['exception'];
             $command->line("<fg=red>{$error}</fg=red>");
 
+            if ($result['status'] === 'error' && $command->option('show-exceptions')) {
+                $command->line("<fg=red>{$result['stackTrace']}</fg=red>");
+            }
+
             if (! empty($result['traces'])) {
                 $this->formatTraces($command, $result['traces'], $allAnalyzers);
             }
