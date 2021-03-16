@@ -5,8 +5,11 @@ namespace Enlightn\Enlightn\Tests;
 use Enlightn\Enlightn\Analyzers\Reliability\CachePrefixAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppKeyAnalyzer;
+use Enlightn\Enlightn\Console\EnlightnCommand;
 use Illuminate\Testing\PendingCommand;
 use Symfony\Component\Console\Helper\TableStyle;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 class EnlightnCommandTest extends TestCase
 {
@@ -133,5 +136,41 @@ class EnlightnCommandTest extends TestCase
 
         // App debug fails but is not supposed to be reported, app key shouldn't run in CI and cache prefix succeeds.
         $this->artisan('enlightn --ci')->assertExitCode(0);
+    }
+
+    /**
+     * @test
+     */
+    public function command_catches_exceptions()
+    {
+        $this->app->config->set('enlightn.analyzers', [
+            FaultyAnalyzer::class,
+        ]);
+
+        $command = new EnlightnCommand;
+        $command->setLaravel($this->app);
+
+        $status = $command->run(new ArrayInput([]), $output = new BufferedOutput);
+
+        $this->assertStringNotContainsString('FaultyAnalyzer', $output->fetch());
+        $this->assertEquals(0, $status);
+    }
+
+    /**
+     * @test
+     */
+    public function command_can_display_exceptions()
+    {
+        $this->app->config->set('enlightn.analyzers', [
+            FaultyAnalyzer::class,
+        ]);
+
+        $command = new EnlightnCommand;
+        $command->setLaravel($this->app);
+
+        $status = $command->run(new ArrayInput(['--show-exceptions' => true]), $output = new BufferedOutput);
+
+        $this->assertStringContainsString('FaultyAnalyzer', $output->fetch());
+        $this->assertEquals(0, $status);
     }
 }

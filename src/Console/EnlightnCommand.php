@@ -21,6 +21,7 @@ class EnlightnCommand extends Command
                             {--ci : Run Enlightn in CI Mode}
                             {--report : Compile a report to trigger a comment by the Enlightn Github Bot}
                             {--review : Enable this for a review of the diff by the Enlightn Github Bot}
+                            {--show-exceptions : Display the stack trace of exceptions if any}
                             {--issue= : The issue number of the pull request for the Enlightn Github Bot}';
 
     /**

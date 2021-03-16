@@ -77,6 +77,13 @@ abstract class Analyzer
     protected $exceptionMessage = null;
 
     /**
+     * The stack trace of the exception thrown during the analysis.
+     *
+     * @var array
+     */
+    protected $stackTrace = null;
+
+    /**
      * Determine whether the analyzer passed.
      *
      * @var bool
@@ -173,6 +180,8 @@ abstract class Analyzer
     {
         $this->exceptionMessage = $e->getMessage();
 
+        $this->stackTrace = $e->getTraceAsString();
+
         return $this->markSkipped();
     }
 
@@ -232,6 +241,7 @@ abstract class Analyzer
             'docsUrl' => $this->getDocsUrl(),
             'reportable' => ! in_array(static::class, config('enlightn.dont_report', [])),
             'class' => static::class,
+            'stackTrace' => $this->stackTrace,
         ];
     }
 
