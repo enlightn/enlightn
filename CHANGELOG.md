@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.19.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.20.0...master)
+
+## [v1.20.0 (2021-03-19)](https://github.com/enlightn/enlightn/compare/v1.19.0...v1.20.0)
+
+### Added
+- Add analyzer to check Composer autoloader optimization ([#58](https://github.com/enlightn/enlightn/pull/58))
 
 ## [v1.19.0 (2021-03-16)](https://github.com/enlightn/enlightn/compare/v1.18.0...v1.19.0)
 
