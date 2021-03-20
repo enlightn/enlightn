@@ -4,6 +4,7 @@
 [![LGPLv3 Licensed](https://img.shields.io/badge/license-LGPLv3-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Latest Stable Version](https://poser.pugx.org/enlightn/enlightn/v/stable?format=flat-square)](https://packagist.org/packages/enlightn/enlightn)
 [![Total Downloads](https://img.shields.io/packagist/dt/enlightn/enlightn.svg?style=flat-square)](https://packagist.org/packages/enlightn/enlightn)
+[![Twitter Follow](https://img.shields.io/twitter/follow/Enlightn_app?label=Follow&style=social)](https://twitter.com/Enlightn_app)
 
 
 <h2 align="center">A Laravel Tool To Boost Your App's Performance &amp; Security</h2>
