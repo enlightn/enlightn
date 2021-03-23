@@ -2,10 +2,15 @@
 
 namespace Enlightn\Enlightn\Analyzers\Reliability;
 
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Routing\Router;
 
 class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
 {
+    use AnalyzesMiddleware;
+
     /**
      * The title describing the analyzer.
      *
@@ -35,6 +40,19 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
     public static $runInCI = false;
 
     /**
+     * Create a new analyzer instance.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Contracts\Http\Kernel  $kernel
+     * @return void
+     */
+    public function __construct(Router $router, Kernel $kernel)
+    {
+        $this->router = $router;
+        $this->kernel = $kernel;
+    }
+
+    /**
      * Get the error message describing the analyzer insights.
      *
      * @return string
@@ -60,5 +78,18 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
         if (! $hasCustomErrorPages) {
             $this->markFailed();
         }
+    }
+
+    /**
+     * Determine whether to skip the analyzer.
+     *
+     * @return bool
+     * @throws \ReflectionException
+     */
+    public function skip()
+    {
+        // Skip this analyzer if the app is stateless. We assume here that if the app is stateless, it's probably not
+        // a web app and therefore, does not need to define any views.
+        return $this->appIsStateless();
     }
 }
