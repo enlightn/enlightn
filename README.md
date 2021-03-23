@@ -9,7 +9,7 @@
 
 <h2 align="center">A Laravel Tool To Boost Your App's Performance &amp; Security</h2>
 
-![Enlightn](https://cdn.laravel-enlightn.com/images/mockups/terminal.png)
+![Enlightn](https://cdn.laravel-enlightn.com/images/mockups/enlightn_terminal128.png)
 
 ## Introduction
 
