@@ -15,11 +15,11 @@
 
 Think of Enlightn as your performance and security consultant. Enlightn will "review" your code and server configurations, and give you actionable recommendations on improving performance, security and reliability!
 
-The Enlightn OSS (open source software) version has 63 automated checks that scan your application code, web server configurations and routes to identify performance bottlenecks, possible security vulnerabilities and code reliability issues.
+The Enlightn OSS (open source software) version has 64 automated checks that scan your application code, web server configurations and routes to identify performance bottlenecks, possible security vulnerabilities and code reliability issues.
 
-Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 63 automated checks (total of **126 checks**).
+Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 64 automated checks (total of **128 checks**).
 
-### Performance Checks (36 Automated Checks including 18 Enlightn Pro Checks)
+### Performance Checks (37 Automated Checks including 19 Enlightn Pro Checks)
 
 - 🚀 Performance Quick Wins (In-Built In Laravel): Route caching, config caching, etc.
 - ⏳ Performance Bottleneck Identification: Middleware bloat, identification of slow, duplicate and N+1 queries, etc.
@@ -39,7 +39,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 - :syringe: Injection and Phishing Attacks: Detection of command injection, host injection, object injection, open redirection, etc.
 - :package: Dependency Management: Backend and frontend vulnerability scanning, stable and up-to-date dependency checks, licensing, etc.
 
-### Reliability Checks (42 Automated Checks including 17 Enlightn Pro Checks)
+### Reliability Checks (43 Automated Checks including 17 Enlightn Pro Checks)
 
 - 🧐 Code Reliability and Bug Detection: Invalid function calls, method calls, offsets, imports, return statements, syntax errors, etc.
 - :muscle: Health Checks: Health checks for cache, DB, directory permissions, migrations, disk space, symlinks, Redis, etc.
@@ -49,7 +49,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 
 ## Documentation
 
-Each of the 126 checks available are well documented. You can find the complete 135 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
+Each of the 128 checks available are well documented. You can find the complete 137 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
 
 ## Installing Enlightn OSS
 
