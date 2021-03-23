@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.20.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.21.0...master)
+
+## [v1.21.0 (2021-03-23)](https://github.com/enlightn/enlightn/compare/v1.20.0...v1.21.0)
+
+### Added
+- Add new analyzer to check for custom error pages ([#60](https://github.com/enlightn/enlightn/pull/60))
 
 ## [v1.20.0 (2021-03-19)](https://github.com/enlightn/enlightn/compare/v1.19.0...v1.20.0)
 
