@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.21.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.22.0...master)
+
+## [v1.22.0 (2021-04-15)](https://github.com/enlightn/enlightn/compare/v1.21.0...v1.22.0)
+
+### Added
+- Add report metadata for web UI ([#63](https://github.com/enlightn/enlightn/pull/63))
 
 ## [v1.21.0 (2021-03-23)](https://github.com/enlightn/enlightn/compare/v1.20.0...v1.21.0)
 
