@@ -16,10 +16,16 @@ class API
 
     /**
      * @param array $report
-     * @return void
+     * @return string|null
      */
     public function sendReport(array $report)
     {
-        $this->client->post('report', $report);
+        $response = $this->client->post('report', $report);
+
+        if (isset($response['url'])) {
+            return $response['url'];
+        }
+
+        return null;
     }
 }
