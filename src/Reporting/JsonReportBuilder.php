@@ -2,6 +2,7 @@
 
 namespace Enlightn\Enlightn\Reporting;
 
+use Enlightn\Enlightn\CommitHash;
 use Enlightn\Enlightn\Composer;
 use Illuminate\Container\Container;
 use Throwable;
@@ -36,6 +37,8 @@ class JsonReportBuilder implements ReportBuilder
             'app_url' => config('app.url'),
             'project_name' => $this->getProjectName(),
             'github_repo' => config('enlightn.github_repo'),
+            'commit_id' => CommitHash::get(),
+            'trigger' => 'command',
         ];
     }
 

@@ -114,6 +114,10 @@ class EnlightnCommand extends Command
                 $metadata['needs_review'] = true;
             }
 
+            if ($this->option('ci')) {
+                $metadata['trigger'] = 'ci';
+            }
+
             $api->sendReport($reportBuilder->buildReport($this->analyzerInfos, $this->result, $metadata));
         }
 
