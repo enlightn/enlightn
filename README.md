@@ -75,6 +75,12 @@ After installing Enlightn, simply run the `enlightn` Artisan command to run Enli
 php artisan enlightn
 ```
 
+You may add the `--report` flag, if you wish to view your reports in the [Enlightn Web UI](https://www.laravel-enlightn.com/docs/getting-started/web-ui.html) besides the terminal:
+
+```bash
+php artisan enlightn --report
+```
+
 If you wish to run specific analyzer classes, you may specify them as optional arguments:
 
 ```bash
@@ -105,6 +111,12 @@ If you wish to integrate Enlightn with your CI, you can simply trigger the `--ci
 php artisan enlightn --ci
 ```
 
+You may add the `--report` flag if you wish to view your CI reports in the [Enlightn Web UI](https://www.laravel-enlightn.com/docs/getting-started/web-ui.html). Remember to add your project credentials to your `config/enlightn.php` file as explained [here](https://www.laravel-enlightn.com/docs/getting-started/web-ui.html#how-to-get-access-free).
+
+```bash
+php artisan enlightn --ci --report
+```
+
 Enlightn pre-configures which analyzers can be run in CI mode for you. So, the above command excludes analyzers that need a full setup to run (e.g. analyzers using dynamic analysis).
 
 For more information on CI integration, refer the [Enlightn documentation](https://www.laravel-enlightn.com/docs/getting-started/usage.html#usage-in-ci-environments).
@@ -126,6 +138,19 @@ php artisan enlightn:baseline --ci
 ```
 
 For more information on establishing a baseline, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/usage.html#establishing-a-baseline).
+
+## Web UI
+
+Enlightn offers a beautiful Web UI dashboard where you can view your Enlightn reports triggered from your CI or scheduled command runs.
+
+![Enlightn Web UI Dashboard](https://cdn.laravel-enlightn.com/images/webui_report.png)
+
+The web UI is free for all users and includes the following:
+1. Statistics on pass percentages (overall and by category).
+2. All failed checks along with code snippets related to the checks (if any).
+3. Metrics on number of new and resolved issues (compared with the most recent report running on the same app URL, environment and project).
+
+To get access to the Web UI, all you need to do is signup for free on the Enlightn website and follow the instructions mentioned [here](https://www.laravel-enlightn.com/docs/getting-started/web-ui.html#how-to-get-access-free). 
 
 ## Github Bot Integration
 
