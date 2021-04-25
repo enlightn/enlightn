@@ -152,6 +152,27 @@ The web UI is free for all users and includes the following:
 
 To get access to the Web UI, all you need to do is signup for free on the Enlightn website and follow the instructions mentioned [here](https://www.laravel-enlightn.com/docs/getting-started/web-ui.html#how-to-get-access-free). 
 
+## Scheduling Enlightn Runs
+
+Besides integrating Enlightn with your CI/CD tool, it's a good practice to schedule an Enlightn run on a regular frequency (such as daily or weekly) like so:
+
+```php
+// In your app/Console/Kernel.php file:
+
+/**
+ * Define the application's command schedule.
+ *
+ * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+ * @return void
+ */
+protected function schedule(Schedule $schedule)
+{
+    $schedule->command('enlightn --report')->runInBackground()->daily()->at('01:00');
+}
+```
+
+This will allow you to monitor Enlightn's dynamic analysis checks, which are typically excluded from CI. The reports can be viewed on the Enlightn [Web UI](https://www.laravel-enlightn.com/docs/getting-started/web-ui.html).
+
 ## Github Bot Integration
 
 Enlightn offers a Github bot that can prepare a report highlighting failed checks and also add review comments for pull requests on the lines of code that introduce new issues.
@@ -180,7 +201,7 @@ The checks reported under the "Error" row indicate the analyzers that failed wit
 
 A good practice would be to run Enlightn every time you are deploying code or pushing a new release. It is recommended to integrate Enlightn with your CI/CD tool so that it is triggered for every push or new release.
 
-Besides the automated CI checks, you might also want to run Enlightn on a regular frequency such as every week. This will allow you to monitor the dynamic analysis checks, which are typically excluded from CI tests.
+Besides the automated CI checks, you should also run Enlightn on a regular frequency using a scheduled console command as described above. This will allow you to monitor the dynamic analysis checks, which are typically excluded from CI.
 
 ## Featured On
 
