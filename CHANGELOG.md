@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.22.0...master)
+## [Unreleased](https://github.com/enlightn/enlightn/compare/v1.22.1...master)
+
+## [v1.22.1 (2021-05-03)](https://github.com/enlightn/enlightn/compare/v1.22.0...v1.22.1)
+
+### Fixed
+- Add accept json header for invalid credential warnings ([#64](https://github.com/enlightn/enlightn/pull/64))
 
 ## [v1.22.0 (2021-04-15)](https://github.com/enlightn/enlightn/compare/v1.21.0...v1.22.0)
 
