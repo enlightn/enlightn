@@ -6,6 +6,8 @@ use Enlightn\Enlightn\Analyzers\Security\VulnerableDependencyAnalyzer;
 use Enlightn\Enlightn\Composer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithComposer;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Str;
 
 class VulnerableDependencyAnalyzerTest extends AnalyzerTestCase
 {
@@ -25,6 +27,11 @@ class VulnerableDependencyAnalyzerTest extends AnalyzerTestCase
      */
     public function confirms_enlightn_has_no_vulnerable_dependencies()
     {
+        if (Str::startsWith(Application::VERSION, '7')) {
+            // Since 7.x is no longer receiving security updates, we need to skip this version.
+            $this->markTestSkipped();
+        }
+
         $this->runEnlightn();
 
         $this->assertPassed(VulnerableDependencyAnalyzer::class);
