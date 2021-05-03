@@ -22,6 +22,7 @@ class Client
             'auth' => [$username, $apiToken],
             'timeout' => $timeout,
             'http_errors' => false,
+            'headers' => ['Accept' => 'application/json'],
         ]);
     }
 
