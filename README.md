@@ -173,13 +173,13 @@ protected function schedule(Schedule $schedule)
 
 This will allow you to monitor Enlightn's dynamic analysis checks, which are typically excluded from CI. The reports can be viewed on the Enlightn [Web UI](https://www.laravel-enlightn.com/docs/getting-started/web-ui.html).
 
-## Github Bot Integration
+## GitHub Bot Integration
 
-Enlightn offers a Github bot that can prepare a report highlighting failed checks and also add review comments for pull requests on the lines of code that introduce new issues.
+Enlightn offers a GitHub bot that can prepare a report highlighting failed checks and also add review comments for pull requests on the lines of code that introduce new issues.
 
-![Enlightn Github Bot Review Comments](https://cdn.laravel-enlightn.com/images/github-bot.png)
+![Enlightn GitHub Bot Review Comments](https://cdn.laravel-enlightn.com/images/github-bot.png)
 
-To integrate with the Enlightn Github bot, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/github-bot.html).
+To integrate with the Enlightn GitHub bot, refer [the docs](https://www.laravel-enlightn.com/docs/getting-started/github-bot.html).
 
 ## Failed Checks
 
@@ -225,6 +225,6 @@ Our support policy can be found in the [Enlightn documentation](https://www.lara
 
 ## License
 
-The Enlightn OSS (on this Github repo) is licensed under the [LGPL v3 (or later) license](LICENSE.md).
+The Enlightn OSS (on this GitHub repo) is licensed under the [LGPL v3 (or later) license](LICENSE.md).
 
 Enlightn Pro is licensed under a [commercial license](https://www.laravel-enlightn.com/license-agreement).
