@@ -75,7 +75,7 @@ class LicenseAnalyzer extends SecurityAnalyzer
             return array_map('strtoupper', $licenses);
         })->filter(function ($licenses, $package) use ($whitelistedLicenses, $commercialPackages) {
             // Get all packages that have any licenses that are not whitelisted
-            return ! empty(array_diff($licenses, $whitelistedLicenses))
+            return empty(array_intersect($licenses, $whitelistedLicenses))
                 && ! in_array($package, $commercialPackages);
         });
 
