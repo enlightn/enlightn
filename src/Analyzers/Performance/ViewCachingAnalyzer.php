@@ -93,6 +93,6 @@ class ViewCachingAnalyzer extends PerformanceAnalyzer
 
         return collect($finder->getPaths())->merge(
             collect($finder->getHints())->flatten()
-        );
+        )->unique();
     }
 }
