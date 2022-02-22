@@ -115,6 +115,7 @@ class EnlightnCommandTest extends TestCase
     {
         $this->app->config->set('enlightn.analyzers', [AppDebugAnalyzer::class, CachePrefixAnalyzer::class]);
         $this->app->config->set('app.env', 'production');
+        $this->app->config->set('cache.prefix', 'laravel_cache');
         $this->app->config->set('app.debug', true);
         $this->app->config->set('enlightn.dont_report', [AppDebugAnalyzer::class]);
 
