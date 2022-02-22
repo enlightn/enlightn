@@ -3,8 +3,8 @@
 namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 
 use Enlightn\Enlightn\Analyzers\Reliability\UpToDateMigrationsAnalyzer;
-use Enlightn\Enlightn\Tests\Kernel;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Tests\Kernel;
 use Illuminate\Support\Facades\Artisan;
 
 class UpToDateMigrationsAnalyzerTest extends AnalyzerTestCase
