@@ -205,7 +205,7 @@ Besides the automated CI checks, you should also run Enlightn on a regular frequ
 
 ## Featured On
 
-[<img src="https://laravelnews.imgix.net/laravel-news__logo.png" height="100" alt="Laravel News" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" alt="OWASP" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_CheatSheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://www.nist.gov/sites/default/files/styles/960_x_960_limit/public/images/2017/09/20/645px-nist_logo-svg_1.png" height="80" alt="NIST" />](https://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html)
+[<img src="https://laravelnews.imgix.net/laravel-news__logo.png" height="100" alt="Laravel News" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" alt="OWASP" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_Cheat_Sheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://www.nist.gov/sites/default/files/styles/960_x_960_limit/public/images/2017/09/20/645px-nist_logo-svg_1.png" height="80" alt="NIST" />](https://www.nist.gov/itl/ssd/software-quality-group/source-code-security-analyzers)
 
 ## Flagship OSS Projects Using Enlightn
 

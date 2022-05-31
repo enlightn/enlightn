@@ -4,6 +4,7 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 
 use Enlightn\Enlightn\Analyzers\Reliability\UpToDateMigrationsAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
+use Enlightn\Enlightn\Tests\Kernel;
 use Illuminate\Support\Facades\Artisan;
 
 class UpToDateMigrationsAnalyzerTest extends AnalyzerTestCase
@@ -13,6 +14,17 @@ class UpToDateMigrationsAnalyzerTest extends AnalyzerTestCase
         parent::getEnvironmentSetUp($app);
 
         $this->setupEnvironmentFor(UpToDateMigrationsAnalyzer::class, $app);
+    }
+
+    /**
+     * Resolve application Console Kernel implementation.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+    protected function resolveApplicationConsoleKernel($app)
+    {
+        $app->singleton('Illuminate\Contracts\Console\Kernel', Kernel::class);
     }
 
     /**
