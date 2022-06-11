@@ -9,7 +9,9 @@ use Fruitcake\Cors\HandleCors;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Middleware\HandleCors as L9HandleCors;
 use Illuminate\Http\Middleware\TrustHosts;
+use Illuminate\Http\Middleware\TrustProxies as L9TrustProxies;
 use Illuminate\Routing\Router;
 
 class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
@@ -81,16 +83,16 @@ class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
     {
         $this->unusedMiddleware = collect();
 
-        if (class_exists(TrustProxies::class) && $this->appUsesGlobalMiddleware(TrustProxies::class)) {
+        if ((class_exists(TrustProxies::class) && $this->appUsesGlobalMiddleware(TrustProxies::class)) || (class_exists(L9TrustProxies::class) && $this->appUsesGlobalMiddleware(L9TrustProxies::class))) {
             $middlewareClass = collect($this->getGlobalMiddleware())->filter(function ($middleware) {
-                return $middleware === TrustProxies::class || is_subclass_of($middleware, TrustProxies::class);
+                return $middleware === TrustProxies::class || is_subclass_of($middleware, TrustProxies::class) || $middleware === L9TrustProxies::class || is_subclass_of($middleware, L9TrustProxies::class);
             })->first();
 
             $middleware = $app->make($middlewareClass);
             $proxies = Reflector::get($middleware, 'proxies');
 
             if (empty($proxies) && is_null($config->get('trustedproxy.proxies'))) {
-                $this->unusedMiddleware->push(TrustProxies::class);
+                $this->unusedMiddleware->push(class_exists(L9TrustProxies::class) ? L9TrustProxies::class : TrustProxies::class);
 
                 if ($this->appUsesGlobalMiddleware(TrustHosts::class)) {
                     // Trusted hosts without trusted proxies is useless.
@@ -102,8 +104,8 @@ class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
             $this->unusedMiddleware->push(TrustHosts::class);
         }
 
-        if (empty($config->get('cors.paths', [])) && $this->appUsesGlobalMiddleware(HandleCors::class)) {
-            $this->unusedMiddleware->push(HandleCors::class);
+        if (empty($config->get('cors.paths', [])) && ($this->appUsesGlobalMiddleware(HandleCors::class) || $this->appUsesGlobalMiddleware(L9HandleCors::class))) {
+            $this->unusedMiddleware->push(class_exists(L9HandleCors::class) ? L9HandleCors::class : HandleCors::class);
         }
 
         if ($this->unusedMiddleware->count() > 0) {
