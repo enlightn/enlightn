@@ -8,10 +8,10 @@ use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithMiddleware;
 use Enlightn\Enlightn\Tests\Middleware\DummyTrustProxiesL9;
 use Enlightn\Enlightn\Tests\Middleware\UnusedTrustProxiesL9;
 use Fideloper\Proxy\TrustProxies;
-use Illuminate\Http\Middleware\TrustProxies as L9TrustProxies;
+use Fruitcake\Cors\HandleCors;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Middleware\TrustHosts;
-use Fruitcake\Cors\HandleCors;
+use Illuminate\Http\Middleware\TrustProxies as L9TrustProxies;
 
 class UnusedGlobleMiddlewareAnalyzerTest extends AnalyzerTestCase
 {

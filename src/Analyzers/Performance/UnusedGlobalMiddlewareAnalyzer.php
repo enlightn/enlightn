@@ -5,13 +5,13 @@ namespace Enlightn\Enlightn\Analyzers\Performance;
 use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Enlightn\Enlightn\Inspection\Reflector;
 use Fideloper\Proxy\TrustProxies;
-use Illuminate\Http\Middleware\TrustProxies as L9TrustProxies;
 use Fruitcake\Cors\HandleCors;
-use Illuminate\Http\Middleware\HandleCors as L9HandleCors;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Middleware\HandleCors as L9HandleCors;
 use Illuminate\Http\Middleware\TrustHosts;
+use Illuminate\Http\Middleware\TrustProxies as L9TrustProxies;
 use Illuminate\Routing\Router;
 
 class UnusedGlobalMiddlewareAnalyzer extends PerformanceAnalyzer
