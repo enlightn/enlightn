@@ -24,6 +24,9 @@ class LicenseAnalyzerTest extends AnalyzerTestCase
      */
     public function confirms_enlightn_uses_dependencies_with_safe_licenses()
     {
+        // set GPL 2 to be valid for Enlightn, since Larastan uses phpmyadmin/sql-parser
+        $this->app->config->set('enlightn.license_whitelist', [...config('enlightn.license_whitelist'), 'GPL-2.0-OR-LATER']);
+
         $this->runEnlightn();
 
         $this->assertPassed(LicenseAnalyzer::class);

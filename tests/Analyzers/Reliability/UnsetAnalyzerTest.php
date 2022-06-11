@@ -30,7 +30,7 @@ class UnsetAnalyzerTest extends AnalyzerTestCase
         $this->assertFailedAt(UnsetAnalyzer::class, $this->getClassStubPath(UnsetStub::class), 13);
         $this->assertFailedAt(UnsetAnalyzer::class, $this->getClassStubPath(UnsetStub::class), 16);
         $this->assertFailedAt(UnsetAnalyzer::class, $this->getClassStubPath(UnsetStub::class), 19);
-        $this->assertHasErrors(UnsetAnalyzer::class, 6);
+        $this->assertHasErrors(UnsetAnalyzer::class, 5);
     }
 
     /**

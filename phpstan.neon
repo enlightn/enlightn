@@ -1,23 +1,27 @@
 includes:
-    - %rootDir%/../../nunomaduro/larastan/extension.neon
+	- %rootDir%/../../nunomaduro/larastan/extension.neon
 
 parameters:
-    customRulesetUsed: true
-    noUnnecessaryCollectionCall: true
-    checkModelProperties: false
-    reportMagicMethods: false
-    checkFunctionNameCase: false
-    checkPhpDocMethodSignatures: false
-    checkExplicitMixedMissingReturn: false
-    checkPhpDocMissingReturn: false
-    checkMaybeUndefinedVariables: true
-    cliArgumentsVariablesRegistered: true
-    checkNullables: false
-    checkThisOnly: false
-    checkUnionTypes: true
-    checkExplicitMixed: false
-    stubFiles:
-        - stubs/Request.stub
+	customRulesetUsed: true
+	noUnnecessaryCollectionCall: true
+	noUnnecessaryCollectionCallOnly: []
+	noUnnecessaryCollectionCallExcept: []
+	checkModelProperties: false
+	reportMagicMethods: false
+	reportMagicProperties: false
+	checkFunctionNameCase: false
+	checkPhpDocMethodSignatures: false
+	checkExplicitMixedMissingReturn: false
+	checkDynamicProperties: false
+	checkPhpDocMissingReturn: false
+	checkMaybeUndefinedVariables: true
+	cliArgumentsVariablesRegistered: true
+	checkNullables: false
+	checkThisOnly: false
+	checkUnionTypes: true
+	checkExplicitMixed: false
+	stubFiles:
+		- stubs/Request.stub
 
 rules:
 	- Enlightn\Enlightn\PHPStan\FillableForeignKeyModelRule
@@ -36,30 +40,19 @@ rules:
 	- PHPStan\Rules\DeadCode\UnusedPrivateMethodRule
 	- PHPStan\Rules\Functions\CallToFunctionParametersRule
 	- PHPStan\Rules\Functions\PrintfParametersRule
+	- PHPStan\Rules\Functions\ReturnTypeRule
+	- PHPStan\Rules\Methods\CallMethodsRule
+	- PHPStan\Rules\Methods\CallStaticMethodsRule
 	- PHPStan\Rules\Methods\ReturnTypeRule
 	- PHPStan\Rules\Variables\UnsetRule
 
 services:
-    -
-        class: PHPStan\Rules\Methods\CallMethodsRule
-        tags:
-            - phpstan.rules.rule
-        arguments:
-            checkFunctionNameCase: %checkFunctionNameCase%
-            reportMagicMethods: %reportMagicMethods%
     -
         class: PHPStan\Rules\Functions\CallToNonExistentFunctionRule
         tags:
             - phpstan.rules.rule
         arguments:
             checkFunctionNameCase: %checkFunctionNameCase%
-    -
-        class: PHPStan\Rules\Methods\CallStaticMethodsRule
-        tags:
-            - phpstan.rules.rule
-        arguments:
-            checkFunctionNameCase: %checkFunctionNameCase%
-            reportMagicMethods: %reportMagicMethods%
     -
         class: PHPStan\Rules\Methods\OverridingMethodRule
         arguments:
@@ -91,17 +84,12 @@ services:
             - phpstan.rules.rule
         arguments:
             reportMagicProperties: %reportMagicProperties%
+            checkDynamicProperties: %checkDynamicProperties%
     -
         class: PHPStan\Rules\Variables\DefinedVariableRule
         arguments:
             cliArgumentsVariablesRegistered: %cliArgumentsVariablesRegistered%
             checkMaybeUndefinedVariables: %checkMaybeUndefinedVariables%
-        tags:
-            - phpstan.rules.rule
-    -
-        class: PHPStan\Rules\Functions\ReturnTypeRule
-        arguments:
-            functionReflector: @betterReflectionFunctionReflector
         tags:
             - phpstan.rules.rule
     -
