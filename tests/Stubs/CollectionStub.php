@@ -2,7 +2,7 @@
 
 namespace Enlightn\Enlightn\Tests\Stubs;
 
-use Illuminate\Database\Eloquent\Model;
+use Enlightn\Enlightn\Tests\Stubs\Models\BananaModel;
 
 class CollectionStub
 {
@@ -15,8 +15,4 @@ class CollectionStub
     {
         return BananaModel::all()->first();
     }
-}
-
-class BananaModel extends Model
-{
 }
