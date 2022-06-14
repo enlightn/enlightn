@@ -102,6 +102,11 @@ class PHPStan
      */
     public function start($paths, $configPath = null)
     {
+        if (file_exists($stubFile = collect([$this->rootPath, 'vendor' , 'nunomaduro', 'larastan', 'stubs', 'Http', 'Request.stub'])->join(DIRECTORY_SEPARATOR))) {
+            // Neither PHPStan nor Larastan supports stub overriding, so we have no choice but to overwrite the Request.stub file in the vendor/nunomaduro/larastan/stubs/Http directory
+            copy(collect([__DIR__, '..', 'stubs', 'Request.stub'])->join(DIRECTORY_SEPARATOR), $stubFile);
+        }
+
         $configPath = $configPath ?? $this->configPath ?? (__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'phpstan.neon');
 
         $options = ['analyse', '--configuration='.$configPath, '--error-format=json', '--no-progress'];
