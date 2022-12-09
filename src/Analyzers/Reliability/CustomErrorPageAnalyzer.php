@@ -2,10 +2,11 @@
 
 namespace Enlightn\Enlightn\Analyzers\Reliability;
 
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
+use ReflectionClass;
+use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Routing\Router;
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 
 class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
 {
@@ -71,6 +72,18 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
      */
     public function handle(Filesystem $files)
     {
+        $usesInertia = $this->appUsesMiddleware(\App\Http\Middleware\HandleInertiaRequests::class);
+
+        if ($usesInertia) {
+            $handler = new ReflectionClass(app()->make(\App\Exceptions\Handler::class));
+
+            if ($handler->hasMethod('render') && 
+                $handler->getMethod('render')->getDeclaringClass()->getName() !== Illuminate\Foundation\Exceptions\Handler::class
+            ) {
+                return true;
+            }            
+        }
+
         $hasCustomErrorPages = collect(config('view.paths'))->contains(function ($viewPath, $_) use ($files) {
             return $files->exists($viewPath.DIRECTORY_SEPARATOR.'errors'.DIRECTORY_SEPARATOR.'404.blade.php');
         });
