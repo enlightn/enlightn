@@ -72,9 +72,7 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
      */
     public function handle(Filesystem $files)
     {
-        $usesInertia = $this->appUsesMiddleware(\App\Http\Middleware\HandleInertiaRequests::class);
-
-        if ($usesInertia) {
+        if ($this->appUsesInertia()) {
             $handler = new ReflectionClass(app()->make(\App\Exceptions\Handler::class));
 
             if ($handler->hasMethod('render') && 
@@ -105,4 +103,6 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
         // a web app and therefore, does not need to define any views.
         return $this->appIsStateless();
     }
+
+ 
 }
