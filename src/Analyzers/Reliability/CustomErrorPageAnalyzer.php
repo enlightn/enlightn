@@ -103,6 +103,4 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
         // a web app and therefore, does not need to define any views.
         return $this->appIsStateless();
     }
-
- 
 }
