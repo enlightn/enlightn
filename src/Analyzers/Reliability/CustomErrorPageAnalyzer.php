@@ -2,7 +2,6 @@
 
 namespace Enlightn\Enlightn\Analyzers\Reliability;
 
-use ReflectionClass;
 use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Filesystem\Filesystem;
@@ -72,21 +71,13 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
      */
     public function handle(Filesystem $files)
     {
-        if ($this->appUsesInertia()) {
-            $handler = new ReflectionClass(app()->make(\App\Exceptions\Handler::class));
+        // Throw a NotFoundHttpException and check if the rendered response matches the default 404 page.
+        $response = app(\App\Exceptions\Handler::class)->render(
+            app(\Illuminate\Http\Request::class),
+            new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException()
+        );
 
-            if ($handler->hasMethod('render') && 
-                $handler->getMethod('render')->getDeclaringClass()->getName() !== Illuminate\Foundation\Exceptions\Handler::class
-            ) {
-                return true;
-            }            
-        }
-
-        $hasCustomErrorPages = collect(config('view.paths'))->contains(function ($viewPath, $_) use ($files) {
-            return $files->exists($viewPath.DIRECTORY_SEPARATOR.'errors'.DIRECTORY_SEPARATOR.'404.blade.php');
-        });
-
-        if (! $hasCustomErrorPages) {
+        if ($response->getContent() === view('errors::404')->render()) {
             $this->markFailed();
         }
     }
