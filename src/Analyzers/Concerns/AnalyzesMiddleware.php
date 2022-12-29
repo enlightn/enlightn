@@ -213,15 +213,4 @@ trait AnalyzesMiddleware
             }
         }
     }
-
-    /**
-     * Determine if the app uses Inertia.
-     *
-     * @return bool
-     * @throws \ReflectionException
-     */
-    protected function appUsesInertia()
-    {
-        return $this->appUsesMiddleware(\App\Http\Middleware\HandleInertiaRequests::class);
-    }
 }
