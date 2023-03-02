@@ -2,12 +2,12 @@
 
 namespace Enlightn\Enlightn\Analyzers\Reliability;
 
-use Illuminate\Routing\Router;
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Routing\Router;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 
 class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
 {
