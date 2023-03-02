@@ -2,10 +2,12 @@
 
 namespace Enlightn\Enlightn\Analyzers\Reliability;
 
-use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
+use Illuminate\Routing\Router;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Routing\Router;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 
 class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
 {
@@ -75,7 +77,14 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
             return $files->exists($viewPath.DIRECTORY_SEPARATOR.'errors'.DIRECTORY_SEPARATOR.'404.blade.php');
         });
 
-        if (! $hasCustomErrorPages) {
+        if ($hasCustomErrorPages) {
+            return;
+        }
+
+        // Throw a NotFoundHttpException and check if the rendered response matches the default 404 page (for apps like Inertia).
+        $response = app(ExceptionHandler::class)->render(app('request'), new NotFoundHttpException());
+
+        if ($response->getContent() === view('errors::404')->render()) {
             $this->markFailed();
         }
     }
