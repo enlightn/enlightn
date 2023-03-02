@@ -38,7 +38,7 @@
         "php": "^8.0",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.0",
-        "laravel/framework": "^9.0",
+        "laravel/framework": "^9.0|^10.0",
         "nikic/php-parser": "^4.0",
         "nunomaduro/larastan": "^2.0",
         "phpstan/phpstan": "^1.4",
@@ -50,7 +50,7 @@
         "brianium/paratest": "^6.1",
         "friendsofphp/php-cs-fixer": "^2.18|^3.0",
         "mockery/mockery": "^1.3",
-        "orchestra/testbench": "^7.0",
+        "orchestra/testbench": "^7.0|^8.0",
         "phpunit/phpunit": "^9.0",
         "predis/predis": "*"
     },
