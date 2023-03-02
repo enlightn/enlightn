@@ -53,10 +53,10 @@ Each of the 128 checks available are well documented. You can find the complete 
 
 ## Compatibility Matrix
 
-| Enlightn | Laravel | Larastan | PHPStan    |
-|:---------|:--------|:---------|:-----------|
-| 1.x      | 6.x-9.x | 0.6x-1.x | 0.12x-1.1x |
-| 2.x      | 6.x-9.x | 2.x      | 1.4x+      |
+| Enlightn | Laravel  | Larastan | PHPStan    |
+|:---------|:---------|:---------|:-----------|
+| 1.x      | 6.x-9.x  | 0.6x-1.x | 0.12x-1.1x |
+| 2.x      | 6.x-10.x | 2.x      | 1.4x+      |
 
 Note: The same compatibility matrix applies for Enlightn Pro versions.
 
