@@ -3,8 +3,10 @@
 namespace Enlightn\Enlightn\Analyzers\Reliability;
 
 use Illuminate\Routing\Router;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Enlightn\Enlightn\Analyzers\Concerns\AnalyzesMiddleware;
 
 class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
@@ -71,11 +73,16 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
      */
     public function handle(Filesystem $files)
     {
-        // Throw a NotFoundHttpException and check if the rendered response matches the default 404 page.
-        $response = app(\App\Exceptions\Handler::class)->render(
-            app(\Illuminate\Http\Request::class),
-            new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException()
-        );
+        $hasCustomErrorPages = collect(config('view.paths'))->contains(function ($viewPath, $_) use ($files) {
+            return $files->exists($viewPath.DIRECTORY_SEPARATOR.'errors'.DIRECTORY_SEPARATOR.'404.blade.php');
+        });
+
+        if ($hasCustomErrorPages) {
+            return;
+        }
+
+        // Throw a NotFoundHttpException and check if the rendered response matches the default 404 page (for apps like Inertia).
+        $response = app(ExceptionHandler::class)->render(app('request'), new NotFoundHttpException());
 
         if ($response->getContent() === view('errors::404')->render()) {
             $this->markFailed();
