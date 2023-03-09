@@ -5,7 +5,6 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 use Enlightn\Enlightn\Analyzers\Reliability\CustomErrorPageAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithMiddleware;
-use Illuminate\Support\Facades\View;
 
 class CustomErrorPageAnalyzerTest extends AnalyzerTestCase
 {
