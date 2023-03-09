@@ -77,7 +77,9 @@ class CustomErrorPageAnalyzer extends ReliabilityAnalyzer
             return $files->exists($viewPath.DIRECTORY_SEPARATOR.'errors'.DIRECTORY_SEPARATOR.'404.blade.php');
         });
 
-        if ($hasCustomErrorPages) {
+        $hasCustomErrorNamespace = isset(app('view')->getFinder()->getHints()['errors']);
+
+        if ($hasCustomErrorPages || $hasCustomErrorNamespace) {
             return;
         }
 

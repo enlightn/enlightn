@@ -5,6 +5,7 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 use Enlightn\Enlightn\Analyzers\Reliability\CustomErrorPageAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithMiddleware;
+use Illuminate\Support\Facades\View;
 
 class CustomErrorPageAnalyzerTest extends AnalyzerTestCase
 {
@@ -46,6 +47,19 @@ class CustomErrorPageAnalyzerTest extends AnalyzerTestCase
     {
         $this->registerStatefulGlobalMiddleware();
         $this->app->config->set('view.paths', [$this->getViewStubPath()]);
+
+        $this->runEnlightn();
+
+        $this->assertPassed(CustomErrorPageAnalyzer::class);
+    }
+
+    /**
+     * @test
+     */
+    public function detects_custom_error_namespace()
+    {
+        $this->registerStatefulGlobalMiddleware();
+        $this->app['view']->replaceNamespace('errors', $this->getViewStubPath().DIRECTORY_SEPARATOR.'errors');
 
         $this->runEnlightn();
 
