@@ -169,4 +169,19 @@ return [
         storage_path(),
         app()->bootstrapPath('cache'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | PHPStan Runtime configurations
+    |--------------------------------------------------------------------------
+    |
+    | PHPStan might fail on minimal memory_limit from php.ini.
+    | This allow us to pass different memory_limit into phpstan process object
+    | using `php -d memory_limit=1G artisan enlightn`.
+    */
+    'phpstan' => [
+        '--error-format' => 'json',
+        '--no-progress' => true,
+        '--memory-limit' => ini_get('memory_limit'),
+    ],
 ];
