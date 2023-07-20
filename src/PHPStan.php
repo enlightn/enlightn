@@ -198,7 +198,7 @@ class PHPStan
     {
         $result = [];
 
-        $configs = config('enlightn.phpstan');
+        $configs = config('enlightn.phpstan', ['--error-format' => 'json', '--no-progress' => true]);
 
         foreach ($configs as $name => $value) {
             $option = is_bool($value) ? $name : implode('=', [$name, $value]);

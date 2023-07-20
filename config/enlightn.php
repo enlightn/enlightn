@@ -175,8 +175,7 @@ return [
     | PHPStan Runtime configurations
     |--------------------------------------------------------------------------
     |
-    | PHPStan might fail on minimal memory_limit from php.ini.
-    | This allow us to pass different memory_limit into phpstan process object
+    | This setting allows us to pass through memory limits from artisan to phpstan.
     | using `php -d memory_limit=1G artisan enlightn`.
     */
     'phpstan' => [
