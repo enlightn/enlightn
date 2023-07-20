@@ -51,6 +51,15 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 
 Each of the 128 checks available are well documented. You can find the complete 137 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
 
+## Compatibility Matrix
+
+| Enlightn | Laravel  | Larastan | PHPStan    |
+|:---------|:---------|:---------|:-----------|
+| 1.x      | 6.x-9.x  | 0.6x-1.x | 0.12x-1.1x |
+| 2.x      | 9.x-10.x | 2.x      | 1.4x+      |
+
+Note: The same compatibility matrix applies for Enlightn Pro versions.
+
 ## Installing Enlightn OSS
 
 You may install Enlightn into your project using the Composer package manager:

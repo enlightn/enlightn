@@ -5,7 +5,6 @@ namespace Enlightn\Enlightn\Analyzers\Performance;
 use Enlightn\Enlightn\Analyzers\Concerns\InspectsCode;
 use Enlightn\Enlightn\Inspection\Inspector;
 use Enlightn\Enlightn\Inspection\QueryBuilder;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Cache;
 
 class SharedCacheLockAnalyzer extends PerformanceAnalyzer

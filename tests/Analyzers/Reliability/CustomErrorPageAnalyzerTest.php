@@ -51,4 +51,17 @@ class CustomErrorPageAnalyzerTest extends AnalyzerTestCase
 
         $this->assertPassed(CustomErrorPageAnalyzer::class);
     }
+
+    /**
+     * @test
+     */
+    public function detects_custom_error_namespace()
+    {
+        $this->registerStatefulGlobalMiddleware();
+        $this->app['view']->replaceNamespace('errors', $this->getViewStubPath().DIRECTORY_SEPARATOR.'errors');
+
+        $this->runEnlightn();
+
+        $this->assertPassed(CustomErrorPageAnalyzer::class);
+    }
 }
