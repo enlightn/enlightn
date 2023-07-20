@@ -37,12 +37,12 @@
     "require": {
         "php": "^8.0",
         "ext-json": "*",
+        "enlightn/security-checker": "^1.1",
         "guzzlehttp/guzzle": "^7.0",
         "laravel/framework": "^9.0|^10.0",
         "nikic/php-parser": "^4.0",
         "nunomaduro/larastan": "^2.0",
-        "phpstan/phpstan": "^1.4",
-        "enlightn/security-checker": "^1.1",
+        "phpstan/phpstan": ">=1.10.11",
         "symfony/finder": "^4.0|^5.0|^6.0"
     },
     "require-dev": {

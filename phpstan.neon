@@ -20,6 +20,8 @@ parameters:
 	checkThisOnly: false
 	checkUnionTypes: true
 	checkExplicitMixed: false
+	featureToggles:
+		genericPrototypeMessage: true
 	stubFiles:
 		- stubs/Request.stub
 
@@ -57,6 +59,7 @@ services:
         class: PHPStan\Rules\Methods\OverridingMethodRule
         arguments:
             checkPhpDocMethodSignatures: %checkPhpDocMethodSignatures%
+            genericPrototypeMessage: %featureToggles.genericPrototypeMessage%
         tags:
             - phpstan.rules.rule
     -
