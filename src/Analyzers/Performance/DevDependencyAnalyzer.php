@@ -3,7 +3,6 @@
 namespace Enlightn\Enlightn\Analyzers\Performance;
 
 use Enlightn\Enlightn\Composer;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Str;
 
 class DevDependencyAnalyzer extends PerformanceAnalyzer
