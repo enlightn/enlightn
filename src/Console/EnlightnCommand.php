@@ -22,7 +22,8 @@ class EnlightnCommand extends Command
                             {--report : Compile a report to trigger a comment by the Enlightn Github Bot}
                             {--review : Enable this for a review of the diff by the Enlightn Github Bot}
                             {--show-exceptions : Display the stack trace of exceptions if any}
-                            {--issue= : The issue number of the pull request for the Enlightn Github Bot}';
+                            {--issue= : The issue number of the pull request for the Enlightn Github Bot}
+                            {--hash= : An optional alternative commit hash to report to the Web UI}';
 
     /**
      * The console command description.
@@ -116,6 +117,10 @@ class EnlightnCommand extends Command
 
             if ($this->option('ci')) {
                 $metadata['trigger'] = 'ci';
+            }
+
+            if ($hash = $this->option('hash')) {
+                $metadata['commit_id'] = $hash;
             }
 
             $url = $api->sendReport($reportBuilder->buildReport($this->analyzerInfos, $this->result, $metadata));
