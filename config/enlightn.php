@@ -169,4 +169,18 @@ return [
         storage_path(),
         app()->bootstrapPath('cache'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | PHPStan Runtime configurations
+    |--------------------------------------------------------------------------
+    |
+    | This setting allows us to pass through memory limits from artisan to phpstan.
+    | using `php -d memory_limit=1G artisan enlightn`.
+    */
+    'phpstan' => [
+        '--error-format' => 'json',
+        '--no-progress' => true,
+        '--memory-limit' => ini_get('memory_limit'),
+    ],
 ];

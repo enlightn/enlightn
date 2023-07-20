@@ -109,7 +109,9 @@ class PHPStan
 
         $configPath = $configPath ?? $this->configPath ?? (__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'phpstan.neon');
 
-        $options = ['analyse', '--configuration='.$configPath, '--error-format=json', '--no-progress'];
+        $options = ['analyse', '--configuration='.$configPath];
+
+        $options = array_merge($options, $this->getPHPStanOptions());
 
         foreach (Arr::wrap($paths) as $path) {
             $options[] = $path;
@@ -185,5 +187,24 @@ class PHPStan
         $this->rootPath = realpath($path);
 
         return $this;
+    }
+
+    /**
+     * Get default PHPStan runtime configurations.
+     *
+     * @return array
+     */
+    protected function getPHPStanOptions()
+    {
+        $result = [];
+
+        $configs = config('enlightn.phpstan', ['--error-format' => 'json', '--no-progress' => true]);
+
+        foreach ($configs as $name => $value) {
+            $option = is_bool($value) ? $name : implode('=', [$name, $value]);
+            array_push($result, $option);
+        }
+
+        return $result;
     }
 }
