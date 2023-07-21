@@ -1,5 +1,6 @@
 includes:
 	- %rootDir%/../../nunomaduro/larastan/extension.neon
+	- %rootDir%/../../phpstan/phpstan-deprecation-rules/rules.neon
 
 parameters:
 	customRulesetUsed: true

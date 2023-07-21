@@ -15,9 +15,9 @@
 
 Think of Enlightn as your performance and security consultant. Enlightn will "review" your code and server configurations, and give you actionable recommendations on improving performance, security and reliability!
 
-The Enlightn OSS (open source software) version has 64 automated checks that scan your application code, web server configurations and routes to identify performance bottlenecks, possible security vulnerabilities and code reliability issues.
+The Enlightn OSS (open source software) version has 66 automated checks that scan your application code, web server configurations and routes to identify performance bottlenecks, possible security vulnerabilities and code reliability issues.
 
-Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 64 automated checks (total of **128 checks**).
+Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 64 automated checks (total of **130 checks**).
 
 ### Performance Checks (37 Automated Checks including 19 Enlightn Pro Checks)
 
@@ -39,9 +39,9 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 - :syringe: Injection and Phishing Attacks: Detection of command injection, host injection, object injection, open redirection, etc.
 - :package: Dependency Management: Backend and frontend vulnerability scanning, stable and up-to-date dependency checks, licensing, etc.
 
-### Reliability Checks (43 Automated Checks including 17 Enlightn Pro Checks)
+### Reliability Checks (45 Automated Checks including 17 Enlightn Pro Checks)
 
-- 🧐 Code Reliability and Bug Detection: Invalid function calls, method calls, offsets, imports, return statements, syntax errors, etc.
+- 🧐 Code Reliability and Bug Detection: Invalid function calls, method calls, offsets, imports, return statements, syntax errors, invalid model relations, etc.
 - :muscle: Health Checks: Health checks for cache, DB, directory permissions, migrations, disk space, symlinks, Redis, etc.
 - :gear: Detecting Misconfigurations: Cache prefix, queue timeouts, failed job timeouts, Horizon provisioning plans, eviction policy, etc.
 - :ghost: Dead Routes and Dead Code: Detection of dead routes and dead/unreachable code.
@@ -49,7 +49,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 
 ## Documentation
 
-Each of the 128 checks available are well documented. You can find the complete 137 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
+Each of the 130 checks available are well documented. You can find the complete documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
 
 ## Compatibility Matrix
 
@@ -214,7 +214,7 @@ Besides the automated CI checks, you should also run Enlightn on a regular frequ
 
 ## Featured On
 
-[<img src="https://laravelnews.imgix.net/laravel-news__logo.png" height="100" alt="Laravel News" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" alt="OWASP" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_Cheat_Sheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://www.nist.gov/sites/default/files/styles/960_x_960_limit/public/images/2017/09/20/645px-nist_logo-svg_1.png" height="80" alt="NIST" />](https://www.nist.gov/itl/ssd/software-quality-group/source-code-security-analyzers)
+[<img src="https://yt3.googleusercontent.com/WBigdQgh_nxly0BisZKNA5Ej2P1cBdjcBT7YmJlrGbjOy7KY8h9AOljW2XkH46lvgk6RhZUbJg=s900-c-k-c0x00ffffff-no-rj" height="100" alt="Laravel News" />](https://laravel-news.com/enlightn) &nbsp;&nbsp;&nbsp; [<img src="https://owasp.org/www-policy/branding-assets/OWASP-Combination-mark-r.png" height="100" alt="OWASP" />](https://cheatsheetseries.owasp.org/cheatsheets/Laravel_Cheat_Sheet.html) &nbsp;&nbsp;&nbsp; [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/NIST_logo.svg/1280px-NIST_logo.svg.png" height="80" alt="NIST" />](https://www.nist.gov/itl/ssd/software-quality-group/source-code-security-analyzers)
 
 ## Flagship OSS Projects Using Enlightn
 
