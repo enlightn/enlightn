@@ -4,8 +4,8 @@ namespace Enlightn\Enlightn\Tests\Analyzers\Reliability;
 
 use Enlightn\Enlightn\Analyzers\Reliability\DeprecatedCodeAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
-use Enlightn\Enlightn\Tests\Stubs\DummyStub;
 use Enlightn\Enlightn\Tests\Stubs\DeprecatedCodeStub;
+use Enlightn\Enlightn\Tests\Stubs\DummyStub;
 
 class DeprecatedCodeAnalyzerTest extends AnalyzerTestCase
 {
