@@ -17,7 +17,7 @@ Think of Enlightn as your performance and security consultant. Enlightn will "re
 
 The Enlightn OSS (open source software) version has 64 automated checks that scan your application code, web server configurations and routes to identify performance bottlenecks, possible security vulnerabilities and code reliability issues.
 
-Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 64 automated checks (total of **128 checks**).
+Enlightn Pro (commercial) is available for purchase on the [Enlightn website](https://www.laravel-enlightn.com/) and has an additional 64 automated checks (total of **129 checks**).
 
 ### Performance Checks (37 Automated Checks including 19 Enlightn Pro Checks)
 
@@ -39,9 +39,9 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 - :syringe: Injection and Phishing Attacks: Detection of command injection, host injection, object injection, open redirection, etc.
 - :package: Dependency Management: Backend and frontend vulnerability scanning, stable and up-to-date dependency checks, licensing, etc.
 
-### Reliability Checks (43 Automated Checks including 17 Enlightn Pro Checks)
+### Reliability Checks (44 Automated Checks including 17 Enlightn Pro Checks)
 
-- 🧐 Code Reliability and Bug Detection: Invalid function calls, method calls, offsets, imports, return statements, syntax errors, etc.
+- 🧐 Code Reliability and Bug Detection: Invalid function calls, method calls, offsets, imports, return statements, syntax errors, invalid model relations, etc.
 - :muscle: Health Checks: Health checks for cache, DB, directory permissions, migrations, disk space, symlinks, Redis, etc.
 - :gear: Detecting Misconfigurations: Cache prefix, queue timeouts, failed job timeouts, Horizon provisioning plans, eviction policy, etc.
 - :ghost: Dead Routes and Dead Code: Detection of dead routes and dead/unreachable code.
@@ -49,7 +49,7 @@ Enlightn Pro (commercial) is available for purchase on the [Enlightn website](ht
 
 ## Documentation
 
-Each of the 128 checks available are well documented. You can find the complete 137 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
+Each of the 129 checks available are well documented. You can find the complete 138 page documentation [here](https://www.laravel-enlightn.com/docs/getting-started/installation.html).
 
 ## Compatibility Matrix
 
