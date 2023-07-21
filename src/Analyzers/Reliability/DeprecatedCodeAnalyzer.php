@@ -48,6 +48,6 @@ class DeprecatedCodeAnalyzer extends ReliabilityAnalyzer
      */
     public function handle(PHPStan $PHPStan)
     {
-        $this->pregMatchPHPStanAnalysis($PHPStan, '#\s* deprecated(.*?) \s*#');
+        $this->pregMatchPHPStanAnalysis($PHPStan, '#\s* deprecated \s*#');
     }
 }
