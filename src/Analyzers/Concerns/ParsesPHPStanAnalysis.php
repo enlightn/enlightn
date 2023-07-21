@@ -32,4 +32,17 @@ trait ParsesPHPStanAnalysis
             $this->addTrace($trace->path, $trace->lineNumber, $trace->details);
         });
     }
+
+    /**
+     * Parse the analysis and add traces for the errors.
+     *
+     * @param \Enlightn\Enlightn\PHPStan $phpStan
+     * @param string|array $pattern
+     */
+    protected function pregMatchPHPStanAnalysis(PHPStan $phpStan, $pattern)
+    {
+        collect($phpStan->pregMatch($pattern))->each(function (Trace $trace) {
+            $this->addTrace($trace->path, $trace->lineNumber, $trace->details);
+        });
+    }
 }
