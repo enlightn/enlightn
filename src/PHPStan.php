@@ -94,6 +94,27 @@ class PHPStan
     }
 
     /**
+     * Parse the PHPStan analysis and get the results matching the pattern.
+     *
+     * @param  string|array  $pattern
+     * @return array
+     */
+    public function pregMatch($pattern)
+    {
+        if (! isset($this->result['files'])) {
+            return [];
+        }
+
+        return collect($this->result['files'])->map(function ($fileAnalysis, $path) use ($pattern) {
+            return collect($fileAnalysis['messages'])->filter(function ($message) use ($pattern) {
+                return preg_match($pattern, $message['message']) === 1;
+            })->map(function ($message) use ($path) {
+                return new Trace($path, $message['line'], $message['message']);
+            })->flatten()->toArray();
+        })->filter()->flatten()->toArray();
+    }
+
+    /**
      * Run the PHPStan analysis and get the output
      *
      * @param  string|array  $paths
