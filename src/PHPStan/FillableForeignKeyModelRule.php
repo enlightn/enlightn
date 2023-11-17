@@ -49,7 +49,7 @@ class FillableForeignKeyModelRule implements Rule
             }
 
             if ($item->value instanceof Node\Scalar\String_
-                && Str::contains($key = $item->value->value, '_id')) {
+                && Str::contains($key = $item->value->value, '_id', true)) {
                 return [
                     sprintf(
                         'Potential foreign key %s declared as fillable and available for mass assignment.',
