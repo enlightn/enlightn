@@ -21,8 +21,11 @@ parameters:
 	checkThisOnly: false
 	checkUnionTypes: true
 	checkExplicitMixed: false
+	checkMissingOverrideMethodAttribute: false
 	featureToggles:
 		genericPrototypeMessage: true
+		logicalXor: true
+		finalByPhpDoc: false
 	stubFiles:
 		- stubs/Request.stub
 
@@ -37,7 +40,6 @@ rules:
 	- PHPStan\Rules\Arrays\OffsetAccessAssignOpRule
 	- PHPStan\Rules\Arrays\OffsetAccessValueAssignmentRule
 	- PHPStan\Rules\Classes\ClassConstantRule
-	- PHPStan\Rules\DeadCode\NoopRule
 	- PHPStan\Rules\DeadCode\UnreachableStatementRule
 	- PHPStan\Rules\DeadCode\UnusedPrivateConstantRule
 	- PHPStan\Rules\DeadCode\UnusedPrivateMethodRule
@@ -61,6 +63,14 @@ services:
         arguments:
             checkPhpDocMethodSignatures: %checkPhpDocMethodSignatures%
             genericPrototypeMessage: %featureToggles.genericPrototypeMessage%
+            finalByPhpDoc: %featureToggles.finalByPhpDoc%
+            checkMissingOverrideMethodAttribute: %checkMissingOverrideMethodAttribute%
+        tags:
+            - phpstan.rules.rule
+    -
+        class: PHPStan\Rules\DeadCode\NoopRule
+        arguments:
+            logicalXor: %featureToggles.logicalXor%
         tags:
             - phpstan.rules.rule
     -
