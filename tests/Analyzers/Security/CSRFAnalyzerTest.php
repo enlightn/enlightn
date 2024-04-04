@@ -6,8 +6,8 @@ use Enlightn\Enlightn\Analyzers\Security\CSRFAnalyzer;
 use Enlightn\Enlightn\Tests\Analyzers\AnalyzerTestCase;
 use Enlightn\Enlightn\Tests\Analyzers\Concerns\InteractsWithMiddleware;
 use Illuminate\Contracts\Http\Kernel;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Support\Facades\Route;
 
 class CSRFAnalyzerTest extends AnalyzerTestCase
 {

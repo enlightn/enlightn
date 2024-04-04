@@ -94,6 +94,7 @@ class UnusedGlobleMiddlewareAnalyzerTest extends AnalyzerTestCase
         if (method_exists($kernel, 'setGlobalMiddleware')) {
             $kernel->setGlobalMiddleware([]);
         }
+
         return $kernel;
     }
 }
