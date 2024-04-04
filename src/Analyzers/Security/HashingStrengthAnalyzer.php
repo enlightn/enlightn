@@ -68,7 +68,7 @@ class HashingStrengthAnalyzer extends SecurityAnalyzer
                 $this->markFailed();
             }
         } elseif ($driver === 'argon' || $driver === 'argon2id') {
-            if ($config->get('hashing.argon.memory') < 65536 || $config->get('hashing.argon.time') < 2 ) {
+            if ($config->get('hashing.argon.memory') < 65536 || $config->get('hashing.argon.time') < 2) {
                 $this->markFailed();
             }
         } else {
