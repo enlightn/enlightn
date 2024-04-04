@@ -6,6 +6,7 @@ use Enlightn\Enlightn\Analyzers\Reliability\CachePrefixAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppDebugAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\AppKeyAnalyzer;
 use Enlightn\Enlightn\Console\EnlightnCommand;
+use Enlightn\Enlightn\Enlightn;
 use Illuminate\Testing\PendingCommand;
 use Symfony\Component\Console\Helper\TableStyle;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -151,6 +152,8 @@ class EnlightnCommandTest extends TestCase
         $command = new EnlightnCommand;
         $command->setLaravel($this->app);
 
+        Enlightn::$rethrowExceptions = false;
+
         $status = $command->run(new ArrayInput([]), $output = new BufferedOutput);
 
         $this->assertStringNotContainsString('FaultyAnalyzer', $output->fetch());
@@ -168,6 +171,8 @@ class EnlightnCommandTest extends TestCase
 
         $command = new EnlightnCommand;
         $command->setLaravel($this->app);
+
+        Enlightn::$rethrowExceptions = false;
 
         $status = $command->run(new ArrayInput(['--show-exceptions' => true]), $output = new BufferedOutput);
 

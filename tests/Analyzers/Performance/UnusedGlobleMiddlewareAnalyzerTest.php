@@ -27,6 +27,8 @@ class UnusedGlobleMiddlewareAnalyzerTest extends AnalyzerTestCase
      */
     public function passes_with_no_global_middleware()
     {
+        $this->clearMiddleware();
+
         $this->runEnlightn();
 
         $this->assertPassed(UnusedGlobalMiddlewareAnalyzer::class);
@@ -37,7 +39,8 @@ class UnusedGlobleMiddlewareAnalyzerTest extends AnalyzerTestCase
      */
     public function detects_trusted_hosts_without_trusted_proxies()
     {
-        $this->app->make(Kernel::class)->pushMiddleware(TrustHosts::class);
+        $kernel = $this->clearMiddleware();
+        $kernel->pushMiddleware(TrustHosts::class);
 
         $this->runEnlightn();
 
@@ -49,7 +52,8 @@ class UnusedGlobleMiddlewareAnalyzerTest extends AnalyzerTestCase
      */
     public function passes_with_wildcard_trusted_proxies()
     {
-        $this->app->make(Kernel::class)->pushMiddleware(DummyTrustProxiesL9::class);
+        $kernel = $this->clearMiddleware();
+        $kernel->pushMiddleware(DummyTrustProxiesL9::class);
 
         $this->runEnlightn();
 
@@ -61,7 +65,8 @@ class UnusedGlobleMiddlewareAnalyzerTest extends AnalyzerTestCase
      */
     public function detects_unused_trusted_proxies()
     {
-        $this->app->make(Kernel::class)->pushMiddleware(UnusedTrustProxiesL9::class);
+        $kernel = $this->clearMiddleware();
+        $kernel->pushMiddleware(UnusedTrustProxiesL9::class);
 
         $this->runEnlightn();
 
@@ -75,10 +80,21 @@ class UnusedGlobleMiddlewareAnalyzerTest extends AnalyzerTestCase
     {
         $this->app->config->set('cors.paths', []);
 
-        $this->app->make(Kernel::class)->pushMiddleware(HandleCors::class);
+        $kernel = $this->clearMiddleware();
+        $kernel->pushMiddleware(HandleCors::class);
 
         $this->runEnlightn();
 
         $this->assertFailed(UnusedGlobalMiddlewareAnalyzer::class);
+    }
+
+    private function clearMiddleware()
+    {
+        $kernel = $this->app->make(Kernel::class);
+        if (method_exists($kernel, 'setGlobalMiddleware')) {
+            $kernel->setGlobalMiddleware([]);
+        }
+
+        return $kernel;
     }
 }
