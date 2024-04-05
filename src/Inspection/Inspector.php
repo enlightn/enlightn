@@ -34,7 +34,7 @@ class Inspector
      */
     public function start(array $filePaths)
     {
-        $parser = (new ParserFactory)->create(ParserFactory::ONLY_PHP7);
+        $parser = (new ParserFactory)->createForHostVersion();
 
         collect($filePaths)->each(function ($path) use ($parser) {
             if (! isset($this->nodes[$path])) {

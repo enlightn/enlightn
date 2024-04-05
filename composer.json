@@ -41,7 +41,7 @@
         "guzzlehttp/guzzle": "^7.0",
         "larastan/larastan": "^2.0",
         "laravel/framework": "^9.0|^10.0|^11.0",
-        "nikic/php-parser": "^4.0",
+        "nikic/php-parser": "^4.0|^5.0",
         "phpstan/phpstan": ">=1.10.48",
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "symfony/finder": "^4.0|^5.0|^6.0|^7.0"
