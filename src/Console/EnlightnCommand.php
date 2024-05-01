@@ -23,7 +23,8 @@ class EnlightnCommand extends Command
                             {--review : Enable this for a review of the diff by the Enlightn Github Bot}
                             {--show-exceptions : Display the stack trace of exceptions if any}
                             {--issue= : The issue number of the pull request for the Enlightn Github Bot}
-                            {--hash= : An optional alternative commit hash to report to the Web UI}';
+                            {--hash= : An optional alternative commit hash to report to the Web UI}
+                            {--forge : An optional argument for laravel forge to run command successfully}';
 
     /**
      * The console command description.
@@ -74,7 +75,7 @@ class EnlightnCommand extends Command
      * Execute the console command.
      *
      * @param \Enlightn\Enlightn\Reporting\API $api
-     * @return int
+     * @return int|void
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \ReflectionException
      * @throws \Throwable
@@ -129,6 +130,11 @@ class EnlightnCommand extends Command
                 $this->getOutput()->newLine();
                 $this->comment("Your report can be viewed at <href={$url}>{$url}</>");
             }
+        }
+
+        // Exit with void to run successfully on laravel forge.
+        if($this->option('forge')){
+            return;
         }
 
         // Exit with a non-zero exit code if there were failed checks to throw an error on CI environments
